@@ -1,2 +1,2 @@
-# integration_notion
+# Notion integration in Nextcloud
 Nextcloud integration of Notion

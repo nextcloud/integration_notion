@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<info>
+	<id>integration_notion</id>
+	<name>Notion integration</name>
+	<summary>Integration of Notion</summary>
+	<description><![CDATA[Notion integration lets users create, share and view their notes directly in Nextcloud.]]></description>
+	<version>0.0.1</version>
+	<licence>agpl</licence>
+	<author mail="andrey18106x@gmail.com" homepage="https://github.com/andrey18106">Andrey Borysenko</author>
+	<author mail="bigcat88@icloud.com" homepage="https://github.com/bigcat88">Alexander Piskun</author>
+	<namespace>Notion</namespace>
+	<documentation>
+		<developer>https://github.com/cloud-py-api/integration_notion</developer>
+	</documentation>
+	<category>integration</category>
+	<category>dashboard</category>
+	<website>https://github.com/cloud-py-api/integration_notion</website>
+	<bugs>https://github.com/cloud-py-api/integration_notion/issues</bugs>
+	<dependencies>
+		<nextcloud min-version="25" max-version="26"/>
+	</dependencies>
+	<settings>
+		<admin>OCA\Notion\Settings\Admin</admin>
+		<admin-section>OCA\Notion\Settings\AdminSection</admin-section>
+		<personal>OCA\Notion\Settings\Personal</personal>
+		<personal-section>OCA\Notion\Settings\PersonalSection</personal-section>
+	</settings>
+	<navigations>
+		<navigation>
+			<id>integration_notion</id>
+			<name>Notion</name>
+			<route>integration_notion.page.index</route>
+			<icon>app.svg</icon>
+			<order>8</order>
+		</navigation>
+	</navigations>
+</info>
