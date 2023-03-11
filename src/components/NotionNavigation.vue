@@ -27,7 +27,7 @@ import NcAppNavigation from '@nextcloud/vue/dist/Components/NcAppNavigation.js'
 import BoardNavigationItem from './BoardNavigationItem.vue'
 
 export default {
-	name: 'MiroNavigation',
+	name: 'NotionNavigation',
 
 	components: {
 		BoardNavigationItem,

@@ -1,7 +1,7 @@
 <template>
 	<span :aria-hidden="!title"
 		:aria-label="title"
-		class="material-design-icon miro-icon"
+		class="material-design-icon notion-icon"
 		role="img"
 		v-bind="$attrs"
 		@click="$emit('click', $event)">
@@ -22,7 +22,7 @@
 
 <script>
 export default {
-	name: 'MiroIcon',
+	name: 'NotionIcon',
 	props: {
 		title: {
 			type: String,

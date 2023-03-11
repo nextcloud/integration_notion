@@ -1,19 +1,19 @@
 <template>
 	<div id="nuiteqModalWrapper">
-		<MiroModal v-if="open && boardUrl"
+		<NotionModal v-if="open && boardUrl"
 			:board-url="boardUrl"
 			@close="onClose" />
 	</div>
 </template>
 
 <script>
-import MiroModal from './MiroModal.vue'
+import NotionModal from './NotionModal.vue'
 
 export default {
-	name: 'MiroModalWrapper',
+	name: 'NotionModalWrapper',
 
 	components: {
-		MiroModal,
+		NotionModal,
 	},
 
 	props: {

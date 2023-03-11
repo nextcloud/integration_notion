@@ -70,8 +70,8 @@ class Personal implements ISettings {
 	 */
 	public function getForm(): TemplateResponse {
 		$token = $this->config->getUserValue($this->userId, Application::APP_ID, 'token');
-		$miroUserId = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_id');
-		$miroUserName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_name');
+		$notionUserId = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_id');
+		$notionUserName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_name');
 
 		// for OAuth
 		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id');
@@ -84,8 +84,8 @@ class Personal implements ISettings {
 			'client_id' => $clientID,
 			'client_secret' => $clientSecret,
 			'use_popup' => $usePopup,
-			'user_id' => $miroUserId,
-			'user_name' => $miroUserName,
+			'user_id' => $notionUserId,
+			'user_name' => $notionUserName,
 		];
 		$this->initialStateService->provideInitialState('user-config', $userConfig);
 		return new TemplateResponse(Application::APP_ID, 'personalSettings');

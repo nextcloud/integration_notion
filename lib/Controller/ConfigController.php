@@ -118,7 +118,7 @@ class ConfigController extends Controller {
 	public function setConfig(array $values): DataResponse {
 		// revoke the token
 		if (isset($values['token']) && $values['token'] === '') {
-			$this->miroAPIService->revokeToken($this->userId);
+			$this->notionAPIService->revokeToken($this->userId);
 		}
 
 		foreach ($values as $key => $value) {
@@ -191,7 +191,7 @@ class ConfigController extends Controller {
 //		if ($clientID && $clientSecret && $configState !== '' && $configState === $state) {
 		if ($clientID && $clientSecret) {
 			$redirect_uri = $this->config->getUserValue($this->userId, Application::APP_ID, 'redirect_uri');
-			$result = $this->miroAPIService->requestOAuthAccessToken([
+			$result = $this->notionAPIService->requestOAuthAccessToken([
 				'client_id' => $clientID,
 				'client_secret' => $clientSecret,
 				'code' => $code,
@@ -217,7 +217,7 @@ class ConfigController extends Controller {
 				$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0') === '1';
 				if ($usePopup) {
 					return new RedirectResponse(
-						$this->urlGenerator->linkToRoute('integration_miro.config.popupSuccessPage', [
+						$this->urlGenerator->linkToRoute('integration_notion.config.popupSuccessPage', [
 							'user_name' => $userInfo['user_name'] ?? '',
 							'user_id' => $userInfo['user_id'] ?? '',
 						])
@@ -228,7 +228,7 @@ class ConfigController extends Controller {
 					if ($oauthOrigin === 'settings') {
 						return new RedirectResponse(
 							$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']) .
-							'?miroToken=success'
+							'?notionToken=success'
 						);
 					} elseif ($oauthOrigin === 'app') {
 						return new RedirectResponse(
@@ -243,7 +243,7 @@ class ConfigController extends Controller {
 		}
 		return new RedirectResponse(
 			$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']) .
-			'?miroToken=error&message=' . urlencode($result)
+			'?notionToken=error&message=' . urlencode($result)
 		);
 	}
 
@@ -251,7 +251,7 @@ class ConfigController extends Controller {
 	 * @return string
 	 */
 	private function storeUserInfo(): array {
-		$info = $this->miroAPIService->request($this->userId, 'v1/oauth-token');
+		$info = $this->notionAPIService->request($this->userId, 'v1/oauth-token');
 		if (isset(
 				$info['team'], $info['team']['name'], $info['team']['id'],
 				$info['user'], $info['user']['name'], $info['user']['id']
