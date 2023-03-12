@@ -28,6 +28,7 @@
 
 namespace OCA\Notion\Service;
 
+use CBOR\OtherObject\TrueObject;
 use Datetime;
 use Exception;
 use GuzzleHttp\Exception\ClientException;
@@ -281,8 +282,10 @@ class NotionAPIService {
 	}
 
 	public function revokeToken(string $userId): bool {
-		$token = $this->config->getUserValue($userId, Application::APP_ID, 'token');
-		$revokeResponse = $this->request($userId, 'v1/oauth/revoke?access_token=' . $token, [], 'POST', false);
-		return $revokeResponse === '';
+//		TODO: This does not work, `url is invalid`.
+//		$token = $this->config->getUserValue($userId, Application::APP_ID, 'token');
+//		$revokeResponse = $this->request($userId, 'v1/oauth/revoke?access_token=' . $token, [], 'POST', false);
+//		return $revokeResponse === '';
+		return true;
 	}
 }

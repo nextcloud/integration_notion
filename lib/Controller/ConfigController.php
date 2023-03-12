@@ -127,20 +127,25 @@ class ConfigController extends Controller {
 		$result = [];
 
 		if (isset($values['token'])) {
+			$result['user_id'] = '';
+			$result['user_name'] = '';
 			if ($values['token'] && $values['token'] !== '') {
-				$result = $this->storeUserInfo();
+				if (isset($values['user_id']) && isset($values['user_name'])) {
+					$result['user_id'] = $values['user_id'];
+					$result['user_name'] = $values['user_name'];
+				}
 			} else {
+				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'token');
+				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'token_type');
 				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'user_id');
 				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'user_name');
-				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'team_id');
-				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'team_name');
-				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'token');
-				$result['user_id'] = '';
-				$result['user_name'] = '';
+				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'bot_id');
+				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'workspace_name');
+				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'workspace_id');
 			}
-			// if the token is set, cleanup refresh token and expiration date
-			$this->config->deleteUserValue($this->userId, Application::APP_ID, 'refresh_token');
-			$this->config->deleteUserValue($this->userId, Application::APP_ID, 'token_expires_at');
+//			// if the token is set, cleanup refresh token and expiration date
+//			$this->config->deleteUserValue($this->userId, Application::APP_ID, 'refresh_token');
+//			$this->config->deleteUserValue($this->userId, Application::APP_ID, 'token_expires_at');
 		}
 		return new DataResponse($result);
 	}
