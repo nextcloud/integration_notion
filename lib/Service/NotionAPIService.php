@@ -145,8 +145,6 @@ class NotionAPIService {
 	public function request(string $userId, string $endPoint, array $params = [], string $method = 'GET',
 							bool $jsonResponse = true) {
 		$accessToken = $this->config->getUserValue($userId, Application::APP_ID, 'token');
-		$clientId = $this->config->getAppValue(Application::APP_ID, 'client_id');
-		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret');
 		try {
 			$url = Application::NOTION_API_BASE_URL . '/' . $endPoint;
 			$options = [
@@ -158,7 +156,6 @@ class NotionAPIService {
 
 			if (count($params) > 0) {
 				if ($method === 'GET') {
-					// manage array parameters
 					$paramsContent = '';
 					foreach ($params as $key => $value) {
 						if (is_array($value)) {
@@ -169,7 +166,6 @@ class NotionAPIService {
 						}
 					}
 					$paramsContent .= http_build_query($params);
-
 					$url .= '?' . $paramsContent;
 				} else {
 					$options['json'] = $params;
@@ -223,9 +219,9 @@ class NotionAPIService {
 			'client_id' => $clientID,
 			'client_secret' => $clientSecret,
 			'grant_type' => 'refresh_token',
-//			'redirect_uri' => $redirect_uri,
+			'redirect_uri' => $redirect_uri,
 			'refresh_token' => $refreshToken,
-		], 'POST');
+		]);
 		if (isset($result['access_token'])) {
 			$this->logger->info('Notion access token successfully refreshed', ['app' => Application::APP_ID]);
 			$accessToken = $result['access_token'];
