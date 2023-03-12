@@ -188,8 +188,7 @@ class ConfigController extends Controller {
 		// anyway, reset state
 		$this->config->deleteUserValue($this->userId, Application::APP_ID, 'oauth_state');
 
-//		if ($clientID && $clientSecret && $configState !== '' && $configState === $state) {
-		if ($clientID && $clientSecret) {
+		if ($clientID && $clientSecret && $configState !== '' && $configState === $state) {
 			$redirect_uri = $this->config->getUserValue($this->userId, Application::APP_ID, 'redirect_uri');
 			$result = $this->notionAPIService->requestOAuthAccessToken([
 				'client_id' => $clientID,
@@ -197,23 +196,19 @@ class ConfigController extends Controller {
 				'code' => $code,
 				'redirect_uri' => $redirect_uri,
 				'grant_type' => 'authorization_code'
-			], 'POST');
+			]);
 			if (isset($result['access_token'])) {
 				$accessToken = $result['access_token'];
-				$refreshToken = $result['refresh_token'] ?? '';
-				if (isset($result['expires_in'])) {
-					$nowTs = (new Datetime())->getTimestamp();
-					$expiresAt = $nowTs + (int) $result['expires_in'];
-					$this->config->setUserValue($this->userId, Application::APP_ID, 'token_expires_at', $expiresAt);
-				}
+				$user_id = $result['owner']['user']['id'] ?? '';
+				$user_name = $result['owner']['user']['name'] ?? '';
 				$this->config->setUserValue($this->userId, Application::APP_ID, 'token', $accessToken);
-				$this->config->setUserValue($this->userId, Application::APP_ID, 'refresh_token', $refreshToken);
-				// some info come with the token
-				$this->config->setUserValue($this->userId, Application::APP_ID, 'user_id', $result['user_id']);
-				$this->config->setUserValue($this->userId, Application::APP_ID, 'team_id', $result['team_id']);
-				$this->config->setUserValue($this->userId, Application::APP_ID, 'scope', $result['scope']);
+				$this->config->setUserValue($this->userId, Application::APP_ID, 'token_type', $result['token_type']);
+				$this->config->setUserValue($this->userId, Application::APP_ID, 'user_id', $user_id);
+				$this->config->setUserValue($this->userId, Application::APP_ID, 'user_name', $user_name);
+				$this->config->setUserValue($this->userId, Application::APP_ID, 'bot_id', $result['bot_id']);
+				$this->config->setUserValue($this->userId, Application::APP_ID, 'workspace_name', $result['workspace_name']);
+				$this->config->setUserValue($this->userId, Application::APP_ID, 'workspace_id', $result['workspace_id']);
 
-				$userInfo = $this->storeUserInfo();
 				$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0') === '1';
 				if ($usePopup) {
 					return new RedirectResponse(
@@ -245,33 +240,5 @@ class ConfigController extends Controller {
 			$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']) .
 			'?notionToken=error&message=' . urlencode($result)
 		);
-	}
-
-	/**
-	 * @return string
-	 */
-	private function storeUserInfo(): array {
-		$info = $this->notionAPIService->request($this->userId, 'v1/oauth-token');
-		if (isset(
-				$info['team'], $info['team']['name'], $info['team']['id'],
-				$info['user'], $info['user']['name'], $info['user']['id']
-		)) {
-			$this->config->setUserValue($this->userId, Application::APP_ID, 'user_id', $info['user']['id'] ?? '');
-			$this->config->setUserValue($this->userId, Application::APP_ID, 'user_name', $info['user']['name'] ?? '');
-			$this->config->setUserValue($this->userId, Application::APP_ID, 'team_id', $info['team']['id'] ?? '');
-			$this->config->setUserValue($this->userId, Application::APP_ID, 'team_name', $info['team']['name'] ?? '');
-
-			return [
-				'user_id' => $info['user']['id'] ?? '',
-				'user_name' => $info['user']['name'] ?? '',
-			];
-		} else {
-			$this->config->setUserValue($this->userId, Application::APP_ID, 'user_id', '');
-			$this->config->setUserValue($this->userId, Application::APP_ID, 'user_name', '');
-			return [
-				'user_id' => '',
-				'user_name' => '',
-			];
-		}
 	}
 }

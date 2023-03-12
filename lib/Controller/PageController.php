@@ -117,9 +117,9 @@ class PageController extends Controller {
 			'talk_enabled' => $talkEnabled,
 			'board_list' => [],
 		];
-		if ($token !== '') {
-			$pageInitialState['board_list'] = $this->notionAPIService->getMyBoards($this->userId);
-		}
+//		if ($token !== '') {
+//			$pageInitialState['board_list'] = $this->notionAPIService->getMyBoards($this->userId);
+//		}
 		$this->initialStateService->provideInitialState('notion-state', $pageInitialState);
 		return new TemplateResponse(Application::APP_ID, 'main', []);
 	}
