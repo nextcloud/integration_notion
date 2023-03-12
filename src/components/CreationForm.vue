@@ -165,7 +165,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="miro-footer">
+		<div class="notion-footer">
 			<div class="spacer" />
 			<NcButton @click="$emit('cancel-clicked')">
 				{{ t('integration_notion', 'Cancel') }}
@@ -385,7 +385,7 @@ export default {
 		flex-grow: 1;
 	}
 
-	.miro-footer {
+	.notion-footer {
 		width: 100%;
 		display: flex;
 		align-items: center;

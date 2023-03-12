@@ -7,15 +7,15 @@
 			<div class="links">
 				<div class="buttons">
 					<div class="modal-button-wrapper">
-						<NcButton @click="showMiroModal = true">
+						<NcButton @click="showNotionModal = true">
 							<template #icon>
 								<DockWindowIcon :size="20" />
 							</template>
 							{{ t('integration_notion', 'Open here') }}
 						</NcButton>
-						<MiroModal v-if="showMiroModal"
+						<NotionModal v-if="showNotionModal"
 							:board-url="boardEmbedLink"
-							@close="showMiroModal = false" />
+							@close="showNotionModal = false" />
 					</div>
 					<a :href="boardLink" target="_blank">
 						<NcButton>
@@ -186,13 +186,13 @@ import moment from '@nextcloud/moment'
 
 import { showSuccess, showError } from '@nextcloud/dialogs'
 import SendModal from './talk/SendModal.vue'
-import MiroModal from './MiroModal.vue'
+import NotionModal from './NotionModal.vue'
 
 export default {
 	name: 'BoardDetails',
 
 	components: {
-		MiroModal,
+		NotionModal,
 		NcButton,
 		SendModal,
 		ClippyIcon,
@@ -226,7 +226,7 @@ export default {
 			fields,
 			boardLinkCopied: false,
 			showTalkModal: false,
-			showMiroModal: false,
+			showNotionModal: false,
 		}
 	},
 

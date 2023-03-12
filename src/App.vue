@@ -1,6 +1,6 @@
 <template>
 	<NcContent app-name="integration_notion">
-		<MiroNavigation
+		<NotionNavigation
 			:boards="activeBoards"
 			:selected-board-id="selectedBoardId"
 			:is-configured="connected"
@@ -20,7 +20,7 @@
 				:talk-enabled="state.talk_enabled" />
 			<div v-else-if="!connected">
 				<NcEmptyContent
-					:title="t('integration_notion', 'You are not connected to Miro')">
+					:title="t('integration_notion', 'You are not connected to Notion')">
 					<template #icon>
 						<CogIcon />
 					</template>
@@ -32,7 +32,7 @@
 								<template #icon>
 									<OpenInNewIcon />
 								</template>
-								{{ t('integration_notion', 'Connect to Miro') }}
+								{{ t('integration_notion', 'Connect to Notion') }}
 							</NcButton>
 						</span>
 					</template>
@@ -41,7 +41,7 @@
 			<NcEmptyContent v-else-if="activeBoardCount === 0"
 				:title="t('integration_notion', 'You haven\'t created any boards yet')">
 				<template #icon>
-					<MiroIcon />
+					<NotionIcon />
 				</template>
 				<template #action>
 					<span class="emptyContentWrapper">
@@ -59,7 +59,7 @@
 			<NcEmptyContent v-else
 				:title="t('integration_notion', 'Select a board')">
 				<template #icon>
-					<MiroIcon />
+					<NotionIcon />
 				</template>
 			</NcEmptyContent>
 		</NcAppContent>
@@ -91,20 +91,20 @@ import { loadState } from '@nextcloud/initial-state'
 import axios from '@nextcloud/axios'
 import { showSuccess, showError, showUndo } from '@nextcloud/dialogs'
 
-import MiroNavigation from './components/MiroNavigation.vue'
+import NotionNavigation from './components/NotionNavigation.vue'
 import CreationForm from './components/CreationForm.vue'
 import BoardDetails from './components/BoardDetails.vue'
-import MiroIcon from './components/icons/MiroIcon.vue'
+import NotionIcon from './components/icons/NotionIcon.vue'
 import { oauthConnect, Timer } from './utils.js'
 
 export default {
 	name: 'App',
 
 	components: {
-		MiroIcon,
+		NotionIcon,
 		CreationForm,
 		BoardDetails,
-		MiroNavigation,
+		NotionNavigation,
 		CogIcon,
 		PlusIcon,
 		OpenInNewIcon,
@@ -214,7 +214,7 @@ export default {
 			}
 			const url = generateUrl('/apps/integration_notion/boards')
 			axios.post(url, req).then((response) => {
-				showSuccess(t('integration_notion', 'New board was created in Miro'))
+				showSuccess(t('integration_notion', 'New board was created in Notion'))
 				board.id = response.data?.id
 				const responseBoard = response.data
 				this.state.board_list.push(responseBoard)

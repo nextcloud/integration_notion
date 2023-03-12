@@ -1,6 +1,6 @@
 <template>
 	<NcModal
-		class="miro-send-modal"
+		class="notion-send-modal"
 		size="small"
 		@close="$emit('close')">
 		<div class="modal-content">
@@ -368,7 +368,7 @@ export default {
 			const token = this.selectedRoom.token
 			const url = generateOcsUrl('/apps/spreed/api/v1/chat/{token}', { token })
 			const req = {
-				message: t('integration_notion', 'Miro board "{name}": {link}', {
+				message: t('integration_notion', 'Notion board "{name}": {link}', {
 					link: this.publicLink,
 					name: this.board.name,
 				}),

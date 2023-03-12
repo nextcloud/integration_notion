@@ -1,15 +1,15 @@
 <template>
-	<div id="miro_prefs" class="section">
+	<div id="notion_prefs" class="section">
 		<h2>
-			<MiroIcon class="miro-icon" />
-			{{ t('integration_notion', 'Miro integration') }}
+			<NotionIcon class="notion-icon" />
+			{{ t('integration_notion', 'Notion integration') }}
 		</h2>
 		<p v-if="!showOAuth && !connected" class="settings-hint">
-			{{ t('integration_notion', 'Ask your administrator to configure the Miro integration in Nextcloud.') }}
+			{{ t('integration_notion', 'Ask your administrator to configure the Notion integration in Nextcloud.') }}
 		</p>
-		<div id="miro-content">
+		<div id="notion-content">
 			<NcButton v-if="!connected && showOAuth"
-				id="miro-connect"
+				id="notion-connect"
 				class="field"
 				:disabled="loading === true"
 				:class="{ loading }"
@@ -17,18 +17,18 @@
 				<template #icon>
 					<OpenInNewIcon />
 				</template>
-				{{ t('integration_notion', 'Connect to Miro') }}
+				{{ t('integration_notion', 'Connect to Notion') }}
 			</NcButton>
 			<div v-if="connected" class="field">
-				<label class="miro-connected">
+				<label class="notion-connected">
 					<CheckIcon :size="24" class="icon" />
 					{{ t('integration_notion', 'Connected as {user}', { user: connectedDisplayName }) }}
 				</label>
-				<NcButton id="miro-rm-cred" @click="onLogoutClick">
+				<NcButton id="notion-rm-cred" @click="onLogoutClick">
 					<template #icon>
 						<CloseIcon />
 					</template>
-					{{ t('integration_notion', 'Disconnect from Miro') }}
+					{{ t('integration_notion', 'Disconnect from Notion') }}
 				</NcButton>
 			</div>
 		</div>
@@ -47,13 +47,13 @@ import { generateUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
 import { oauthConnect } from '../utils.js'
 import { showSuccess, showError } from '@nextcloud/dialogs'
-import MiroIcon from './icons/MiroIcon.vue'
+import NotionIcon from './icons/NotionIcon.vue'
 
 export default {
 	name: 'PersonalSettings',
 
 	components: {
-		MiroIcon,
+		NotionIcon,
 		NcButton,
 		OpenInNewIcon,
 		CloseIcon,
@@ -89,11 +89,11 @@ export default {
 		const paramString = window.location.search.substr(1)
 		// eslint-disable-next-line
 		const urlParams = new URLSearchParams(paramString)
-		const glToken = urlParams.get('miroToken')
+		const glToken = urlParams.get('notionToken')
 		if (glToken === 'success') {
-			showSuccess(t('integration_notion', 'Successfully connected to Miro!'))
+			showSuccess(t('integration_notion', 'Successfully connected to Notion!'))
 		} else if (glToken === 'error') {
-			showError(t('integration_notion', 'Error connecting to Miro:') + ' ' + urlParams.get('message'))
+			showError(t('integration_notion', 'Error connecting to Notion:') + ' ' + urlParams.get('message'))
 		}
 	},
 
@@ -111,11 +111,11 @@ export default {
 				if (values.token === '' && response.data.user_name === '') {
 					showSuccess(t('integration_notion', 'Successfully disconnected'))
 				} else {
-					showSuccess(t('integration_notion', 'Miro options saved'))
+					showSuccess(t('integration_notion', 'Notion options saved'))
 				}
 			}).catch((error) => {
 				showError(
-					t('integration_notion', 'Failed to save Miro options')
+					t('integration_notion', 'Failed to save Notion options')
 					+ ': ' + (error.response?.request?.responseText ?? '')
 				)
 				console.error(error)
@@ -145,11 +145,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#miro_prefs {
+#notion_prefs {
 	h2 {
 		display: flex;
 
-		.miro-icon {
+		.notion-icon {
 			margin-right: 12px;
 		}
 	}

@@ -16,7 +16,7 @@
 import NcModal from '@nextcloud/vue/dist/Components/NcModal.js'
 
 export default {
-	name: 'MiroModal',
+	name: 'NotionModal',
 
 	components: {
 		NcModal,

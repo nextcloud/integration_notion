@@ -1,26 +1,26 @@
 import Vue from 'vue'
 import './bootstrap.js'
 import { loadState } from '@nextcloud/initial-state'
-import MiroModalWrapper from './components/MiroModalWrapper.vue'
+import NotionModalWrapper from './components/NotionModalWrapper.vue'
 
 function init() {
-	if (!OCA.Miro) {
+	if (!OCA.Notion) {
 		/**
 		 * @namespace
 		 */
-		OCA.Miro = {}
+		OCA.Notion = {}
 	}
 
-	const wrapperId = 'miroModalWrapper'
+	const wrapperId = 'notionModalWrapper'
 	const wrapperElement = document.createElement('div')
 	wrapperElement.id = wrapperId
 	document.body.append(wrapperElement)
 
-	const View = Vue.extend(MiroModalWrapper)
-	OCA.Miro.MiroModalWrapperVue = new View().$mount('#' + wrapperId)
+	const View = Vue.extend(NotionModalWrapper)
+	OCA.Notion.NotionModalWrapperVue = new View().$mount('#' + wrapperId)
 
-	OCA.Miro.openModal = (boardUrl) => {
-		OCA.Miro.MiroModalWrapperVue.openOn(boardUrl)
+	OCA.Notion.openModal = (boardUrl) => {
+		OCA.Notion.NotionModalWrapperVue.openOn(boardUrl)
 	}
 }
 
@@ -42,11 +42,11 @@ function listen() {
 				e.stopPropagation()
 				const boardId = href.replace('https://miro.com/app/board/', '')
 				const boardEmbedUrl = 'https://miro.com/app/live-embed/' + boardId + '/'
-				OCA.Miro.openModal(boardEmbedUrl)
+				OCA.Notion.openModal(boardEmbedUrl)
 			} else if (href.startsWith('https://miro.com/app/live-embed/')) {
 				e.preventDefault()
 				e.stopPropagation()
-				OCA.Miro.openModal(href)
+				OCA.Notion.openModal(href)
 			}
 		}
 	})

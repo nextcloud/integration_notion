@@ -64,7 +64,7 @@ class PageController extends Controller {
 	/**
 	 * @var NotionAPIService
 	 */
-	private $miroAPIService;
+	private $notionAPIService;
 
 	public function __construct(string           $appName,
                                 IRequest         $request,
@@ -72,7 +72,7 @@ class PageController extends Controller {
                                 IAppManager      $appManager,
                                 IInitialState    $initialStateService,
                                 LoggerInterface  $logger,
-                                NotionAPIService $miroAPIService,
+                                NotionAPIService $notionAPIService,
                                 ?string          $userId) {
 		parent::__construct($appName, $request);
 		$this->userId = $userId;
@@ -80,7 +80,7 @@ class PageController extends Controller {
 		$this->config = $config;
 		$this->appManager = $appManager;
 		$this->initialStateService = $initialStateService;
-		$this->miroAPIService = $miroAPIService;
+		$this->notionAPIService = $notionAPIService;
 	}
 
 	/**
@@ -98,10 +98,10 @@ class PageController extends Controller {
 		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret') !== '';
 		$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0') === '1';
 
-		$miroUserId = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_id');
-		$miroUserName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_name');
-		$miroTeamId = $this->config->getUserValue($this->userId, Application::APP_ID, 'team_id');
-		$miroTeamName = $this->config->getUserValue($this->userId, Application::APP_ID, 'team_name');
+		$notionUserId = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_id');
+		$notionUserName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_name');
+		$notionTeamId = $this->config->getUserValue($this->userId, Application::APP_ID, 'team_id');
+		$notionTeamName = $this->config->getUserValue($this->userId, Application::APP_ID, 'team_name');
 
 		$talkEnabled = $this->appManager->isEnabledForUser('spreed', $this->userId);
 
@@ -110,16 +110,16 @@ class PageController extends Controller {
 			'client_id' => $clientID,
 			'client_secret' => $clientSecret,
 			'use_popup' => $usePopup,
-			'user_id' => $miroUserId,
-			'user_name' => $miroUserName,
-			'team_id' => $miroTeamId,
-			'team_name' => $miroTeamName,
+			'user_id' => $notionUserId,
+			'user_name' => $notionUserName,
+			'team_id' => $notionTeamId,
+			'team_name' => $notionTeamName,
 			'talk_enabled' => $talkEnabled,
 			'board_list' => [],
 		];
-		if ($token !== '') {
-			$pageInitialState['board_list'] = $this->miroAPIService->getMyBoards($this->userId);
-		}
+//		if ($token !== '') {
+//			$pageInitialState['board_list'] = $this->notionAPIService->getMyBoards($this->userId);
+//		}
 		$this->initialStateService->provideInitialState('notion-state', $pageInitialState);
 		return new TemplateResponse(Application::APP_ID, 'main', []);
 	}

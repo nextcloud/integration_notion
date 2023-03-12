@@ -36,17 +36,18 @@ export function delay(callback, ms) {
 export function oauthConnect(clientId, oauthOrigin, usePopup = false) {
 	const redirectUri = window.location.protocol + '//' + window.location.host + generateUrl('/apps/integration_notion/oauth-redirect')
 
-	// const oauthState = Math.random().toString(36).substring(3)
-	const requestUrl = 'https://miro.com/oauth/authorize'
+	const oauthState = Math.random().toString(16).substring(3)
+	const requestUrl = 'https://api.notion.com/v1/oauth/authorize'
 		+ '?client_id=' + encodeURIComponent(clientId)
 		+ '&redirect_uri=' + encodeURIComponent(redirectUri)
 		+ '&response_type=code'
-	// + '&state=' + encodeURIComponent(oauthState)
+		+ '&owner=user'
+		+ '&state=' + encodeURIComponent(oauthState)
 	// + '&scope=' + encodeURIComponent('read_user read_api read_repository')
 
 	const req = {
 		values: {
-			// oauth_state: oauthState,
+			oauth_state: oauthState,
 			redirect_uri: redirectUri,
 			oauth_origin: usePopup ? undefined : oauthOrigin,
 		},
@@ -57,7 +58,7 @@ export function oauthConnect(clientId, oauthOrigin, usePopup = false) {
 			if (usePopup) {
 				const ssoWindow = window.open(
 					requestUrl,
-					t('integration_notion', 'Sign in with Miro'),
+					t('integration_notion', 'Sign in with Notion'),
 					'toolbar=no, menubar=no, width=600, height=700')
 				ssoWindow.focus()
 				window.addEventListener('message', (event) => {
@@ -69,7 +70,7 @@ export function oauthConnect(clientId, oauthOrigin, usePopup = false) {
 			}
 		}).catch((error) => {
 			showError(
-				t('integration_notion', 'Failed to save Miro OAuth state')
+				t('integration_notion', 'Failed to save Notion OAuth state')
 				+ ': ' + (error.response?.request?.responseText ?? '')
 			)
 			console.error(error)
@@ -83,18 +84,18 @@ export function oauthConnectConfirmDialog() {
 		const linkText = t('integration_notion', 'Connected accounts')
 		const settingsHtmlLink = `<a href="${settingsLink}" class="external">${linkText}</a>`
 		OC.dialogs.message(
-			t('integration_notion', 'You need to connect before using the Miro integration.')
+			t('integration_notion', 'You need to connect before using the Notion integration.')
 			+ '<br><br>'
-			+ t('integration_notion', 'Do you want to connect to Miro?')
+			+ t('integration_notion', 'Do you want to connect to Notion?')
 			+ '<br><br>'
 			+ t(
 				'integration_notion',
-				'You can change Miro integration settings in the {settingsHtmlLink} section of your personal settings.',
+				'You can change Notion integration settings in the {settingsHtmlLink} section of your personal settings.',
 				{ settingsHtmlLink },
 				null,
 				{ escape: false }
 			),
-			t('integration_notion', 'Connect to Miro'),
+			t('integration_notion', 'Connect to Notion'),
 			'none',
 			{
 				type: OC.dialogs.YES_NO_BUTTONS,

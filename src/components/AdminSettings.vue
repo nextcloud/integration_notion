@@ -1,12 +1,12 @@
 <template>
-	<div id="miro_prefs" class="section">
+	<div id="notion_prefs" class="section">
 		<h2>
-			<MiroIcon class="miro-icon" />
-			{{ t('integration_notion', 'Miro integration') }}
+			<NotionIcon class="notion-icon" />
+			{{ t('integration_notion', 'Notion integration') }}
 		</h2>
 		<p class="settings-hint">
-			{{ t('integration_notion', 'If you want to allow your Nextcloud users to connect to Miro via OAuth, create an application in Miro and set the ID and secret here.') }}
-			<a class="external" href="https://developers.miro.com/docs/getting-started-with-oauth#prerequisites">How to create a Miro OAuth app</a>
+			{{ t('integration_notion', 'If you want to allow your Nextcloud users to connect to Notion via OAuth, create an application in Notion and set the ID and secret here.') }}
+			<a class="external" href="https://developers.notion.com/docs/create-a-notion-integration">How to create a Notion OAuth app</a>
 		</p>
 		<br>
 		<p class="settings-hint">
@@ -20,31 +20,31 @@
 		</p>
 		<br>
 		<p class="settings-hint">
-			{{ t('integration_notion', 'Put the "Application ID" and "Application secret" below. Your Nextcloud users will then see a "Connect to Miro" button in their personal settings.') }}
+			{{ t('integration_notion', 'Put the "Application ID" and "Application secret" below. Your Nextcloud users will then see a "Connect to Notion" button in their personal settings.') }}
 		</p>
 		<div class="field">
-			<label for="miro-client-id">
+			<label for="notion-client-id">
 				<KeyIcon :size="20" class="icon" />
 				{{ t('integration_notion', 'Application ID') }}
 			</label>
-			<input id="miro-client-id"
+			<input id="notion-client-id"
 				v-model="state.client_id"
 				type="password"
 				:readonly="readonly"
-				:placeholder="t('integration_notion', 'ID of your Miro application')"
+				:placeholder="t('integration_notion', 'ID of your Notion application')"
 				@input="onInput"
 				@focus="readonly = false">
 		</div>
 		<div class="field">
-			<label for="miro-client-secret">
+			<label for="notion-client-secret">
 				<KeyIcon :size="20" class="icon" />
 				{{ t('integration_notion', 'Application secret') }}
 			</label>
-			<input id="miro-client-secret"
+			<input id="notion-client-secret"
 				v-model="state.client_secret"
 				type="password"
 				:readonly="readonly"
-				:placeholder="t('integration_notion', 'Client secret of your Miro application')"
+				:placeholder="t('integration_notion', 'Client secret of your Notion application')"
 				@focus="readonly = false"
 				@input="onInput">
 		</div>
@@ -58,7 +58,7 @@
 			class="field"
 			:checked.sync="state.override_link_click"
 			@update:checked="onOverrideChanged">
-			{{ t('integration_notion', 'Open Miro board links in Nextcloud') }}
+			{{ t('integration_notion', 'Open Notion board links in Nextcloud') }}
 		</NcCheckboxRadioSwitch>
 	</div>
 </template>
@@ -67,7 +67,7 @@
 import InformationVariantIcon from 'vue-material-design-icons/InformationVariant.vue'
 import KeyIcon from 'vue-material-design-icons/Key.vue'
 
-import MiroIcon from './icons/MiroIcon.vue'
+import NotionIcon from './icons/NotionIcon.vue'
 
 import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
 
@@ -81,7 +81,7 @@ export default {
 	name: 'AdminSettings',
 
 	components: {
-		MiroIcon,
+		NotionIcon,
 		NcCheckboxRadioSwitch,
 		InformationVariantIcon,
 		KeyIcon,
@@ -125,10 +125,10 @@ export default {
 			}
 			const url = generateUrl('/apps/integration_notion/admin-config')
 			axios.put(url, req).then((response) => {
-				showSuccess(t('integration_notion', 'Miro admin options saved'))
+				showSuccess(t('integration_notion', 'Notion admin options saved'))
 			}).catch((error) => {
 				showError(
-					t('integration_notion', 'Failed to save Miro admin options')
+					t('integration_notion', 'Failed to save Notion admin options')
 					+ ': ' + (error.response?.request?.responseText ?? '')
 				)
 				console.error(error)
@@ -139,7 +139,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#miro_prefs {
+#notion_prefs {
 	.field {
 		display: flex;
 		align-items: center;
@@ -166,7 +166,7 @@ export default {
 
 	h2 {
 		display: flex;
-		.miro-icon {
+		.notion-icon {
 			margin-right: 12px;
 		}
 	}

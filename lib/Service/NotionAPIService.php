@@ -102,6 +102,7 @@ class NotionAPIService {
      */
     public function getUserDatabase(string $userId): array {
 //        TODO
+		return array();
     }
 
     /**
@@ -110,6 +111,7 @@ class NotionAPIService {
      */
     public function getUserComment(string $userId): array {
 //        TODO
+		return array();
     }
 
     /**
@@ -118,6 +120,7 @@ class NotionAPIService {
      */
     public function getUserBlock(string $userId): array {
 //        TODO
+		return array();
     }
 
     /**
@@ -126,6 +129,7 @@ class NotionAPIService {
      */
     public function getUserPage(string $userId): array {
 //        TODO
+		return array();
     }
 
 	/**
@@ -139,15 +143,15 @@ class NotionAPIService {
 	 */
 	public function request(string $userId, string $endPoint, array $params = [], string $method = 'GET',
 							bool $jsonResponse = true) {
-		$this->checkTokenExpiration($userId);
 		$accessToken = $this->config->getUserValue($userId, Application::APP_ID, 'token');
+		$clientId = $this->config->getAppValue(Application::APP_ID, 'client_id');
+		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret');
 		try {
 			$url = Application::NOTION_API_BASE_URL . '/' . $endPoint;
 			$options = [
 				'headers' => [
-					'Authorization'  => 'Bearer ' . $accessToken,
-					'Accept' => 'application/json',
 					'User-Agent'  => Application::INTEGRATION_USER_AGENT,
+					'Authorization' => 'token ' . $accessToken,
 				],
 			];
 
@@ -202,24 +206,6 @@ class NotionAPIService {
 
 	/**
 	 * @param string $userId
-	 * @return void
-	 * @throws \OCP\PreConditionNotMetException
-	 */
-	private function checkTokenExpiration(string $userId): void {
-		$refreshToken = $this->config->getUserValue($userId, Application::APP_ID, 'refresh_token');
-		$expireAt = $this->config->getUserValue($userId, Application::APP_ID, 'token_expires_at');
-		if ($refreshToken !== '' && $expireAt !== '') {
-			$nowTs = (new Datetime())->getTimestamp();
-			$expireAt = (int) $expireAt;
-			// if token expires in less than a minute or is already expired
-			if ($nowTs > $expireAt - 60) {
-				$this->refreshToken($userId);
-			}
-		}
-	}
-
-	/**
-	 * @param string $userId
 	 * @return bool
 	 * @throws \OCP\PreConditionNotMetException
 	 */
@@ -229,7 +215,7 @@ class NotionAPIService {
 		$redirect_uri = $this->config->getUserValue($userId, Application::APP_ID, 'redirect_uri');
 		$refreshToken = $this->config->getUserValue($userId, Application::APP_ID, 'refresh_token');
 		if (!$refreshToken) {
-			$this->logger->error('No Miro refresh token found', ['app' => Application::APP_ID]);
+			$this->logger->error('No Notion refresh token found', ['app' => Application::APP_ID]);
 			return false;
 		}
 		$result = $this->requestOAuthAccessToken([
@@ -240,7 +226,7 @@ class NotionAPIService {
 			'refresh_token' => $refreshToken,
 		], 'POST');
 		if (isset($result['access_token'])) {
-			$this->logger->info('Miro access token successfully refreshed', ['app' => Application::APP_ID]);
+			$this->logger->info('Notion access token successfully refreshed', ['app' => Application::APP_ID]);
 			$accessToken = $result['access_token'];
 			$refreshToken = $result['refresh_token'];
 			$this->config->setUserValue($userId, Application::APP_ID, 'token', $accessToken);
@@ -268,45 +254,28 @@ class NotionAPIService {
 	 * @param string $method
 	 * @return array
 	 */
-	public function requestOAuthAccessToken(array $params = [], string $method = 'GET'): array {
+	public function requestOAuthAccessToken(array $params): array {
 		try {
 			$url = Application::NOTION_API_BASE_URL . '/v1/oauth/token';
 			$options = [
 				'headers' => [
 					'User-Agent'  => Application::INTEGRATION_USER_AGENT,
-				]
+					'Content-Type' => 'application/json',
+					'Authorization' =>
+						'Basic ' . base64_encode($params['client_id'] . ':' . $params['client_secret']),
+				],
 			];
-
-			if (count($params) > 0) {
-				if ($method === 'GET') {
-					$paramsContent = http_build_query($params);
-					$url .= '?' . $paramsContent;
-				} else {
-					$options['body'] = $params;
-				}
-			}
-
-			if ($method === 'GET') {
-				$response = $this->client->get($url, $options);
-			} else if ($method === 'POST') {
-				$response = $this->client->post($url, $options);
-			} else if ($method === 'PUT') {
-				$response = $this->client->put($url, $options);
-			} else if ($method === 'DELETE') {
-				$response = $this->client->delete($url, $options);
-			} else {
-				return ['error' => $this->l10n->t('Bad HTTP method')];
-			}
+			$options['body'] = json_encode($params);
+			$response = $this->client->post($url, $options);
 			$body = $response->getBody();
 			$respCode = $response->getStatusCode();
-
 			if ($respCode >= 400) {
 				return ['error' => $this->l10n->t('OAuth access token refused')];
 			} else {
 				return json_decode($body, true);
 			}
 		} catch (Exception $e) {
-			$this->logger->warning('Miro OAuth error : '.$e->getMessage(), ['app' => Application::APP_ID]);
+			$this->logger->warning('Notion OAuth error : '.$e->getMessage(), ['app' => Application::APP_ID]);
 			return ['error' => $e->getMessage()];
 		}
 	}
