@@ -151,7 +151,7 @@ class NotionAPIService {
 			$options = [
 				'headers' => [
 					'User-Agent'  => Application::INTEGRATION_USER_AGENT,
-					'Authorization' => 'token ' . $accessToken,
+					'Authorization' => 'Bearer ' . $accessToken,
 				],
 			];
 
