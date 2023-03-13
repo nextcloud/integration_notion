@@ -44,9 +44,14 @@ class AddContentSecurityPolicyListener implements IEventListener {
 		}
 
 		$csp = new ContentSecurityPolicy();
+        $csp->addAllowedScriptDomain('\'self\'');
+        $csp->addAllowedStyleDomain('\'self\'');
 		$csp->addAllowedFrameDomain('\'self\'');
 		$csp->addAllowedFrameAncestorDomain('\'self\'');
 		$csp->addAllowedFrameDomain(Application::NOTION_DOMAIN);
+        $csp->addAllowedFrameDomain(Application::NOTION_SUBDOMAINS);
+        $csp->addAllowedScriptDomain(Application::NOTION_DOMAIN);
+        $csp->addAllowedScriptDomain(Application::NOTION_SUBDOMAINS);
 
 		$event->addPolicy($csp);
 	}

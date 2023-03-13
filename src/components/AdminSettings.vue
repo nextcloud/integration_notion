@@ -14,10 +14,6 @@
 			{{ t('integration_notion', 'Make sure you set the "Redirect URI" to') }}
 			&nbsp;<b> {{ redirect_uri }} </b>
 		</p>
-		<p class="settings-hint">
-			<InformationVariantIcon :size="24" class="icon" />
-			{{ t('integration_notion', 'Make sure you enable the "Expire user authorization token" app setting. This is more secure and is mandatory to use this integration.') }}
-		</p>
 		<br>
 		<p class="settings-hint">
 			{{ t('integration_notion', 'Put the "Application ID" and "Application secret" below. Your Nextcloud users will then see a "Connect to Notion" button in their personal settings.') }}

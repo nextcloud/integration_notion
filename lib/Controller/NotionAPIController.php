@@ -29,11 +29,8 @@
 namespace OCA\Notion\Controller;
 
 use OCP\AppFramework\Http;
-use OCP\AppFramework\Http\DataDisplayResponse;
-use OCP\AppFramework\Http\RedirectResponse;
 use OCP\IConfig;
 use OCP\IRequest;
-use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Controller;
 
 use OCA\Notion\Service\NotionAPIService;
@@ -77,21 +74,38 @@ class NotionAPIController extends Controller {
 		$this->urlGenerator = $urlGenerator;
 	}
 
+    /**
+     * @NoAdminRequired
+     * @NoCSRFRequired
+     */
     public function getUserDatabases() {
-
+        $result = $this->notionAPIService->getUserDatabases($this->userId);
+        return new Http\JSONResponse($result, Http::STATUS_OK);
     }
 
+    /**
+     * @NoAdminRequired
+     * @NoCSRFRequired
+     */
     public function getUserComments() {
 
     }
 
+    /**
+     * @NoAdminRequired
+     * @NoCSRFRequired
+     */
     public function getUserBlocks() {
 
     }
 
+    /**
+     * @NoAdminRequired
+     * @NoCSRFRequired
+     */
     public function getUserPages() {
         $result = $this->notionAPIService->getUserPages($this->userId);
-
+        return new Http\JSONResponse($result, Http::STATUS_OK);
     }
 
     // TODO: Implement required Notion API methods

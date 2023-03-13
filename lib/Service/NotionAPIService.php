@@ -101,9 +101,14 @@ class NotionAPIService {
      * @param string $userId
      * @return array
      */
-    public function getUserDatabase(string $userId): array {
-//        TODO
-		return array();
+    public function getUserDatabases(string $userId): array {
+        $result = $this->request($userId, 'v1/search/', [
+            'filter' => [
+                'value' => 'database',
+                'property' => 'object'
+            ]
+        ], 'POST');
+        return $result;
     }
 
     /**
@@ -128,9 +133,14 @@ class NotionAPIService {
      * @param string $userId
      * @return array|string[]
      */
-    public function getUserPage(string $userId): array {
-//        TODO
-		return array();
+    public function getUserPages(string $userId): array {
+        $result = $this->request($userId, 'v1/search/', [
+            'filter' => [
+                'value' => 'page',
+                'property' => 'object'
+            ]
+        ], 'POST');
+		return $result;
     }
 
 	/**
@@ -151,6 +161,7 @@ class NotionAPIService {
 				'headers' => [
 					'User-Agent'  => Application::INTEGRATION_USER_AGENT,
 					'Authorization' => 'Bearer ' . $accessToken,
+                    'Notion-Version' => '2022-06-28' // Latest Notion API version (release date)
 				],
 			];
 

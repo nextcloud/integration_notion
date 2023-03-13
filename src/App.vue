@@ -54,6 +54,14 @@
 							{{ t('integration_notion', 'Create a board') }}
 						</NcButton>
 					</span>
+					<span class="emptyContentWrapper">
+						<NcInputField :value.sync="testModalLink" style="margin: 10px 0;" />
+						<NcButton
+							class="testIframeButton"
+							@click="onTestNotionIframeButton">
+							{{ t('integration_notion', 'Open test page') }}
+						</NcButton>
+					</span>
 				</template>
 			</NcEmptyContent>
 			<NcEmptyContent v-else
@@ -72,6 +80,7 @@
 				@ok-clicked="onCreationValidate"
 				@cancel-clicked="closeCreationModal" />
 		</NcModal>
+		<NotionModal v-if="openTestPageModal" :board-url="testModalLink" @close="openTestPageModal = false" />
 	</NcContent>
 </template>
 
@@ -95,6 +104,8 @@ import NotionNavigation from './components/NotionNavigation.vue'
 import CreationForm from './components/CreationForm.vue'
 import BoardDetails from './components/BoardDetails.vue'
 import NotionIcon from './components/icons/NotionIcon.vue'
+import NotionModal from './components/NotionModal.vue'
+import NcInputField from '@nextcloud/vue/dist/Components/NcInputField.js'
 import { oauthConnect, Timer } from './utils.js'
 
 export default {
@@ -113,6 +124,8 @@ export default {
 		NcModal,
 		NcEmptyContent,
 		NcButton,
+		NotionModal,
+		NcInputField,
 	},
 
 	props: {
@@ -125,6 +138,8 @@ export default {
 			state: loadState('integration_notion', 'notion-state'),
 			configureUrl: generateUrl('/settings/user/connected-accounts'),
 			creating: false,
+			openTestPageModal: false,
+			testModalLink: 'https://www.notion.so/DEP-for-Matchmaking-34efb1658b4b43289624880b04b50f9b',
 		}
 	},
 
@@ -203,6 +218,12 @@ export default {
 		},
 		closeCreationModal() {
 			this.creationModalOpen = false
+		},
+		onTestNotionIframeButton() {
+			this.openTestPageModal = true
+		},
+		closeTestPageModal() {
+			this.openTestPageModal = false
 		},
 		onCreationValidate(board) {
 			this.creating = true

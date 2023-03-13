@@ -51,7 +51,7 @@ class Application extends App implements IBootstrap {
 	public const INTEGRATION_USER_AGENT = 'Nextcloud Notion integration';
 	public const NOTION_API_BASE_URL = 'https://api.notion.com';
 	public const NOTION_DOMAIN = 'https://notion.so';
-	public const NOTION_SUBDOMAINS = 'https://*.notion.com';
+	public const NOTION_SUBDOMAINS = 'https://*.notion.site';
 
 	/**
 	 * Constructor
@@ -73,8 +73,6 @@ class Application extends App implements IBootstrap {
 			?string $userId
 		) {
 			$overrideClick = $config->getAppValue(Application::APP_ID, 'override_link_click', '0') === '1';
-
-			// TODO why not making it use-specific?
 			$initialState->provideInitialState('override_link_click', $overrideClick);
 			Util::addScript(self::APP_ID, self::APP_ID . '-standalone');
 		});

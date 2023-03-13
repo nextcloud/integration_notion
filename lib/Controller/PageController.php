@@ -30,6 +30,7 @@ namespace OCA\Notion\Controller;
 
 use OCA\Notion\Service\NotionAPIService;
 use OCP\App\IAppManager;
+use OCP\AppFramework\Http\ContentSecurityPolicy;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\IConfig;
 use Psr\Log\LoggerInterface;
@@ -87,7 +88,6 @@ class PageController extends Controller {
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
 	 *
-     * TODO: Rewrite initial state data to Notion
 	 * @return TemplateResponse
 	 * @throws \Exception
 	 */
@@ -117,9 +117,10 @@ class PageController extends Controller {
 			'talk_enabled' => $talkEnabled,
 			'board_list' => [],
 		];
-//		if ($token !== '') {
-//			$pageInitialState['board_list'] = $this->notionAPIService->getMyBoards($this->userId);
-//		}
+		if ($token !== '') {
+			$pageInitialState['pages_list'] = $this->notionAPIService->getUserPages($this->userId);
+            $pageInitialState['databases_list'] = $this->notionAPIService->getUserDatabases($this->userId);
+		}
 		$this->initialStateService->provideInitialState('notion-state', $pageInitialState);
 		return new TemplateResponse(Application::APP_ID, 'main', []);
 	}
