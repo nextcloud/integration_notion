@@ -28,7 +28,6 @@
 
 namespace OCA\Notion\Controller;
 
-use DateTime;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\IURLGenerator;

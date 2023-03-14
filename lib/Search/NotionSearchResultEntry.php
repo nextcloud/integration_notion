@@ -25,34 +25,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-namespace OCA\Notion\Listener;
 
-use OCA\Notion\AppInfo\Application;
-use OCP\AppFramework\Http\ContentSecurityPolicy;
-use OCP\EventDispatcher\Event;
-use OCP\EventDispatcher\IEventListener;
-use OCP\Security\CSP\AddContentSecurityPolicyEvent;
+namespace OCA\Notion\Search;
 
-class AddContentSecurityPolicyListener implements IEventListener {
+use OCP\Search\SearchResultEntry;
 
-	public function __construct() {
-	}
-
-	public function handle(Event $event): void {
-		if (!($event instanceof AddContentSecurityPolicyEvent)) {
-			return;
-		}
-
-		$csp = new ContentSecurityPolicy();
-		$csp->addAllowedScriptDomain('\'self\'');
-		$csp->addAllowedStyleDomain('\'self\'');
-		$csp->addAllowedFrameDomain('\'self\'');
-		$csp->addAllowedFrameAncestorDomain('\'self\'');
-		$csp->addAllowedFrameDomain(Application::NOTION_DOMAIN);
-		$csp->addAllowedFrameDomain(Application::NOTION_SUBDOMAINS);
-		$csp->addAllowedScriptDomain(Application::NOTION_DOMAIN);
-		$csp->addAllowedScriptDomain(Application::NOTION_SUBDOMAINS);
-
-		$event->addPolicy($csp);
-	}
+class NotionSearchResultEntry extends SearchResultEntry {
 }

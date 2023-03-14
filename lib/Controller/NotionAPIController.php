@@ -74,39 +74,57 @@ class NotionAPIController extends Controller {
 		$this->urlGenerator = $urlGenerator;
 	}
 
-    /**
-     * @NoAdminRequired
-     * @NoCSRFRequired
-     */
-    public function getUserDatabases() {
-        $result = $this->notionAPIService->getUserDatabases($this->userId);
-        return new Http\JSONResponse($result, Http::STATUS_OK);
-    }
+	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 */
+	public function getUserDatabases() {
+		$result = $this->notionAPIService->getUserDatabases($this->userId);
+		return new Http\JSONResponse($result, Http::STATUS_OK);
+	}
 
-    /**
-     * @NoAdminRequired
-     * @NoCSRFRequired
-     */
-    public function getUserComments() {
+	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 */
+	public function getUserDatabase(string $id) {
+		$result = $this->notionAPIService->getUserDatabase($this->userId, $id);
+		return new Http\JSONResponse($result, Http::STATUS_OK);
+	}
 
-    }
+	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 */
+	public function getUserComments() {
+		// TODO
+	}
 
-    /**
-     * @NoAdminRequired
-     * @NoCSRFRequired
-     */
-    public function getUserBlocks() {
+	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 */
+	public function getUserBlocks() {
+		// TODO
+	}
 
-    }
+	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 */
+	public function getUserPages() {
+		$result = $this->notionAPIService->getUserPages($this->userId);
+		return new Http\JSONResponse($result, Http::STATUS_OK);
+	}
 
-    /**
-     * @NoAdminRequired
-     * @NoCSRFRequired
-     */
-    public function getUserPages() {
-        $result = $this->notionAPIService->getUserPages($this->userId);
-        return new Http\JSONResponse($result, Http::STATUS_OK);
-    }
+	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 */
+	public function getUserPage(string $id) {
+		$result = $this->notionAPIService->getUserPage($this->userId, $id);
+		return new Http\JSONResponse($result, Http::STATUS_OK);
+	}
 
-    // TODO: Implement required Notion API methods
+	// TODO: Implement required Notion API methods
 }

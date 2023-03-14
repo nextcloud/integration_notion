@@ -55,10 +55,10 @@ class Personal implements ISettings {
 	 */
 	private $notionAPIService;
 
-	public function __construct(IConfig          $config,
-                                IInitialState    $initialStateService,
-                                NotionAPIService $notionAPIService,
-                                ?string          $userId) {
+	public function __construct(IConfig $config,
+								IInitialState $initialStateService,
+								NotionAPIService $notionAPIService,
+								?string $userId) {
 		$this->config = $config;
 		$this->initialStateService = $initialStateService;
 		$this->userId = $userId;
@@ -72,6 +72,8 @@ class Personal implements ISettings {
 		$token = $this->config->getUserValue($this->userId, Application::APP_ID, 'token');
 		$notionUserId = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_id');
 		$notionUserName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_name');
+		$searchPagesEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_pages_enabled', '0');
+		$searchDatabasesEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_databases_enabled', '0');
 
 		// for OAuth
 		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id');
@@ -86,6 +88,8 @@ class Personal implements ISettings {
 			'use_popup' => $usePopup,
 			'user_id' => $notionUserId,
 			'user_name' => $notionUserName,
+			'search_pages_enabled' => $searchPagesEnabled === '1',
+			'search_databases_enabled' => $searchDatabasesEnabled === '1',
 		];
 		$this->initialStateService->provideInitialState('user-config', $userConfig);
 		return new TemplateResponse(Application::APP_ID, 'personalSettings');

@@ -28,7 +28,6 @@
 
 namespace OCA\Notion\Service;
 
-use CBOR\OtherObject\TrueObject;
 use Datetime;
 use Exception;
 use GuzzleHttp\Exception\ClientException;
@@ -42,6 +41,9 @@ use Psr\Log\LoggerInterface;
 use OCP\Http\Client\IClientService;
 use OCP\Share\IManager as ShareManager;
 
+/**
+ * Service to make requests to the Notion API
+ */
 class NotionAPIService {
 	/**
 	 * @var string
@@ -76,10 +78,7 @@ class NotionAPIService {
 	 */
 	private $urlGenerator;
 
-	/**
-	 * Service to make requests to Notion API
-	 */
-	public function __construct (string $appName,
+	public function __construct(string $appName,
 								LoggerInterface $logger,
 								IL10N $l10n,
 								IConfig $config,
@@ -97,51 +96,131 @@ class NotionAPIService {
 		$this->urlGenerator = $urlGenerator;
 	}
 
-    /**
-     * @param string $userId
-     * @return array
-     */
-    public function getUserDatabases(string $userId): array {
-        $result = $this->request($userId, 'v1/search/', [
-            'filter' => [
-                'value' => 'database',
-                'property' => 'object'
-            ]
-        ], 'POST');
-        return $result;
-    }
-
-    /**
-     * @param string $userId
-     * @return array
-     */
-    public function getUserComment(string $userId): array {
-//        TODO
-		return array();
-    }
-
-    /**
-     * @param string $userId
-     * @return array
-     */
-    public function getUserBlock(string $userId): array {
-//        TODO
-		return array();
-    }
-
-    /**
-     * @param string $userId
-     * @return array|string[]
-     */
-    public function getUserPages(string $userId): array {
-        $result = $this->request($userId, 'v1/search/', [
-            'filter' => [
-                'value' => 'page',
-                'property' => 'object'
-            ]
-        ], 'POST');
+	/**
+	 * @param string $userId
+	 * @return array
+	 */
+	public function getUserDatabases(string $userId): array {
+		$result = $this->request($userId, 'v1/search/', [
+			'filter' => [
+				'value' => 'database',
+				'property' => 'object'
+			]
+		], 'POST');
 		return $result;
-    }
+	}
+
+	/**
+	 * @param string $userId
+	 * @param string $databaseId
+	 * @return array
+	 */
+	public function getUserDatabase(string $userId, string $databaseId): array {
+		$result = $this->request($userId, 'v1/databases/' . $databaseId, [], 'GET');
+		return $result;
+	}
+
+	/**
+	 * @param string $userId
+	 * @return array
+	 */
+	public function getUserComment(string $userId): array {
+		// TODO
+		return array();
+	}
+
+	/**
+	 * @param string $userId
+	 * @return array
+	 */
+	public function getUserBlock(string $userId): array {
+		// TODO
+		return array();
+	}
+
+	/**
+	 * @param string $userId
+	 * @return array|string[]
+	 */
+	public function getUserPages(string $userId): array {
+		$result = $this->request($userId, 'v1/search/', [
+			'filter' => [
+				'value' => 'page',
+				'property' => 'object'
+			]
+		], 'POST');
+		return $result;
+	}
+
+	/**
+	 * @param string $userId
+	 * @param string $databaseId
+	 * @return array|string[]
+	 */
+	public function getUserPage(string $userId, string $pageId): array {
+		$result = $this->request($userId, 'v1/pages/' . $pageId, [], 'GET');
+		return $result;
+	}
+
+	/**
+	 * Search Notion pages
+	 *
+	 * @param string $userId
+	 * @param string $query
+	 * @param int $offset
+	 * @param int $limit
+	 *
+	 * @return array
+	 */
+	public function searchPages(string $userId, string $query, int $offset = 0, int $limit = 5): array {
+		$result = $this->request($userId, 'v1/search', [
+			'query' => $query,
+			'sort' => [
+				'direction' => 'ascending',
+				'timestamp' => 'last_edited_time'
+			],
+			'filter' => [
+				'value' => 'page',
+				'property' => 'object'
+			],
+			'page_size' => $limit
+		], 'POST', true);
+		$this->logger->error('[' . self::class . '] searchPages: ' . json_encode($result));
+		// if (!isset($result['error'])) {
+		// 	$result['results'] = array_slice($result['results'], $offset, $limit);
+		// }
+		return $result;
+	}
+
+	/**
+	 * Search Notion databases
+	 *
+	 * @param string $userId
+	 * @param string $query
+	 * @param int $offset
+	 * @param int $limit
+	 *
+	 * @return array
+	 */
+	public function searchDatabases(string $userId, string $query, int $offset = 0, int $limit = 5): array {
+		$result = $this->request($userId, 'v1/search', [
+			'query' => $query,
+			'sort' => [
+				'direction' => 'ascending',
+				'timestamp' => 'last_edited_time'
+			],
+			'filter' => [
+				'value' => 'database',
+				'property' => 'object'
+			],
+			'page_size' => $limit
+		], 'POST', true);
+		$this->logger->error('[' . self::class . '] searchDatabases: ' . json_encode($result));
+		// if (!isset($result['error'])) {
+		// 	$result['results'] = array_slice($result['results'], $offset, $limit);
+		// }
+		return $result;
+	}
 
 	/**
 	 * @param string $userId
@@ -161,7 +240,7 @@ class NotionAPIService {
 				'headers' => [
 					'User-Agent'  => Application::INTEGRATION_USER_AGENT,
 					'Authorization' => 'Bearer ' . $accessToken,
-                    'Notion-Version' => '2022-06-28' // Latest Notion API version (release date)
+					'Notion-Version' => '2022-06-28' // Latest Notion API version (release date)
 				],
 			];
 
@@ -289,10 +368,10 @@ class NotionAPIService {
 	}
 
 	public function revokeToken(string $userId): bool {
-//		TODO: This does not work, `url is invalid`.
-//		$token = $this->config->getUserValue($userId, Application::APP_ID, 'token');
-//		$revokeResponse = $this->request($userId, 'v1/oauth/revoke?access_token=' . $token, [], 'POST', false);
-//		return $revokeResponse === '';
+		// $token = $this->config->getUserValue($userId, Application::APP_ID, 'token');
+		// $revokeResponse = $this->request($userId, 'v1/oauth/revoke?access_token=' . $token, [], 'POST', false);
+		// return $revokeResponse === '';
+		// TODO: Keep until appropriate API route is available
 		return true;
 	}
 }

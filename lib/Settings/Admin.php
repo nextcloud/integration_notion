@@ -68,7 +68,6 @@ class Admin implements ISettings {
 			'override_link_click' => $overrideLinkClick,
 		];
 		$this->initialStateService->provideInitialState('admin-config', $adminConfig);
-//        TODO: Rewrite to Notion user data
 		return new TemplateResponse(Application::APP_ID, 'adminSettings');
 	}
 

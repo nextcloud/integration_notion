@@ -28,8 +28,6 @@
 
 namespace OCA\Notion\AppInfo;
 
-use OCA\Notion\Listener\AddContentSecurityPolicyListener;
-
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\AppFramework\Bootstrap\IBootContext;
@@ -39,6 +37,8 @@ use OCP\AppFramework\Services\IInitialState;
 use OCP\IConfig;
 use OCP\Security\CSP\AddContentSecurityPolicyEvent;
 use OCP\Util;
+
+use OCA\Notion\Listener\AddContentSecurityPolicyListener;
 
 /**
  * Class Application
@@ -63,7 +63,13 @@ class Application extends App implements IBootstrap {
 	}
 
 	public function register(IRegistrationContext $context): void {
-		$context->registerEventListener(AddContentSecurityPolicyEvent::class, AddContentSecurityPolicyListener::class);
+		$context->registerEventListener(
+			AddContentSecurityPolicyEvent::class,
+			AddContentSecurityPolicyListener::class
+		);
+
+		$context->registerSearchProvider(\OCA\Notion\Search\NotionSearchDatabasesProvider::class);
+		$context->registerSearchProvider(\OCA\Notion\Search\NotionSearchPagesProvider::class);
 	}
 
 	public function boot(IBootContext $context): void {

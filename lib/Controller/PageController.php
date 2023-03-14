@@ -30,7 +30,6 @@ namespace OCA\Notion\Controller;
 
 use OCA\Notion\Service\NotionAPIService;
 use OCP\App\IAppManager;
-use OCP\AppFramework\Http\ContentSecurityPolicy;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\IConfig;
 use Psr\Log\LoggerInterface;
@@ -67,14 +66,14 @@ class PageController extends Controller {
 	 */
 	private $notionAPIService;
 
-	public function __construct(string           $appName,
-                                IRequest         $request,
-                                IConfig          $config,
-                                IAppManager      $appManager,
-                                IInitialState    $initialStateService,
-                                LoggerInterface  $logger,
-                                NotionAPIService $notionAPIService,
-                                ?string          $userId) {
+	public function __construct(string $appName,
+								IRequest $request,
+								IConfig $config,
+								IAppManager $appManager,
+								IInitialState $initialStateService,
+								LoggerInterface $logger,
+								NotionAPIService $notionAPIService,
+								?string $userId) {
 		parent::__construct($appName, $request);
 		$this->userId = $userId;
 		$this->logger = $logger;
@@ -100,8 +99,6 @@ class PageController extends Controller {
 
 		$notionUserId = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_id');
 		$notionUserName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_name');
-		$notionTeamId = $this->config->getUserValue($this->userId, Application::APP_ID, 'team_id');
-		$notionTeamName = $this->config->getUserValue($this->userId, Application::APP_ID, 'team_name');
 
 		$talkEnabled = $this->appManager->isEnabledForUser('spreed', $this->userId);
 
@@ -112,14 +109,12 @@ class PageController extends Controller {
 			'use_popup' => $usePopup,
 			'user_id' => $notionUserId,
 			'user_name' => $notionUserName,
-			'team_id' => $notionTeamId,
-			'team_name' => $notionTeamName,
 			'talk_enabled' => $talkEnabled,
 			'board_list' => [],
 		];
 		if ($token !== '') {
 			$pageInitialState['pages_list'] = $this->notionAPIService->getUserPages($this->userId);
-            $pageInitialState['databases_list'] = $this->notionAPIService->getUserDatabases($this->userId);
+			$pageInitialState['databases_list'] = $this->notionAPIService->getUserDatabases($this->userId);
 		}
 		$this->initialStateService->provideInitialState('notion-state', $pageInitialState);
 		return new TemplateResponse(Application::APP_ID, 'main', []);

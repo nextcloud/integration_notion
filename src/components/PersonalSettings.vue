@@ -31,6 +31,23 @@
 					{{ t('integration_notion', 'Disconnect from Notion') }}
 				</NcButton>
 			</div>
+			<div v-if="connected" id="notion-search-block">
+				<NcCheckboxRadioSwitch
+					:checked="state.search_pages_enabled"
+					@update:checked="onCheckboxChanged($event, 'search_pages_enabled')">
+					{{ t('integration_notion', 'Enable searching for Notion pages') }}
+				</NcCheckboxRadioSwitch>
+				<NcCheckboxRadioSwitch
+					:checked="state.search_databases_enabled"
+					@update:checked="onCheckboxChanged($event, 'search_databases_enabled')">
+					{{ t('integration_notion', 'Enable searching for Notion databases') }}
+				</NcCheckboxRadioSwitch>
+				<br>
+				<p v-if="state.search_pages_enabled || state.search_databases_enabled" class="settings-hint">
+					<InformationOutlineIcon :size="20" class="icon" style="margin-right: 5px;" />
+					{{ t('integration_notion', 'Warning, everything you type in the search bar will be sent in request to Notion.') }}
+				</p>
+			</div>
 		</div>
 	</div>
 </template>
@@ -39,8 +56,10 @@
 import CheckIcon from 'vue-material-design-icons/Check.vue'
 import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
 import CloseIcon from 'vue-material-design-icons/Close.vue'
+import InformationOutlineIcon from 'vue-material-design-icons/InformationOutline.vue'
 
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
+import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
 
 import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'
@@ -58,6 +77,8 @@ export default {
 		OpenInNewIcon,
 		CloseIcon,
 		CheckIcon,
+		InformationOutlineIcon,
+		NcCheckboxRadioSwitch,
 	},
 
 	props: [],
@@ -139,6 +160,10 @@ export default {
 			} else {
 				oauthConnect(this.state.client_id, 'settings')
 			}
+		},
+		onCheckboxChanged(newValue, key) {
+			this.state[key] = newValue
+			this.saveOptions({ [key]: this.state[key] ? '1' : '0' })
 		},
 	},
 }
