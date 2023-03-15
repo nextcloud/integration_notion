@@ -28,8 +28,6 @@
 
 return [
 	'routes' => [
-		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
-
 		['name' => 'config#isUserConnected', 'url' => '/is-connected', 'verb' => 'GET'],
 		['name' => 'config#oauthRedirect', 'url' => '/oauth-redirect', 'verb' => 'GET'],
 		['name' => 'config#setConfig', 'url' => '/config', 'verb' => 'PUT'],
