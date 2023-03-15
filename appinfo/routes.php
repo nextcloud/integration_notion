@@ -36,12 +36,12 @@ return [
 		['name' => 'config#setAdminConfig', 'url' => '/admin-config', 'verb' => 'PUT'],
 		['name' => 'config#popupSuccessPage', 'url' => '/popup-success', 'verb' => 'GET'],
 
+		['name' => 'notionAPI#getThumbnail', 'url' => '/thumbnail', 'verb' => 'GET'],
 		['name' => 'notionAPI#getUserDatabases', 'url' => '/databases', 'verb' => 'GET'],
 		['name' => 'notionAPI#getUserDatabase', 'url' => '/databases/{id}', 'verb' => 'GET'],
 		['name' => 'notionAPI#getUserComments', 'url' => '/comments', 'verb' => 'GET'],
 		['name' => 'notionAPI#getUserBlocks', 'url' => '/blocks', 'verb' => 'GET'],
 		['name' => 'notionAPI#getUserPages', 'url' => '/pages', 'verb' => 'GET'],
 		['name' => 'notionAPI#getUserPage', 'url' => '/pages/{id}', 'verb' => 'GET'],
-		// TODO: Add needed API routes
 	]
 ];

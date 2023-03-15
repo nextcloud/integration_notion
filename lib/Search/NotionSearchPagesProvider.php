@@ -119,7 +119,7 @@ class NotionSearchPagesProvider implements IProvider {
 		$limit = $query->getLimit();
 		$term = $query->getTerm();
 		$offset = $query->getCursor();
-		$offset = $offset ? intval($offset) : 0;
+		$offset = isset($offset) && $offset !== 0 ? $offset : 0;
 
 		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token');
 		$searchPagesEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_pages_enabled', '0') === '1';
@@ -146,10 +146,17 @@ class NotionSearchPagesProvider implements IProvider {
 			);
 		}, $pages);
 
-		return SearchResult::paginated(
+		if (isset($searchResult['has_more']) && $searchResult['has_more']) {
+			return SearchResult::paginated(
+				$this->getName(),
+				$formattedResults,
+				isset($searchResult['has_more']) && $searchResult['has_more'] 
+					? $searchResult['next_cursor'] : 0
+			);
+		}
+		return SearchResult::complete(
 			$this->getName(),
-			$formattedResults,
-			$offset + $limit
+			$formattedResults
 		);
 	}
 
@@ -169,7 +176,6 @@ class NotionSearchPagesProvider implements IProvider {
 
 	protected function searchForTitleProperty(array $entry) {
 		foreach ($entry['properties'] as $property) {
-			$this->logger->error('[' . self::class . '] entry property: ' . json_encode($property));
 			if (isset($property['type']) && $property['type'] === 'title') {
 				return $property['title'][0]['plain_text'];
 			}
@@ -181,8 +187,8 @@ class NotionSearchPagesProvider implements IProvider {
 	 * @param array $entry
 	 * @return string
 	 */
-	protected function getSubline(array $entry): string {
-		return isset($entry['description']) && count($entry['description']) > 0
+	protected function getSubline(array $entry): ?string {
+		return isset($entry['description'][0]) && count($entry['description']) === 0
 			? $entry['description'][0]['plain_text']
 			: $entry['last_edited_time'];
 	}
@@ -200,16 +206,20 @@ class NotionSearchPagesProvider implements IProvider {
 	 * @return string
 	 */
 	protected function getThumbnailUrl(array $entry): string {
-		// TODO: Rewrite to use some image from Notion API (if possible)
-		// TODO: Use dark theme icon if dark theme is enabled
-		$link = $this->urlGenerator->imagePath(Application::APP_ID, 'app-dark.svg');
-		// TODO: Decide whether to support external images as thumbnail or not (because of CSP)
-		// if (isset($entry['icon']['type']) && $entry['icon']['type'] == 'file') {
-		// 	$link = $entry['icon']['url'];
-		// }
-		// if (isset($entry['icon']['type']) && $entry['icon']['type'] == 'external') {
-		// 	$link = $entry['icon']['external']['url'];
-		// }
-		return $link;
+		if (isset($entry['icon']['type']) && $entry['icon']['type'] === 'file') {
+			$link = $entry['icon']['url'];
+			if (str_starts_with($entry['icon']['url'], '/')) {
+				$link = Application::NOTION_DOMAIN . $entry['icon']['url'];
+			}
+			return $this->urlGenerator->linkToRoute('integration_notion.notionAPI.getThumbnail', ['url' => $link]);
+		}
+		if (isset($entry['icon']['type']) && $entry['icon']['type'] === 'external') {
+			$link = $entry['icon']['external']['url'];
+			if (str_starts_with($entry['icon']['external']['url'], '/')) {
+				$link = Application::NOTION_DOMAIN . $entry['icon']['external']['url'];
+			}
+			return $this->urlGenerator->linkToRoute('integration_notion.notionAPI.getThumbnail', ['url' => $link]);
+		}
+		return $this->urlGenerator->imagePath(Application::APP_ID, 'app-dark.svg');
 	}
 }

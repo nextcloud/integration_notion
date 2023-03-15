@@ -35,6 +35,7 @@ use OCP\AppFramework\Controller;
 
 use OCA\Notion\Service\NotionAPIService;
 use OCA\Notion\AppInfo\Application;
+use OCP\AppFramework\Http\DataDisplayResponse;
 use OCP\IURLGenerator;
 
 class NotionAPIController extends Controller {
@@ -126,5 +127,21 @@ class NotionAPIController extends Controller {
 		return new Http\JSONResponse($result, Http::STATUS_OK);
 	}
 
-	// TODO: Implement required Notion API methods
+	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 */
+	public function getThumbnail(string $url) {
+		$thumbnail = $this->notionAPIService->getThumbnail($url);
+		if ($thumbnail !== null && isset($thumbnail['body'], $thumbnail['headers'])) {
+			$response = new DataDisplayResponse(
+				$thumbnail['body'],
+				Http::STATUS_OK,
+				['Content-Type' => $thumbnail['headers']['Content-Type'][0] ?? 'image/jpeg']
+			);
+			$response->cacheFor(60 * 60 * 24, false, true);
+			return $response;
+		}
+		return new DataDisplayResponse('', 400);
+	}
 }

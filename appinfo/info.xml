@@ -25,13 +25,4 @@
 		<personal>OCA\Notion\Settings\Personal</personal>
 		<personal-section>OCA\Notion\Settings\PersonalSection</personal-section>
 	</settings>
-	<navigations>
-		<navigation>
-			<id>integration_notion</id>
-			<name>Notion</name>
-			<route>integration_notion.page.index</route>
-			<icon>app.svg</icon>
-			<order>8</order>
-		</navigation>
-	</navigations>
 </info>

@@ -48,6 +48,13 @@
 					{{ t('integration_notion', 'Warning, everything you type in the search bar will be sent in request to Notion.') }}
 				</p>
 			</div>
+			<div v-if="connected" id="notion-link-block">
+				<NcCheckboxRadioSwitch
+					:checked="state.link_preview_enabled"
+					@update:checked="onCheckboxChanged($event, 'link_preview_enabled')">
+					{{ t('integration_notion', 'Enable link preview for Notion pages and databases') }}
+				</NcCheckboxRadioSwitch>
+			</div>
 		</div>
 	</div>
 </template>

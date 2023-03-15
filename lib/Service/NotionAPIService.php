@@ -33,6 +33,7 @@ use Exception;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 use OCA\Notion\AppInfo\Application;
+use OCP\AppFramework\Http;
 use OCP\Files\IRootFolder;
 use OCP\IConfig;
 use OCP\IL10N;
@@ -167,13 +168,13 @@ class NotionAPIService {
 	 *
 	 * @param string $userId
 	 * @param string $query
-	 * @param int $offset
+	 * @param string|int $offset
 	 * @param int $limit
 	 *
 	 * @return array
 	 */
-	public function searchPages(string $userId, string $query, int $offset = 0, int $limit = 5): array {
-		$result = $this->request($userId, 'v1/search', [
+	public function searchPages(string $userId, string $query, string|int $offset = 0, int $limit = 5): array {
+		$params = [
 			'query' => $query,
 			'sort' => [
 				'direction' => 'ascending',
@@ -184,11 +185,11 @@ class NotionAPIService {
 				'property' => 'object'
 			],
 			'page_size' => $limit
-		], 'POST', true);
-		$this->logger->error('[' . self::class . '] searchPages: ' . json_encode($result));
-		// if (!isset($result['error'])) {
-		// 	$result['results'] = array_slice($result['results'], $offset, $limit);
-		// }
+		];
+		if ($offset !== 0) {
+			$params['start_cursor'] = $offset;
+		}
+		$result = $this->request($userId, 'v1/search', $params, 'POST', true);
 		return $result;
 	}
 
@@ -197,13 +198,13 @@ class NotionAPIService {
 	 *
 	 * @param string $userId
 	 * @param string $query
-	 * @param int $offset
+	 * @param string|int $offset
 	 * @param int $limit
 	 *
 	 * @return array
 	 */
-	public function searchDatabases(string $userId, string $query, int $offset = 0, int $limit = 5): array {
-		$result = $this->request($userId, 'v1/search', [
+	public function searchDatabases(string $userId, string $query, string|int $offset = 0, int $limit = 5): array {
+		$params = [
 			'query' => $query,
 			'sort' => [
 				'direction' => 'ascending',
@@ -214,12 +215,30 @@ class NotionAPIService {
 				'property' => 'object'
 			],
 			'page_size' => $limit
-		], 'POST', true);
-		$this->logger->error('[' . self::class . '] searchDatabases: ' . json_encode($result));
-		// if (!isset($result['error'])) {
-		// 	$result['results'] = array_slice($result['results'], $offset, $limit);
-		// }
+		];
+		if ($offset !== 0) {
+			$params['start_cursor'] = $offset;
+		}
+		$result = $this->request($userId, 'v1/search', $params, 'POST', true);
 		return $result;
+	}
+
+	/**
+	 * Request a thumbnail image for Notion page or database
+	 *
+	 * @param string $url
+	 *
+	 * @return array|null
+	 */
+	public function getThumbnail(string $url): ?array {
+		$thumbnailResponse = $this->client->get($url);
+		if ($thumbnailResponse->getStatusCode() === Http::STATUS_OK) {
+			return [
+				'body' => $thumbnailResponse->getBody(),
+				'headers' => $thumbnailResponse->getHeaders(),
+			];
+		}
+		return null;
 	}
 
 	/**

@@ -74,6 +74,7 @@ class Personal implements ISettings {
 		$notionUserName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_name');
 		$searchPagesEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_pages_enabled', '0');
 		$searchDatabasesEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_databases_enabled', '0');
+		$linkPreviewEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'link_preview_enabled', '0');
 
 		// for OAuth
 		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id');
@@ -90,6 +91,7 @@ class Personal implements ISettings {
 			'user_name' => $notionUserName,
 			'search_pages_enabled' => $searchPagesEnabled === '1',
 			'search_databases_enabled' => $searchDatabasesEnabled === '1',
+			'link_preview_enabled' => $linkPreviewEnabled === '1',
 		];
 		$this->initialStateService->provideInitialState('user-config', $userConfig);
 		return new TemplateResponse(Application::APP_ID, 'personalSettings');

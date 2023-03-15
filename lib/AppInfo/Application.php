@@ -70,6 +70,8 @@ class Application extends App implements IBootstrap {
 
 		$context->registerSearchProvider(\OCA\Notion\Search\NotionSearchDatabasesProvider::class);
 		$context->registerSearchProvider(\OCA\Notion\Search\NotionSearchPagesProvider::class);
+
+		$context->registerReferenceProvider(\OCA\Notion\Reference\NotionReferenceProvider::class);
 	}
 
 	public function boot(IBootContext $context): void {
