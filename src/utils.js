@@ -136,3 +136,12 @@ export function humanFileSize(bytes, approx = false, si = false, dp = 1) {
 		return bytes.toFixed(dp) + ' ' + units[u]
 	}
 }
+
+export function isDarkMode() {
+	const bodyDataTheme = document.body.getAttribute('data-themes')
+	return bodyDataTheme.startsWith('light')
+		? false
+		: bodyDataTheme.startsWith('dark')
+			? true
+			: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+}

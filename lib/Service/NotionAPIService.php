@@ -242,6 +242,24 @@ class NotionAPIService {
 	}
 
 	/**
+	 * Get Notion object info (page or database)
+	 *
+	 * @param string $userId
+	 */
+	public function getObjectInfo(string $userId, string $objectId): ?array {
+		// Temporal solution
+		$pageInfo = $this->getUserPage($userId, $objectId);
+		if (!isset($pageInfo['error'])) {
+			return $pageInfo;
+		}
+		$databaseInfo = $this->getUserDatabase($userId, $objectId);
+		if (!isset($databaseInfo['error'])) {
+			return $databaseInfo;
+		}
+		return null;
+	}
+
+	/**
 	 * @param string $userId
 	 * @param string $endPoint
 	 * @param array $params

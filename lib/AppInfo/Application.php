@@ -37,8 +37,10 @@ use OCP\AppFramework\Services\IInitialState;
 use OCP\IConfig;
 use OCP\Security\CSP\AddContentSecurityPolicyEvent;
 use OCP\Util;
+use OCP\Collaboration\Reference\RenderReferenceEvent;
 
 use OCA\Notion\Listener\AddContentSecurityPolicyListener;
+use OCA\Notion\Listener\NotionReferenceListener;
 
 /**
  * Class Application
@@ -72,6 +74,7 @@ class Application extends App implements IBootstrap {
 		$context->registerSearchProvider(\OCA\Notion\Search\NotionSearchPagesProvider::class);
 
 		$context->registerReferenceProvider(\OCA\Notion\Reference\NotionReferenceProvider::class);
+		$context->registerEventListener(RenderReferenceEvent::class,NotionReferenceListener::class);
 	}
 
 	public function boot(IBootContext $context): void {

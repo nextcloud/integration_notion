@@ -31,6 +31,7 @@ namespace OCA\Notion\Reference;
 use OCP\Collaboration\Reference\ADiscoverableReferenceProvider;
 use OCP\Collaboration\Reference\ISearchableReferenceProvider;
 use OC\Collaboration\Reference\ReferenceManager;
+use OCP\Collaboration\Reference\Reference;
 
 use OCP\Collaboration\Reference\IReference;
 use OCP\IConfig;
@@ -39,7 +40,6 @@ use OCP\IURLGenerator;
 
 use OCA\Notion\AppInfo\Application;
 use OCA\Notion\Service\NotionAPIService;
-
 
 class NotionReferenceProvider extends ADiscoverableReferenceProvider implements ISearchableReferenceProvider {
 
@@ -105,7 +105,7 @@ class NotionReferenceProvider extends ADiscoverableReferenceProvider implements 
 			$searchIssuesEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_pages_enabled', '0') === '1';
 			$searchReposEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_databases_enabled', '0') === '1';
 			if ($searchIssuesEnabled) {
-				$ids[] = 'notion-search-page';
+				$ids[] = 'notion-search-pages';
 			}
 			if ($searchReposEnabled) {
 				$ids[] = 'notion-search-databases';
@@ -113,7 +113,6 @@ class NotionReferenceProvider extends ADiscoverableReferenceProvider implements 
 			return $ids;
 		}
 		return ['notion-search-pages', 'notion-search-databases'];
-
 	}
 
 	/**
@@ -121,6 +120,7 @@ class NotionReferenceProvider extends ADiscoverableReferenceProvider implements 
 	 */
 	public function matchReference(string $referenceText): bool {
 		if ($this->userId !== null) {
+			$this->invalidateUserCache($this->userId);
 			$linkPreviewEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'link_preview_enabled', '1') === '1';
 			if (!$linkPreviewEnabled) {
 				return false;
@@ -140,8 +140,29 @@ class NotionReferenceProvider extends ADiscoverableReferenceProvider implements 
 	 * @inheritDoc
 	 */
 	public function resolveReference(string $referenceText): ?IReference {
-		// TODO
-
+		if ($this->matchReference($referenceText)) {
+			$objectId = $this->getObjectId($referenceText);
+			$objectInfo = $this->notionAPIService->getObjectInfo($this->userId, $objectId);
+			if (isset($objectInfo)) {
+				$reference = new Reference($referenceText);
+				$objectTitle = $this->getObjectTitle($objectInfo) ?? '';
+				$objectLastEditedTime = $objectInfo['last_edited_time'] ?? '';
+				$objectThumbnailUrl = $this->getObjectThumbnailUrl($objectInfo);
+				// TODO: Add additional info about Notion object (e.g. retrieve User and Comments)
+				$reference->setRichObject(
+					self::RICH_OBJECT_TYPE,
+					[
+						'id' => $objectId,
+						'type' => $objectInfo['object'],
+						'title' => $objectTitle,
+						'last_edited_time' => $objectLastEditedTime,
+						'thumbnail_url' => $objectThumbnailUrl,
+						'url' => $referenceText,
+					]
+				);
+				return $reference;
+			}
+		}
 		return null;
 	}
 
@@ -149,9 +170,56 @@ class NotionReferenceProvider extends ADiscoverableReferenceProvider implements 
 	 * Get Notion page or database ID from path
 	 */
 	private function getObjectId(string $url): ?string {
-		preg_match('/^(?:https?:\/\/)?(?:www\.)?(?:.+\.)?notion\.(?:so|site)\/.*([a-zA-Z0-9]).*/i', $url, $matches);
+		$url = explode('?', $url);
+		if (isset($url[0])) {
+			$url = $url[0];
+		}
+		preg_match('/^(?:https?:\/\/)?(?:www\.)?(?:.+\.)?notion\.(?:so|site)\/(?:[a-zA-Z0-9-_]*?)?([a-fA-F0-9]+)$/i', $url, $matches);
 		if (isset($matches[1])) {
 			return $matches[1];
+		}
+		return null;
+	}
+
+	private function getObjectTitle(array $entry) {
+		if ($entry['object'] === 'page') {
+			$inDatabase = isset($entry['parent']['database_id']);
+			return isset($entry['properties']['title']['title']) 
+				&& count($entry['properties']['title']['title']) === 0
+				? $entry['properties']['title']['title'][0]['plain_text'] 
+					. ($inDatabase ? ' (' . $this->l10n->t('in database') . ')' : '')
+				: $this->searchForTitleProperty($entry)
+					. ($inDatabase ? ' (' . $this->l10n->t('in database') . ')' : '');
+		} elseif ($entry['object'] === 'database') {
+			return count($entry['title']) > 0 && isset($entry['title'][0]['plain_text'])
+				? $entry['title'][0]['plain_text']
+				: json_encode($entry['title']);
+		}
+	}
+
+	private function searchForTitleProperty(array $entry) {
+		foreach ($entry['properties'] as $property) {
+			if (isset($property['type']) && $property['type'] === 'title') {
+				return $property['title'][0]['plain_text'];
+			}
+		}
+		return $this->l10n->t('Untitled page');
+	}
+
+	private function getObjectThumbnailUrl(array $entry) {
+		if (isset($entry['icon']['type']) && $entry['icon']['type'] === 'file') {
+			$link = $entry['icon']['url'];
+			if (str_starts_with($entry['icon']['url'], '/')) {
+				$link = Application::NOTION_DOMAIN . $entry['icon']['url'];
+			}
+			return $this->urlGenerator->linkToRoute('integration_notion.notionAPI.getThumbnail', ['url' => $link]);
+		}
+		if (isset($entry['icon']['type']) && $entry['icon']['type'] === 'external') {
+			$link = $entry['icon']['external']['url'];
+			if (str_starts_with($entry['icon']['external']['url'], '/')) {
+				$link = Application::NOTION_DOMAIN . $entry['icon']['external']['url'];
+			}
+			return $this->urlGenerator->linkToRoute('integration_notion.notionAPI.getThumbnail', ['url' => $link]);
 		}
 		return null;
 	}
