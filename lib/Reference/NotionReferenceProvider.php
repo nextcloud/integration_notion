@@ -92,7 +92,7 @@ class NotionReferenceProvider extends ADiscoverableReferenceProvider implements 
 	 */
 	public function getIconUrl(): string {
 		return $this->urlGenerator->getAbsoluteURL(
-			$this->urlGenerator->imagePath(Application::APP_ID, 'app-dark.svg')
+			$this->urlGenerator->imagePath(Application::APP_ID, 'app.svg')
 		);
 	}
 
@@ -120,7 +120,6 @@ class NotionReferenceProvider extends ADiscoverableReferenceProvider implements 
 	 */
 	public function matchReference(string $referenceText): bool {
 		if ($this->userId !== null) {
-			$this->invalidateUserCache($this->userId);
 			$linkPreviewEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'link_preview_enabled', '1') === '1';
 			if (!$linkPreviewEnabled) {
 				return false;
@@ -144,9 +143,9 @@ class NotionReferenceProvider extends ADiscoverableReferenceProvider implements 
 			$objectId = $this->getObjectId($referenceText);
 			$objectInfo = $this->notionAPIService->getObjectInfo($this->userId, $objectId);
 			if (isset($objectInfo)) {
+				[$objectInfo, $createdByUserInfo, $editedByUserInfo] = $objectInfo;
 				$reference = new Reference($referenceText);
 				$objectTitle = $this->getObjectTitle($objectInfo) ?? '';
-				$objectLastEditedTime = $objectInfo['last_edited_time'] ?? '';
 				$objectThumbnailUrl = $this->getObjectThumbnailUrl($objectInfo);
 				// TODO: Add additional info about Notion object (e.g. retrieve User and Comments)
 				$reference->setRichObject(
@@ -155,7 +154,10 @@ class NotionReferenceProvider extends ADiscoverableReferenceProvider implements 
 						'id' => $objectId,
 						'type' => $objectInfo['object'],
 						'title' => $objectTitle,
-						'last_edited_time' => $objectLastEditedTime,
+						'created_by' => $createdByUserInfo,
+						'created_time' => $objectInfo['created_time'] ?? '',
+						'edited_by' => $editedByUserInfo,
+						'last_edited_time' => $objectInfo['last_edited_time'] ?? '',
 						'thumbnail_url' => $objectThumbnailUrl,
 						'url' => $referenceText,
 					]

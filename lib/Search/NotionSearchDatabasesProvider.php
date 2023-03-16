@@ -170,9 +170,10 @@ class NotionSearchDatabasesProvider implements IProvider {
 	 * @return string
 	 */
 	protected function getSubline(array $entry): string {
+		$lastEditedTimeFormatted = new \DateTime($entry['last_edited_time']);
 		return isset($entry['description'][0]) && count($entry['description']) === 0
 			? $entry['description'][0]['plain_text']
-			: $entry['last_edited_time'];
+			: $this->l10n->t('Last edited on %s', [$lastEditedTimeFormatted->format('d.m.Y H:i')]);
 	}
 
 	/**
@@ -202,6 +203,6 @@ class NotionSearchDatabasesProvider implements IProvider {
 			}
 			return $this->urlGenerator->linkToRoute('integration_notion.notionAPI.getThumbnail', ['url' => $link]);
 		}
-		return $this->urlGenerator->imagePath(Application::APP_ID, 'app-dark.svg');
+		return $this->urlGenerator->imagePath(Application::APP_ID, 'app.svg');
 	}
 }

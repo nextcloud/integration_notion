@@ -223,6 +223,11 @@ class NotionAPIService {
 		return $result;
 	}
 
+	public function getUserInfo(string $userId, string $notionUserId): ?array {
+		$result = $this->request($userId, 'v1/users/' . $notionUserId, [], 'GET');
+		return $result;
+	}
+
 	/**
 	 * Request a thumbnail image for Notion page or database
 	 *
@@ -250,11 +255,21 @@ class NotionAPIService {
 		// Temporal solution
 		$pageInfo = $this->getUserPage($userId, $objectId);
 		if (!isset($pageInfo['error'])) {
-			return $pageInfo;
+			$createdByUserInfo = $this->getUserInfo($userId, $pageInfo['created_by']['id']);
+			if ($pageInfo['last_edited_by']['id'] !== $pageInfo['created_by']['id']) {
+				$lastEditedByUserInfo = $this->getUserInfo($userId, $pageInfo['last_edited_by']['id']);
+			}
+			$lastEditedByUserInfo = $createdByUserInfo;
+			return [$pageInfo, $createdByUserInfo, $lastEditedByUserInfo];
 		}
 		$databaseInfo = $this->getUserDatabase($userId, $objectId);
 		if (!isset($databaseInfo['error'])) {
-			return $databaseInfo;
+			$createdByUserInfo = $this->getUserInfo($userId, $databaseInfo['created_by']['id']);
+			if ($databaseInfo['last_edited_by']['id'] !== $databaseInfo['created_by']['id']) {
+				$lastEditedByUserInfo = $this->getUserInfo($userId, $databaseInfo['last_edited_by']['id']);
+			}
+			$lastEditedByUserInfo = $createdByUserInfo;
+			return [$databaseInfo, $createdByUserInfo, $lastEditedByUserInfo];
 		}
 		return null;
 	}

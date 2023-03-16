@@ -31,13 +31,30 @@
 			</template>
 			<NotionIcon v-else :size="48" />
 			<div class="notion-link-content">
-				<a :href="notionUrl" target="_blank" rel="noreferrer noopener">
-					<strong>{{ richObject.title }}</strong>
-				</a>
-				<p>
-					{{ t('integration_notion', 'Last edit time: ') }}
-					{{ formattedLastEditedTime }}
-				</p>
+				<div class="notion-title">
+					<a :href="notionUrl" target="_blank" rel="noreferrer noopener">
+						<strong>
+							{{ titlePrefix }}
+							{{ richObject.title }}
+						</strong>
+					</a>
+				</div>
+				<div class="notion-details">
+					<div class="notion-created-by">
+						<p>
+							{{ t('integration_notion', 'Created by: ') }}
+							<b>{{ createdByName }}</b>
+							({{ formattedCreatedTime }})
+						</p>
+					</div>
+					<div class="notion-edited-by">
+						<p>
+							{{ t('integration_notion', 'Last edited by: ') }}
+							<b>{{ editedByName }}</b>
+							({{ formattedLastEditedTime }})
+						</p>
+					</div>
+				</div>
 			</div>
 			<!-- TODO: Add additional info about Notion object entry -->
 		</div>
@@ -81,10 +98,10 @@ export default {
 	},
 	computed: {
 		isPage() {
-			return this.richObject.object === 'page'
+			return this.richObject.type === 'page'
 		},
 		isDatabase() {
-			return this.richObject.object === 'database'
+			return this.richObject.type === 'database'
 		},
 		notionUrl() {
 			return this.richObject.url
@@ -92,14 +109,25 @@ export default {
 		isDarkMode() {
 			return isDarkMode()
 		},
+		titlePrefix() {
+			if (this.isPage) {
+				return t('integration_notion', 'Page: ')
+			} else if (this.isDatabase) {
+				return t('integration_notion', 'Database: ')
+			}
+			return ''
+		},
+		formattedCreatedTime() {
+			return moment(this.richObject.created_time).format('LLL')
+		},
 		formattedLastEditedTime() {
 			return moment(this.richObject.last_edited_time).format('LLL')
 		},
-	},
-	methods: {
-		getNotionObjectThumbnail() {
-			const url = this.richObject?.thumbnail_url ?? ''
-			return generateUrl('/apps/integration_notion/thumbnail?url={url}', url)
+		createdByName() {
+			return this.richObject?.created_by?.name
+		},
+		editedByName() {
+			return this.richObject?.edited_by?.name
 		},
 	},
 }
