@@ -10,6 +10,7 @@
 /.gitignore
 /.l10nignore
 /.nextcloudignore
+/.travis.yml
 /.pre-commit-config.yaml
 /babel.config.js
 /build
@@ -21,6 +22,7 @@
 /vendor
 /jest.config.js
 /Makefile
+/krankerl.toml
 /package-lock.json
 /package.json
 /postcss.config.js
