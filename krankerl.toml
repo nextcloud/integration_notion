@@ -1,6 +1,5 @@
 [package]
 before_cmds = [
-	"composer install --no-dev -o",
 	"npm install --deps",
 	"npm run build",
 ]
