@@ -39,8 +39,6 @@ use OCP\Search\SearchResult;
 
 use OCA\Notion\AppInfo\Application;
 use OCA\Notion\Service\NotionAPIService;
-use OCA\Theming\Service\ThemesService;
-use Psr\Log\LoggerInterface;
 
 class NotionSearchPagesProvider implements IProvider {
 	/** @var IAppManager */
@@ -59,27 +57,17 @@ class NotionSearchPagesProvider implements IProvider {
 	 * @var NotionAPIService
 	 */
 	private $service;
-	/**
-	 * @var LoggerInterface
-	 */
-	private $logger;
-	/**
-	 * @var ThemesService
-	 */
-	private $themesService;
 
 	public function __construct(IAppManager $appManager,
 								IL10N $l10n,
 								IConfig $config,
 								IURLGenerator $urlGenerator,
-								NotionAPIService $service,
-								LoggerInterface $logger) {
+								NotionAPIService $service) {
 		$this->appManager = $appManager;
 		$this->l10n = $l10n;
 		$this->config = $config;
 		$this->urlGenerator = $urlGenerator;
 		$this->service = $service;
-		$this->logger = $logger;
 	}
 
 	/**
