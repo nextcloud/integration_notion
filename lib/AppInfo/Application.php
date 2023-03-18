@@ -28,11 +28,13 @@
 
 namespace OCA\Notion\AppInfo;
 
+use OCA\Notion\Listener\UnifiedSearchCSSLoader;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 
+use OCP\AppFramework\Http\Events\BeforeTemplateRenderedEvent;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\IConfig;
 use OCP\Security\CSP\AddContentSecurityPolicyEvent;
@@ -69,6 +71,7 @@ class Application extends App implements IBootstrap {
 			AddContentSecurityPolicyEvent::class,
 			AddContentSecurityPolicyListener::class
 		);
+		$context->registerEventListener(BeforeTemplateRenderedEvent::class, UnifiedSearchCSSLoader::class);
 
 		$context->registerSearchProvider(\OCA\Notion\Search\NotionSearchDatabasesProvider::class);
 		$context->registerSearchProvider(\OCA\Notion\Search\NotionSearchPagesProvider::class);
