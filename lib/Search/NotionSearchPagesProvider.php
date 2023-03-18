@@ -129,7 +129,7 @@ class NotionSearchPagesProvider implements IProvider {
 				$this->getMainText($entry),
 				$this->getSubline($entry),
 				$this->getLinkToNotion($entry),
-				'',
+				'icon-notion-logo',
 				false
 			);
 		}, $pages);
@@ -138,7 +138,7 @@ class NotionSearchPagesProvider implements IProvider {
 			return SearchResult::paginated(
 				$this->getName(),
 				$formattedResults,
-				isset($searchResult['has_more']) && $searchResult['has_more'] 
+				isset($searchResult['has_more']) && $searchResult['has_more']
 					? $searchResult['next_cursor'] : 0
 			);
 		}
@@ -154,9 +154,9 @@ class NotionSearchPagesProvider implements IProvider {
 	 */
 	protected function getMainText(array $entry): string {
 		$inDatabase = isset($entry['parent']['database_id']);
-		return isset($entry['properties']['title']['title']) 
+		return isset($entry['properties']['title']['title'])
 			&& count($entry['properties']['title']['title']) === 0
-			? $entry['properties']['title']['title'][0]['plain_text'] 
+			? $entry['properties']['title']['title'][0]['plain_text']
 				. ($inDatabase ? ' (' . $this->l10n->t('in database') . ')' : '')
 			: $this->searchForTitleProperty($entry)
 				. ($inDatabase ? ' (' . $this->l10n->t('in database') . ')' : '');
@@ -209,6 +209,6 @@ class NotionSearchPagesProvider implements IProvider {
 			}
 			return $this->urlGenerator->linkToRoute('integration_notion.notionAPI.getThumbnail', ['url' => $link]);
 		}
-		return $this->urlGenerator->imagePath(Application::APP_ID, 'app.svg');
+		return '';
 	}
 }
