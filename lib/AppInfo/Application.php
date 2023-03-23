@@ -35,13 +35,8 @@ use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 
 use OCP\AppFramework\Http\Events\BeforeTemplateRenderedEvent;
-use OCP\AppFramework\Services\IInitialState;
-use OCP\IConfig;
-use OCP\Security\CSP\AddContentSecurityPolicyEvent;
-use OCP\Util;
 use OCP\Collaboration\Reference\RenderReferenceEvent;
 
-use OCA\Notion\Listener\AddContentSecurityPolicyListener;
 use OCA\Notion\Listener\NotionReferenceListener;
 
 /**
@@ -56,6 +51,7 @@ class Application extends App implements IBootstrap {
 	public const NOTION_API_BASE_URL = 'https://api.notion.com';
 	public const NOTION_DOMAIN = 'https://notion.so';
 	public const NOTION_SUBDOMAINS = 'https://*.notion.site';
+	public const NOTION_API_VERSION = '2022-06-28';
 
 	/**
 	 * Constructor
@@ -67,10 +63,6 @@ class Application extends App implements IBootstrap {
 	}
 
 	public function register(IRegistrationContext $context): void {
-		$context->registerEventListener(
-			AddContentSecurityPolicyEvent::class,
-			AddContentSecurityPolicyListener::class
-		);
 		$context->registerEventListener(BeforeTemplateRenderedEvent::class, UnifiedSearchCSSLoader::class);
 
 		$context->registerSearchProvider(\OCA\Notion\Search\NotionSearchDatabasesProvider::class);
@@ -81,15 +73,6 @@ class Application extends App implements IBootstrap {
 	}
 
 	public function boot(IBootContext $context): void {
-		$context->injectFn(function (
-			IInitialState $initialState,
-			IConfig $config,
-			?string $userId
-		) {
-			$overrideClick = $config->getAppValue(Application::APP_ID, 'override_link_click', '0') === '1';
-			$initialState->provideInitialState('override_link_click', $overrideClick);
-			Util::addScript(self::APP_ID, self::APP_ID . '-standalone');
-		});
 	}
 }
 

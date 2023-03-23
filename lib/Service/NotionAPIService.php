@@ -292,7 +292,7 @@ class NotionAPIService {
 				'headers' => [
 					'User-Agent'  => Application::INTEGRATION_USER_AGENT,
 					'Authorization' => 'Bearer ' . $accessToken,
-					'Notion-Version' => '2022-06-28' // Latest Notion API version (release date)
+					'Notion-Version' => Application::NOTION_API_VERSION // Latest Notion API version (release date)
 				],
 			];
 
