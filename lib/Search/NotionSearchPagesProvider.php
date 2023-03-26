@@ -129,7 +129,7 @@ class NotionSearchPagesProvider implements IProvider {
 				$this->getMainText($entry),
 				$this->getSubline($entry),
 				$this->getLinkToNotion($entry),
-				'icon-notion-logo',
+				$this->getThumbnailUrl($entry) === '' ? 'icon-notion-logo' : '',
 				false
 			);
 		}, $pages);

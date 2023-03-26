@@ -28,6 +28,7 @@
 
 namespace OCA\Notion\Reference;
 
+use OC\Collaboration\Reference\LinkReferenceProvider;
 use OCP\Collaboration\Reference\ADiscoverableReferenceProvider;
 use OCP\Collaboration\Reference\ISearchableReferenceProvider;
 use OC\Collaboration\Reference\ReferenceManager;
@@ -51,12 +52,14 @@ class NotionReferenceProvider extends ADiscoverableReferenceProvider implements 
 	private ReferenceManager $referenceManager;
 	private IL10N $l10n;
 	private IURLGenerator $urlGenerator;
+	private LinkReferenceProvider $linkReferenceProvider;
 
 	public function __construct(NotionAPIService $notionAPIService,
 								IConfig $config,
 								IL10N $l10n,
 								IURLGenerator $urlGenerator,
 								ReferenceManager $referenceManager,
+								LinkReferenceProvider $linkReferenceProvider,
 								?string $userId) {
 		$this->notionAPIService = $notionAPIService;
 		$this->userId = $userId;
@@ -64,6 +67,7 @@ class NotionReferenceProvider extends ADiscoverableReferenceProvider implements 
 		$this->referenceManager = $referenceManager;
 		$this->l10n = $l10n;
 		$this->urlGenerator = $urlGenerator;
+		$this->linkReferenceProvider = $linkReferenceProvider;
 	}
 
 	/**
@@ -92,7 +96,7 @@ class NotionReferenceProvider extends ADiscoverableReferenceProvider implements 
 	 */
 	public function getIconUrl(): string {
 		return $this->urlGenerator->getAbsoluteURL(
-			$this->urlGenerator->imagePath(Application::APP_ID, 'app.svg')
+			$this->urlGenerator->imagePath(Application::APP_ID, 'app-dark.svg')
 		);
 	}
 
@@ -147,7 +151,6 @@ class NotionReferenceProvider extends ADiscoverableReferenceProvider implements 
 				$reference = new Reference($referenceText);
 				$objectTitle = $this->getObjectTitle($objectInfo) ?? '';
 				$objectThumbnailUrl = $this->getObjectThumbnailUrl($objectInfo);
-				// TODO: Add additional info about Notion object (e.g. retrieve User and Comments)
 				$reference->setRichObject(
 					self::RICH_OBJECT_TYPE,
 					[
@@ -164,6 +167,7 @@ class NotionReferenceProvider extends ADiscoverableReferenceProvider implements 
 				);
 				return $reference;
 			}
+			return $this->linkReferenceProvider->resolveReference($referenceText);
 		}
 		return null;
 	}

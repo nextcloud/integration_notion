@@ -24,7 +24,6 @@
 
 <template>
 	<div class="notion-page-database-reference">
-		<!-- TODO: Display error info -->
 		<div class="notion-page-database-wrapper">
 			<template v-if="richObject.thumbnail_url">
 				<img :src="richObject.thumbnail_url" :height="48">
@@ -56,7 +55,6 @@
 					</div>
 				</div>
 			</div>
-			<!-- TODO: Add additional info about Notion object entry -->
 		</div>
 	</div>
 </template>

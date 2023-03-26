@@ -1,4 +1,8 @@
-.unified-search .icon-notion-logo {
+.unified-search .icon-notion-logo, .search-result .icon-notion-logo {
 	background-image: url('../img/app-dark.svg');
 	filter: var(--background-invert-if-dark);
+}
+
+.search-result .icon-notion-logo {
+	background-size: 32px;
 }

@@ -130,7 +130,7 @@ class NotionSearchDatabasesProvider implements IProvider {
 				$this->getMainText($entry),
 				$this->getSubline($entry),
 				$this->getLinkToNotion($entry),
-				'',
+				$this->getThumbnailUrl($entry) === '' ? 'icon-notion-logo' : '',
 				false
 			);
 		}, $databases);
@@ -197,6 +197,6 @@ class NotionSearchDatabasesProvider implements IProvider {
 			}
 			return $this->urlGenerator->linkToRoute('integration_notion.notionAPI.getThumbnail', ['url' => $link]);
 		}
-		return $this->urlGenerator->imagePath(Application::APP_ID, 'app.svg');
+		return '';
 	}
 }
