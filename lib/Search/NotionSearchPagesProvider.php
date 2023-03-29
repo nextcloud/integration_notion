@@ -176,10 +176,10 @@ class NotionSearchPagesProvider implements IProvider {
 	 * @return string
 	 */
 	protected function getSubline(array $entry): ?string {
-		$lastEditedTimeFormatted = new \DateTime($entry['last_edited_time']);
+		$lastEditedTimeFormatted = new \DateTime($entry['last_edited_time'], new \DateTimeZone('UTC'));
 		return isset($entry['description'][0]) && count($entry['description']) === 0
 			? $entry['description'][0]['plain_text']
-			: $this->l10n->t('Last edited on %s', [$lastEditedTimeFormatted->format('d.m.Y H:i')]);
+			: $this->l10n->t('Last edited on %s', [$lastEditedTimeFormatted->format('F d, Y h:i A')]);
 	}
 
 	/**

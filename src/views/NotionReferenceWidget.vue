@@ -116,10 +116,10 @@ export default {
 			return ''
 		},
 		formattedCreatedTime() {
-			return moment(this.richObject.created_time).format('LLL')
+			return moment(this.richObject.created_time).utc().format('LLL')
 		},
 		formattedLastEditedTime() {
-			return moment(this.richObject.last_edited_time).format('LLL')
+			return moment(this.richObject.last_edited_time).utc().format('LLL')
 		},
 		createdByName() {
 			return this.richObject?.created_by?.name
