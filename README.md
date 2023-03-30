@@ -11,7 +11,8 @@ This app adds:
 
 ### Admin settings
 
-Visit "Connected accounts" **admin** settings section and fill `Application ID` and `Application secret`.
+Visit "Connected accounts" **admin** settings section and fill `Application ID` and `Application secret` fields.
+There is a link to the Notion developer page to create an integration.
 
 ### User settings
 
