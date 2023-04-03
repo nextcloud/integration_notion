@@ -61,7 +61,7 @@
 		"stylelint-webpack-plugin": "^3.3.0"
 	},
 	"engines": {
-		"node": "^16.0.0",
+		"node": "^18.0.0",
 		"npm": "^7.0.0 || ^8.0.0"
 	}
 }
