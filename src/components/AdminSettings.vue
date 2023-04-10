@@ -6,7 +6,9 @@
 		</h2>
 		<p class="settings-hint">
 			{{ t('integration_notion', 'If you want to allow your Nextcloud users to connect to Notion via OAuth, create an application in Notion and set the ID and secret here.') }}
-			<a class="external" href="https://developers.notion.com/docs/create-a-notion-integration">How to create a Notion OAuth app</a>
+			<a class="external" href="https://developers.notion.com/docs/create-a-notion-integration">
+				{{ t('integration_notion', 'How to create a Notion OAuth app') }}
+			</a>
 		</p>
 		<br>
 		<p class="settings-hint">
