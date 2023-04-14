@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_notion",
     {
+    "Error getting OAuth access token. " : "Virhe haettaessa OAuth-käyttöpolettia.",
     "Error during OAuth exchanges" : "Virhe OAuth-tunnistautumisessa",
     "Bad HTTP method" : "Virheellinen HTTP-metodi",
     "Bad credentials" : "Virheelliset kirjautumistiedot",

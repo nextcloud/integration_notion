@@ -1,6 +1,8 @@
 { "translations": {
+    "Error getting OAuth access token. " : "Errorea OAuth sarbide tokena eskuratzean.",
     "Error during OAuth exchanges" : "Errorea OAuth trukeak egitean",
     "Bad HTTP method" : "HTTP metodo okerra",
+    "Bad credentials" : "Kredentzial okerrak",
     "OAuth access token refused" : "OAuth sarbide tokena ukatua izan da",
     "Connected accounts" : "Konektatutako kontuak",
     "Make sure you set the \"Redirect URI\" to" : "Ziurtatu \"Birbideratze URLa\" ezartzen duzula hona:",

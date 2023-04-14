@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_notion",
     {
+    "Error getting OAuth access token. " : "Erreur lors de l'obtention du jeton d'accès OAuth.",
     "Error during OAuth exchanges" : "Erreur pendant les échanges OAuth",
     "Bad HTTP method" : "Mauvaise méthode HTTP",
     "Bad credentials" : "Identifiants incorrects",
