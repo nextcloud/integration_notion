@@ -1,0 +1,6 @@
+{ "translations": {
+    "Error during OAuth exchanges" : "Error durante los intercambios OAuth",
+    "Make sure you set the \"Redirect URI\" to" : "Asegúrate de configurar la \"URI de redirección\" a",
+    "Use a popup to authenticate" : "Use una ventana emergente para autenticar"
+},"pluralForm" :"nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
+}
