@@ -7,13 +7,13 @@
 		"nextcloud",
 		"integration"
 	],
-	"homepage": "https://github.com/cloud_py_api/integration_notion",
+	"homepage": "https://github.com/nextcloud/integration_notion",
 	"bugs": {
-		"url": "https://github.com/cloud_py_api/integration_notion/issues"
+		"url": "https://github.com/nextcloud/integration_notion/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/cloud-py-api/integration_notion"
+		"url": "https://github.com/nextcloud/integration_notion"
 	},
 	"license": "AGPL-3.0",
 	"private": true,
