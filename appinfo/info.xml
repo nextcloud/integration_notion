@@ -17,10 +17,10 @@
 	<website>https://github.com/nextcloud/integration_notion</website>
 	<bugs>https://github.com/nextcloud/integration_notion/issues</bugs>
 	<repository type="git">https://github.com/nextcloud/integration_notion.git</repository>
-	<screenshot>https://raw.githubusercontent.com/nextcloud/integration_notion/main/img/screenshot1.jpg</screenshot>
-	<screenshot>https://raw.githubusercontent.com/nextcloud/integration_notion/main/img/screenshot2.jpg</screenshot>
-	<screenshot>https://raw.githubusercontent.com/nextcloud/integration_notion/main/img/screenshot3.jpg</screenshot>
-	<screenshot>https://raw.githubusercontent.com/nextcloud/integration_notion/main/img/screenshot4.jpg</screenshot>
+	<screenshot>https://raw.githubusercontent.com/nextcloud/integration_notion/main/screenshots/screenshot1.jpg</screenshot>
+	<screenshot>https://raw.githubusercontent.com/nextcloud/integration_notion/main/screenshots/screenshot2.jpg</screenshot>
+	<screenshot>https://raw.githubusercontent.com/nextcloud/integration_notion/main/screenshots/screenshot3.jpg</screenshot>
+	<screenshot>https://raw.githubusercontent.com/nextcloud/integration_notion/main/screenshots/screenshot4.jpg</screenshot>
 	<dependencies>
 		<nextcloud min-version="26" max-version="27"/>
 	</dependencies>

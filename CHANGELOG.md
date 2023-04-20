@@ -2,6 +2,6 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.1.0 - 2023-0x-xx]
+## [0.1.0 - 2023-04-06]
 
 First release available at Nextcloud App Store
