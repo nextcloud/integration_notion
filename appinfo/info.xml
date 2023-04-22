@@ -4,7 +4,7 @@
 	<name>Notion integration</name>
 	<summary>Integration of Notion</summary>
 	<description><![CDATA[Notion integration adds ability to search in Notion and render its links.]]></description>
-	<version>0.1.0</version>
+	<version>0.1.1</version>
 	<licence>agpl</licence>
 	<author mail="andrey18106x@gmail.com" homepage="https://github.com/andrey18106">Andrey Borysenko</author>
 	<author mail="bigcat88@icloud.com" homepage="https://github.com/bigcat88">Alexander Piskun</author>
@@ -17,10 +17,10 @@
 	<website>https://github.com/nextcloud/integration_notion</website>
 	<bugs>https://github.com/nextcloud/integration_notion/issues</bugs>
 	<repository type="git">https://github.com/nextcloud/integration_notion.git</repository>
-	<screenshot>https://raw.githubusercontent.com/nextcloud/integration_notion/main/img/screenshot1.jpg</screenshot>
-	<screenshot>https://raw.githubusercontent.com/nextcloud/integration_notion/main/img/screenshot2.jpg</screenshot>
-	<screenshot>https://raw.githubusercontent.com/nextcloud/integration_notion/main/img/screenshot3.jpg</screenshot>
-	<screenshot>https://raw.githubusercontent.com/nextcloud/integration_notion/main/img/screenshot4.jpg</screenshot>
+	<screenshot>https://raw.githubusercontent.com/nextcloud/integration_notion/main/screenshots/screenshot1.jpg</screenshot>
+	<screenshot>https://raw.githubusercontent.com/nextcloud/integration_notion/main/screenshots/screenshot2.jpg</screenshot>
+	<screenshot>https://raw.githubusercontent.com/nextcloud/integration_notion/main/screenshots/screenshot3.jpg</screenshot>
+	<screenshot>https://raw.githubusercontent.com/nextcloud/integration_notion/main/screenshots/screenshot4.jpg</screenshot>
 	<dependencies>
 		<nextcloud min-version="26" max-version="27"/>
 	</dependencies>
