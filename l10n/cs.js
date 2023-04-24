@@ -20,6 +20,15 @@ OC.L10N.register(
     "Application ID" : "Identif. aplikace",
     "Application secret" : "Tajemství pro aplikaci",
     "Use a popup to authenticate" : "Ověřte se ve vyskakovacím okně",
-    "Connected as {user}" : "Připojeni jako {user}"
+    "Connected as {user}" : "Připojeni jako {user}",
+    "Successfully disconnected" : "Úspěšně odpojeno",
+    "Notion options saved" : "Předvolby pro Notion uloženy",
+    "Failed to save Notion options" : "Předvolby pro Notion se nepodařilo uložit",
+    "Created by: " : "Vytvořil(a):",
+    "Last edited by: " : "Naposledy upraveno:",
+    "Page: " : "Stránka:",
+    "Database: " : "Databáze:",
+    "Sign in with Notion" : "Přihlásit se prostřednictvím Notion",
+    "Failed to save Notion OAuth state" : "Nepodařilo se uložit stav Notion OAuth"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");
