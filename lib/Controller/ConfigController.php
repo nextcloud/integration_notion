@@ -217,8 +217,8 @@ class ConfigController extends Controller {
 				if ($usePopup) {
 					return new RedirectResponse(
 						$this->urlGenerator->linkToRoute('integration_notion.config.popupSuccessPage', [
-							'user_name' => $userInfo['user_name'] ?? '',
-							'user_id' => $userInfo['user_id'] ?? '',
+							'user_name' => $user_name,
+							'user_id' => $user_id,
 						])
 					);
 				} else {
