@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.2 - 2023-05-05]
+### Fixed
+- Fixed popup auth
+
+### Updated
+- localization updates
+
 ## [0.1.1 - 2023-04-22]
 ### Changed
 - dependency update and maintenance
