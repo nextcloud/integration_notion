@@ -63,7 +63,9 @@ export function oauthConnect(clientId, oauthOrigin, usePopup = false) {
 				ssoWindow.focus()
 				window.addEventListener('message', (event) => {
 					console.debug('Child window message received', event)
-					resolve(event.data)
+					if ('userName' in event.data && 'userId' in event.data) {
+						resolve(event.data)
+					}
 				})
 			} else {
 				window.location.replace(requestUrl)
