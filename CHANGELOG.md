@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed popup auth
 
 ### Updated
-- l10n updates
+- localization updates
 
 ## [0.1.1 - 2023-04-22]
 ### Changed
