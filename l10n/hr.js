@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_notion",
     {
+    "Error getting OAuth access token. " : "Pogreška pri dohvaćanju tokena za pristup OAuth. ",
     "Error during OAuth exchanges" : "Pogreška tijekom razmjene radi autentifikacije OAuth",
     "Bad HTTP method" : "Pogrešna metoda HTTP-a",
     "Bad credentials" : "Pogrešne vjerodajnice",
