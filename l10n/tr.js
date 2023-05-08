@@ -5,7 +5,7 @@ OC.L10N.register(
     "Error during OAuth exchanges" : "OAuth alış verişinde sorun çıktı",
     "Notion page or database" : "Notion sayfası veya veri tabanı",
     "in database" : "veri tabanında",
-    "Untitled page" : "Başlıksız sayfa",
+    "Untitled page" : "Adlandırılmamış sayfa",
     "Notion databases" : "Notion veri tabanları",
     "Last edited on %s" : "Son düzenlenme: %s",
     "Notion pages" : "Notion sayfaları",
