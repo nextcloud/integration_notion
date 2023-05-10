@@ -31,7 +31,7 @@ OC.L10N.register(
     "Connect to Notion" : "Повежи се са Notion",
     "Connected as {user}" : "Повезан као {user}",
     "Disconnect from Notion" : "Прекини везу са Notion",
-    "Enable searching for Notion pages" : "Укључи претрагу Notion странца",
+    "Enable searching for Notion pages" : "Укључи претрагу Notion страница",
     "Enable searching for Notion databases" : "Укључи претрагу Notion база података",
     "Warning, everything you type in the search bar will be sent in request to Notion." : "Упозорење, све што куцате у линији за претрагу се шаље у Notion захтеву.",
     "Enable link preview for Notion pages and databases" : "Укључи преглед линка за Notion странице и базе података",
