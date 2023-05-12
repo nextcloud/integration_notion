@@ -28,6 +28,8 @@ OC.L10N.register(
     "Connect to Notion" : "Připojit se k Notion",
     "Connected as {user}" : "Připojeni jako {user}",
     "Disconnect from Notion" : "Odpojit od Notion",
+    "Successfully connected to Notion!" : "Úspěšně spojeno s Notion!",
+    "Error connecting to Notion:" : "Chyba při připojování se ke Notion:",
     "Successfully disconnected" : "Úspěšně odpojeno",
     "Notion options saved" : "Předvolby pro Notion uloženy",
     "Failed to save Notion options" : "Předvolby pro Notion se nepodařilo uložit",
