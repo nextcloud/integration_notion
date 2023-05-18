@@ -3,6 +3,10 @@ OC.L10N.register(
     {
     "Error getting OAuth access token. " : "Erro ao obter o token de acesso OAuth.",
     "Error during OAuth exchanges" : "Erro durante as trocas OAuth",
+    "Notion page or database" : "Página de noção ou banco de dados",
+    "in database" : "no banco de dados",
+    "Untitled page" : "Página não titulada",
+    "Notion databases" : "Bancos de dados de noção",
     "Bad HTTP method" : "Método HTTP incorreto",
     "Bad credentials" : "Credenciais inválidas",
     "OAuth access token refused" : "Token de acesso OAuth recusado",
