@@ -10,6 +10,7 @@ OC.L10N.register(
     "Make sure you set the \"Redirect URI\" to" : "确认您将\"重定向URI\"设置为",
     "Application ID" : "应用 ID",
     "Application secret" : "应用密码",
+    "Use a popup to authenticate" : "使用弹出窗口进行验证",
     "Connected as {user}" : "以 {user} 身份连接"
 },
 "nplurals=1; plural=0;");

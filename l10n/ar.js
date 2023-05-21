@@ -10,7 +10,7 @@ OC.L10N.register(
     "Last edited on %s" : "حُرّرت مؤخرا في %s",
     "Notion pages" : "صفحات Notion",
     "Bad HTTP method" : "دالة HTTP  غير صحيحة",
-    "Bad credentials" : "رموز التعريف غير صحيحة",
+    "Bad credentials" : "معلومات تسجيل الدخول غير صحيحة",
     "OAuth access token refused" : "أمارة token مرفوضة",
     "Connected accounts" : "حسابات مترابطة",
     "Notion integration" : "مكاملة Notion",
