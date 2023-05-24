@@ -26,6 +26,7 @@
     "Connect to Notion" : "Připojit se k Notion",
     "Connected as {user}" : "Připojeni jako {user}",
     "Disconnect from Notion" : "Odpojit od Notion",
+    "Warning, everything you type in the search bar will be sent in request to Notion." : "Varování – cokoli zadáte do kolonky vyhledávání bude odesláno do Notion.",
     "Successfully connected to Notion!" : "Úspěšně spojeno s Notion!",
     "Error connecting to Notion:" : "Chyba při připojování se ke Notion:",
     "Successfully disconnected" : "Úspěšně odpojeno",
