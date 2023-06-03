@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.3 - 2023-06-03]
+### Fixed
+- Fixed notion thumbnail retrieving
+
 ## [0.1.2 - 2023-05-05]
 ### Fixed
 - Fixed popup auth

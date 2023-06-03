@@ -195,19 +195,9 @@ class NotionSearchPagesProvider implements IProvider {
 	 * @return string
 	 */
 	protected function getThumbnailUrl(array $entry): string {
-		if (isset($entry['icon']['type']) && $entry['icon']['type'] === 'file') {
-			$link = $entry['icon']['url'];
-			if (str_starts_with($entry['icon']['url'], '/')) {
-				$link = Application::NOTION_DOMAIN . $entry['icon']['url'];
-			}
-			return $this->urlGenerator->linkToRoute('integration_notion.notionAPI.getThumbnail', ['url' => $link]);
-		}
-		if (isset($entry['icon']['type']) && $entry['icon']['type'] === 'external') {
-			$link = $entry['icon']['external']['url'];
-			if (str_starts_with($entry['icon']['external']['url'], '/')) {
-				$link = Application::NOTION_DOMAIN . $entry['icon']['external']['url'];
-			}
-			return $this->urlGenerator->linkToRoute('integration_notion.notionAPI.getThumbnail', ['url' => $link]);
+		if (isset($entry['icon']['type']) && $entry['icon']['type'] === 'file'
+			|| isset($entry['icon']['type']) && $entry['icon']['type'] === 'external') {
+			return $this->urlGenerator->linkToRoute('integration_notion.notionAPI.getThumbnail', ['notionObjectId' => $entry['id'], 'objectType' => 'page']);
 		}
 		return '';
 	}
