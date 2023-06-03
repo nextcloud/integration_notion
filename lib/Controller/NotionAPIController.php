@@ -131,8 +131,8 @@ class NotionAPIController extends Controller {
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
 	 */
-	public function getThumbnail(string $url) {
-		$thumbnail = $this->notionAPIService->getThumbnail($url);
+	public function getThumbnail(string $notionObjectId, string $objectType = '') {
+		$thumbnail = $this->notionAPIService->getThumbnail($this->userId, $notionObjectId, $objectType);
 		if ($thumbnail !== null && isset($thumbnail['body'], $thumbnail['headers'])) {
 			$response = new DataDisplayResponse(
 				$thumbnail['body'],

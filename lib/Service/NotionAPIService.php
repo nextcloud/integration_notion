@@ -231,28 +231,87 @@ class NotionAPIService {
 	/**
 	 * Request a thumbnail image for Notion page or database
 	 *
-	 * @param string $url
+	 * @param string $userId
+	 * @param string $notionObjectId
+	 * @param string $objectType
 	 *
 	 * @return array|null
 	 */
-	public function getThumbnail(string $url): ?array {
-		$thumbnailResponse = $this->client->get($url);
-		if ($thumbnailResponse->getStatusCode() === Http::STATUS_OK) {
-			return [
-				'body' => $thumbnailResponse->getBody(),
-				'headers' => $thumbnailResponse->getHeaders(),
-			];
+	public function getThumbnail(string $userId, string $notionObjectId, string $objectType = ''): ?array {
+		[$objectInfo] = $this->getObjectInfo($userId, $notionObjectId, $objectType);
+		$url = $this->getThumbnailUrl($objectInfo);
+		if ($url !== null && $url !== '') {
+			$thumbnailResponse = $this->client->get($url);
+			if ($thumbnailResponse->getStatusCode() === Http::STATUS_OK) {
+				return [
+					'body' => $thumbnailResponse->getBody(),
+					'headers' => $thumbnailResponse->getHeaders(),
+				];
+			}
 		}
 		return null;
+	}
+
+	/**
+	 * @param array $entry
+	 * @return string
+	 */
+	public function getThumbnailUrl(array $entry): string {
+		if (isset($entry['icon']['type']) && $entry['icon']['type'] === 'file') {
+			$link = $entry['icon']['url'];
+			if (str_starts_with($entry['icon']['url'], '/')) {
+				$link = Application::NOTION_DOMAIN . $entry['icon']['url'];
+			}
+			return $link;
+		}
+		if (isset($entry['icon']['type']) && $entry['icon']['type'] === 'external') {
+			$link = $entry['icon']['external']['url'];
+			if (str_starts_with($entry['icon']['external']['url'], '/')) {
+				$link = Application::NOTION_DOMAIN . $entry['icon']['external']['url'];
+			}
+			return $link;
+		}
+		return '';
 	}
 
 	/**
 	 * Get Notion object info (page or database)
 	 *
 	 * @param string $userId
+	 * @param string $objectId
+	 * @param string $objectType
+	 * 
+	 * @return array|null
 	 */
-	public function getObjectInfo(string $userId, string $objectId): ?array {
-		// Temporal solution
+	public function getObjectInfo(string $userId, string $objectId, string $objectType = ''): ?array {
+		if ($objectType === 'page') {
+			return $this->getPageInfo($userId, $objectId);
+		}
+		if ($objectType === 'database') {
+			return $this->getDatabaseInfo($userId, $objectId);
+		}
+		if ($objectType === '') {
+			$pageInfo = $this->getPageInfo($userId, $objectId);
+			$databaseInfo = $this->getDatabaseInfo($userId, $objectId);
+			if ($pageInfo !== null && !isset($pageInfo['error'])) {
+				return $pageInfo;
+			}
+			if ($databaseInfo !== null && !isset($databaseInfo['error'])) {
+				return $databaseInfo;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Get Notion page info
+	 *
+	 * @param string $userId
+	 * @param string $objectId
+	 *
+	 * @return array|null [pageInfo, createdByUserInfo, lastEditedByUserInfo]
+	 */
+	public function getPageInfo(string $userId, string $objectId): ?array {
 		$pageInfo = $this->getUserPage($userId, $objectId);
 		if (!isset($pageInfo['error'])) {
 			$createdByUserInfo = $this->getUserInfo($userId, $pageInfo['created_by']['id']);
@@ -262,6 +321,18 @@ class NotionAPIService {
 			$lastEditedByUserInfo = $createdByUserInfo;
 			return [$pageInfo, $createdByUserInfo, $lastEditedByUserInfo];
 		}
+		return null;
+	}
+
+	/**
+	 * Get Notion database info
+	 *
+	 * @param string $userId
+	 * @param string $objectId
+	 *
+	 * @return array|null [databaseInfo, createdByUserInfo, lastEditedByUserInfo]
+	 */
+	public function getDatabaseInfo(string $userId, string $objectId): ?array {
 		$databaseInfo = $this->getUserDatabase($userId, $objectId);
 		if (!isset($databaseInfo['error'])) {
 			$createdByUserInfo = $this->getUserInfo($userId, $databaseInfo['created_by']['id']);
