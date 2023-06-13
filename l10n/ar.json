@@ -20,7 +20,7 @@
     "Put the \"Application ID\" and \"Application secret\" below. Your Nextcloud users will then see a \"Connect to Notion\" button in their personal settings." : "عيّن الرقم المُعرّف للتطبيق و رمزه السري أدناه حتى يتمكن مستخدمي Nextcloud من معاينة زر \"الربط مع Notion\"  في إعداداتهم الشخصية.",
     "Application ID" : "الرقم المُعرّف للتطبيق ",
     "ID of your Notion application" : "الرقم المُعرّف لتطبيقك على Notion",
-    "Application secret" : "الرمر السري للتطبيق",
+    "Application secret" : "الرمز السري للتطبيق",
     "Client secret of your Notion application" : "الرمز السري للعميل في تطبيقك على Notion",
     "Use a popup to authenticate" : "استخدم النافذة المنبثقة للتعريف عن نفسك ",
     "Notion admin options saved" : "خيارات مشرف Notion تم حفظها",
