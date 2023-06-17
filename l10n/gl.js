@@ -10,7 +10,7 @@ OC.L10N.register(
     "Make sure you set the \"Redirect URI\" to" : "Asegúrese de estabelecer o «URI de redirección» como",
     "Application ID" : "ID da aplicación",
     "Application secret" : "Segredo da aplicación",
-    "Use a popup to authenticate" : "Use unha ventá emerxente para autenticarse",
+    "Use a popup to authenticate" : "Use unha xanela emerxente para autenticarse",
     "Connected as {user}" : "Conectado como {user}"
 },
 "nplurals=2; plural=(n != 1);");
