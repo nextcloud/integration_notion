@@ -1,8 +1,13 @@
 OC.L10N.register(
     "integration_notion",
     {
-    "Error getting OAuth access token. " : "Σφάλμα κατά τη λήψη  token πρόσβασης OAuth.",
+    "Error getting OAuth access token. " : "Σφάλμα κατά τη λήψη διακριτικού πρόσβασης πρόσβασης OAuth. ",
     "Error during OAuth exchanges" : "Σφάλμα κατά την ανταλλαγή OAuth",
+    "Notion page or database" : "Σελίδα Notion ή βάση δεδομένων",
+    "in database" : "στη βάση δεδομένων",
+    "Untitled page" : "Άτιτλη σελίδα",
+    "Notion databases" : "Βάση δεδομένων Notion",
+    "Notion pages" : "Σελίδες Notion",
     "Bad HTTP method" : "Κακή μέθοδος HTTP",
     "Bad credentials" : "Εσφαλμένα διαπιστευτήρια",
     "OAuth access token refused" : "Το διακριτικό πρόσβασης OAuth απορρίφθηκε",
@@ -10,7 +15,20 @@ OC.L10N.register(
     "Make sure you set the \"Redirect URI\" to" : "Βεβαιωθείτε ότι έχετε ορίσει το \"Redirect URI\" σε",
     "Application ID" : "Αναγνωριστικό εφαρμογής",
     "Application secret" : "Μυστικό εφαρμογής",
-    "Use a popup to authenticate" : "Χρησιμοποιήστε ένα αναδυόμενο παράθυρο για έλεγχο ταυτότητας",
-    "Connected as {user}" : "Συνδεδεμένος ως {user}"
+    "Use a popup to authenticate" : "Χρησιμοποιήστε ένα αναδυόμενο παράθυρο για πιστοποίηση",
+    "Notion admin options saved" : "Οι επιλογές διαχειριστή του Notion αποθηκεύτηκαν",
+    "Connect to Notion" : "Σύνδεση με το Notion",
+    "Connected as {user}" : "Συνδεδεμένος ως {user}",
+    "Disconnect from Notion" : "Αποσύνδεση από το Notion",
+    "Enable searching for Notion pages" : "Ενεργοποιήστε την αναζήτηση για σελίδες Notion",
+    "Enable link preview for Notion pages and databases" : "Ενεργοποίηση προεπισκόπησης συνδέσμων για σελίδες του Notion και βάσεων δεδομένων",
+    "Successfully connected to Notion!" : "Επιτυχής σύνδεση με το Notion!",
+    "Error connecting to Notion:" : "Σφάλμα κατά την σύνδεση στο Notion:",
+    "Successfully disconnected" : "Επιτυχής αποσύνδεση",
+    "Notion options saved" : "Οι επιλογές του Notion αποθηκεύτηκαν",
+    "Failed to save Notion options" : "Αποτυχία αποθήκευσης επιλογών Notion",
+    "Last edited by: " : "Τελευταία επεξεργασία από: ",
+    "Page: " : "Σελίδα: ",
+    "Database: " : "Βάση δεδομένων: "
 },
 "nplurals=2; plural=(n != 1);");

@@ -13,7 +13,7 @@
     "Connected accounts" : "Contas conectadas",
     "Notion integration" : "Integración de Notion",
     "Integration of Notion" : "Integración de Notion",
-    "Notion integration adds ability to search in Notion and render its links." : "A integración de Notion engade a posibilidade de buscar en Notion e amosar as súas ligazóns.",
+    "Notion integration adds ability to search in Notion and render its links." : "A integración de Notion engade a posibilidade de buscar en Notion e representar as súas ligazóns.",
     "If you want to allow your Nextcloud users to connect to Notion via OAuth, create an application in Notion and set the ID and secret here." : "Se quere permitir que os seus usuarios de Nextcloud se conecten a Notion mediante OAuth, cree unha aplicación en Notion e estabeleza aquí o ID e o segredo.",
     "How to create a Notion OAuth app" : "Como crear unha aplicación Notion OAuth",
     "Make sure you set the \"Redirect URI\" to" : "Asegúrese de estabelecer o «URI de redirección» como",
