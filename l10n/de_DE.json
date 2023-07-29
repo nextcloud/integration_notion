@@ -21,7 +21,7 @@
     "Application ID" : "Anwendungs-ID",
     "ID of your Notion application" : "ID Ihrer Notion-Anwendung",
     "Application secret" : "Anwendungsgeheimnis",
-    "Client secret of your Notion application" : "Client-Geheimnis Ihrer Notion-Anwendung",
+    "Client secret of your Notion application" : "Geheime Zeichenkette des Clients Ihrer Notion-Anwendung",
     "Use a popup to authenticate" : "Ein Popup zur Anmeldung verwenden",
     "Notion admin options saved" : "Notion-Administrations-Einstellungen gespeichert",
     "Failed to save Notion admin options" : "Fehler beim Speichern der Notion-Administrations-Einstellungen",
