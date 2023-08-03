@@ -36,7 +36,7 @@ OC.L10N.register(
     "Warning, everything you type in the search bar will be sent in request to Notion." : "Uyarı, arama çubuğuna yazdığınız her şey Notion üzerine gönderilecek.",
     "Enable link preview for Notion pages and databases" : "Notion sayfaları ve veri tabanlarında bağlantı ön izlemesi yapılabilsin",
     "Successfully connected to Notion!" : "Notion ile bağlantı kuruldu!",
-    "Error connecting to Notion:" : "Notion bağlantısı kurulurken sorun çıktı:",
+    "Error connecting to Notion:" : "Notion ile bağlantı kurulurken sorun çıktı:",
     "Successfully disconnected" : "Bağlantı kesildi",
     "Notion options saved" : "Notion ayarları kaydedildi",
     "Failed to save Notion options" : "Notion ayarları kaydedilemedi",
