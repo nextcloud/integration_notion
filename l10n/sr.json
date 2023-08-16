@@ -17,7 +17,7 @@
     "If you want to allow your Nextcloud users to connect to Notion via OAuth, create an application in Notion and set the ID and secret here." : "Ако желите да дозволите да се ваши Nextcloud корисници повезују са Notion преко OAuth, креирајте апликацију у Notion и поставите овде ID и тајну.",
     "How to create a Notion OAuth app" : "Како се креира Notion OAuth апликација",
     "Make sure you set the \"Redirect URI\" to" : "Осигурајте да поставите „Redirect URI” на",
-    "Put the \"Application ID\" and \"Application secret\" below. Your Nextcloud users will then see a \"Connect to Notion\" button in their personal settings." : "Унесите испод „IDапликације” и „Тајну апликације”. Тада ће ваши Nextcloud корисници у својим личним подешавањима видети дугме „Повежи се са Notion”.",
+    "Put the \"Application ID\" and \"Application secret\" below. Your Nextcloud users will then see a \"Connect to Notion\" button in their personal settings." : "Унесите испод „ID апликације” и „Тајну апликације”. Тада ће ваши Nextcloud корисници у својим личним подешавањима видети дугме „Повежи се са Notion”.",
     "Application ID" : "ID апликације",
     "ID of your Notion application" : "ID ваше Notion апликације",
     "Application secret" : "Тајна апликације",
