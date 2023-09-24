@@ -11,6 +11,8 @@ OC.L10N.register(
     "Application ID" : "ID Programa",
     "Application secret" : "Koda programa",
     "Use a popup to authenticate" : "Uporabi pojavno okno za overitev",
-    "Connected as {user}" : "Povezan je uporabniški račun {user}"
+    "Connected as {user}" : "Povezan je uporabniški račun {user}",
+    "Page: " : "Stran:",
+    "Database: " : "Podatkovna zbirka:"
 },
 "nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);");
