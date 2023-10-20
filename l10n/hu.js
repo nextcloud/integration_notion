@@ -24,6 +24,7 @@ OC.L10N.register(
     "Use a popup to authenticate" : "Felugró ablak használata a hitelesítéshez",
     "Notion admin options saved" : "Notion rendszergazdai beállítások mentve",
     "Failed to save Notion admin options" : "A Notion rendszergazdai beállításainak mentése sikertelen",
+    "Ask your administrator to configure the Notion integration in Nextcloud." : "Kérje meg a rendszergazdát, hogy konfigurálja a Notion integrációt a Nextcloudhoz.",
     "Connect to Notion" : "Csatlakozás a Notion-höz",
     "Connected as {user}" : "Kapcsolódva mint {user}",
     "Disconnect from Notion" : "Leválasztás a Notion-ről",
