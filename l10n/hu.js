@@ -30,6 +30,8 @@ OC.L10N.register(
     "Disconnect from Notion" : "Leválasztás a Notion-ről",
     "Enable searching for Notion pages" : "Notion oldalak közötti keresés engedélyezése",
     "Enable searching for Notion databases" : "Notion adatbázis keresés engedélyezése",
+    "Warning, everything you type in the search bar will be sent in request to Notion." : "Figyelem, minden el lesz küldve a Notion-nek, amit a keresősávba ír.",
+    "Enable link preview for Notion pages and databases" : "Hivatkozás előnézet engedélyezése a Notion oldalakhoz és adatbázisokhoz",
     "Successfully connected to Notion!" : "Sikeresen csatlakozott a Notion-höz!",
     "Error connecting to Notion:" : "Hiba a Notion-höz történő kapcsolódás során:",
     "Successfully disconnected" : "Sikeresen leválasztva",
