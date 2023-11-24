@@ -1,30 +1,4 @@
 <?php
-/**
- *
- * Nextcloud - Notion
- *
- * @copyright Copyright (c) 2023 Andrey Borysenko <andrey18106x@gmail.com>
- *
- * @copyright Copyright (c) 2023 Alexander Piskun <bigcat88@icloud.com>
- *
- * @author 2023 Andrey Borysenko <andrey18106x@gmail.com>
- *
- * @license AGPL-3.0-or-later
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- */
 
 namespace OCA\Notion\Service;
 
@@ -34,91 +8,49 @@ use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 use OCA\Notion\AppInfo\Application;
 use OCP\AppFramework\Http;
-use OCP\Files\IRootFolder;
+use OCP\Http\Client\IClient;
+use OCP\Http\Client\IClientService;
 use OCP\IConfig;
 use OCP\IL10N;
-use OCP\IURLGenerator;
+use OCP\PreConditionNotMetException;
 use Psr\Log\LoggerInterface;
-use OCP\Http\Client\IClientService;
-use OCP\Share\IManager as ShareManager;
 
 /**
  * Service to make requests to the Notion API
  */
 class NotionAPIService {
-	/**
-	 * @var string
-	 */
-	private $appName;
-	/**
-	 * @var LoggerInterface
-	 */
-	private $logger;
-	/**
-	 * @var IL10N
-	 */
-	private $l10n;
-	/**
-	 * @var \OCP\Http\Client\IClient
-	 */
-	private $client;
-	/**
-	 * @var IConfig
-	 */
-	private $config;
-	/**
-	 * @var IRootFolder
-	 */
-	private $root;
-	/**
-	 * @var ShareManager
-	 */
-	private $shareManager;
-	/**
-	 * @var IURLGenerator
-	 */
-	private $urlGenerator;
 
-	public function __construct(string $appName,
-								LoggerInterface $logger,
-								IL10N $l10n,
-								IConfig $config,
-								IRootFolder $root,
-								ShareManager $shareManager,
-								IURLGenerator $urlGenerator,
-								IClientService $clientService) {
-		$this->appName = $appName;
-		$this->logger = $logger;
-		$this->l10n = $l10n;
+	private IClient $client;
+
+	public function __construct(private LoggerInterface $logger,
+		private IL10N $l10n,
+		private IConfig $config,
+		IClientService $clientService) {
 		$this->client = $clientService->newClient();
-		$this->config = $config;
-		$this->root = $root;
-		$this->shareManager = $shareManager;
-		$this->urlGenerator = $urlGenerator;
 	}
 
 	/**
 	 * @param string $userId
 	 * @return array
+	 * @throws Exception
 	 */
 	public function getUserDatabases(string $userId): array {
-		$result = $this->request($userId, 'v1/search/', [
+		return $this->request($userId, 'v1/search/', [
 			'filter' => [
 				'value' => 'database',
 				'property' => 'object'
 			]
 		], 'POST');
-		return $result;
 	}
 
 	/**
 	 * @param string $userId
 	 * @param string $databaseId
 	 * @return array
+	 * @throws Exception
 	 */
 	public function getUserDatabase(string $userId, string $databaseId): array {
-		$result = $this->request($userId, 'v1/databases/' . $databaseId, [], 'GET');
-		return $result;
+		return $this->request($userId, 'v1/databases/' . $databaseId);
 	}
 
 	/**
@@ -142,25 +74,25 @@ class NotionAPIService {
 	/**
 	 * @param string $userId
 	 * @return array|string[]
+	 * @throws Exception
 	 */
 	public function getUserPages(string $userId): array {
-		$result = $this->request($userId, 'v1/search/', [
+		return $this->request($userId, 'v1/search/', [
 			'filter' => [
 				'value' => 'page',
 				'property' => 'object'
 			]
 		], 'POST');
-		return $result;
 	}
 
 	/**
 	 * @param string $userId
-	 * @param string $databaseId
+	 * @param string $pageId
 	 * @return array|string[]
+	 * @throws Exception
 	 */
 	public function getUserPage(string $userId, string $pageId): array {
-		$result = $this->request($userId, 'v1/pages/' . $pageId, [], 'GET');
-		return $result;
+		return $this->request($userId, 'v1/pages/' . $pageId);
 	}
 
 	/**
@@ -172,6 +104,7 @@ class NotionAPIService {
 	 * @param int $limit
 	 *
 	 * @return array
+	 * @throws Exception
 	 */
 	public function searchPages(string $userId, string $query, string|int $offset = 0, int $limit = 5): array {
 		$params = [
@@ -189,8 +122,7 @@ class NotionAPIService {
 		if ($offset !== 0) {
 			$params['start_cursor'] = $offset;
 		}
-		$result = $this->request($userId, 'v1/search', $params, 'POST', true);
-		return $result;
+		return $this->request($userId, 'v1/search', $params, 'POST');
 	}
 
 	/**
@@ -202,6 +134,7 @@ class NotionAPIService {
 	 * @param int $limit
 	 *
 	 * @return array
+	 * @throws Exception
 	 */
 	public function searchDatabases(string $userId, string $query, string|int $offset = 0, int $limit = 5): array {
 		$params = [
@@ -219,13 +152,11 @@ class NotionAPIService {
 		if ($offset !== 0) {
 			$params['start_cursor'] = $offset;
 		}
-		$result = $this->request($userId, 'v1/search', $params, 'POST', true);
-		return $result;
+		return $this->request($userId, 'v1/search', $params, 'POST');
 	}
 
 	public function getUserInfo(string $userId, string $notionUserId): ?array {
-		$result = $this->request($userId, 'v1/users/' . $notionUserId, [], 'GET');
-		return $result;
+		return $this->request($userId, 'v1/users/' . $notionUserId);
 	}
 
 	/**
@@ -236,6 +167,7 @@ class NotionAPIService {
 	 * @param string $objectType
 	 *
 	 * @return array|null
+	 * @throws Exception
 	 */
 	public function getThumbnail(string $userId, string $notionObjectId, string $objectType = ''): ?array {
 		[$objectInfo] = $this->getObjectInfo($userId, $notionObjectId, $objectType);
@@ -280,8 +212,9 @@ class NotionAPIService {
 	 * @param string $userId
 	 * @param string $objectId
 	 * @param string $objectType
-	 * 
+	 *
 	 * @return array|null
+	 * @throws Exception
 	 */
 	public function getObjectInfo(string $userId, string $objectId, string $objectType = ''): ?array {
 		if ($objectType === 'page') {
@@ -310,6 +243,7 @@ class NotionAPIService {
 	 * @param string $objectId
 	 *
 	 * @return array|null [pageInfo, createdByUserInfo, lastEditedByUserInfo]
+	 * @throws Exception
 	 */
 	public function getPageInfo(string $userId, string $objectId): ?array {
 		$pageInfo = $this->getUserPage($userId, $objectId);
@@ -331,6 +265,7 @@ class NotionAPIService {
 	 * @param string $objectId
 	 *
 	 * @return array|null [databaseInfo, createdByUserInfo, lastEditedByUserInfo]
+	 * @throws Exception
 	 */
 	public function getDatabaseInfo(string $userId, string $objectId): ?array {
 		$databaseInfo = $this->getUserDatabase($userId, $objectId);
@@ -355,13 +290,13 @@ class NotionAPIService {
 	 * @throws Exception
 	 */
 	public function request(string $userId, string $endPoint, array $params = [], string $method = 'GET',
-							bool $jsonResponse = true) {
+		bool $jsonResponse = true) {
 		$accessToken = $this->config->getUserValue($userId, Application::APP_ID, 'token');
 		try {
 			$url = Application::NOTION_API_BASE_URL . '/' . $endPoint;
 			$options = [
 				'headers' => [
-					'User-Agent'  => Application::INTEGRATION_USER_AGENT,
+					'User-Agent' => Application::INTEGRATION_USER_AGENT,
 					'Authorization' => 'Bearer ' . $accessToken,
 					'Notion-Version' => Application::NOTION_API_VERSION // Latest Notion API version (release date)
 				],
@@ -387,11 +322,11 @@ class NotionAPIService {
 
 			if ($method === 'GET') {
 				$response = $this->client->get($url, $options);
-			} else if ($method === 'POST') {
+			} elseif ($method === 'POST') {
 				$response = $this->client->post($url, $options);
-			} else if ($method === 'PUT') {
+			} elseif ($method === 'PUT') {
 				$response = $this->client->put($url, $options);
-			} else if ($method === 'DELETE') {
+			} elseif ($method === 'DELETE') {
 				$response = $this->client->delete($url, $options);
 			} else {
 				return ['error' => $this->l10n->t('Bad HTTP method')];
@@ -417,7 +352,7 @@ class NotionAPIService {
 	/**
 	 * @param string $userId
 	 * @return bool
-	 * @throws \OCP\PreConditionNotMetException
+	 * @throws PreConditionNotMetException
 	 */
 	private function refreshToken(string $userId): bool {
 		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id');
@@ -461,7 +396,6 @@ class NotionAPIService {
 
 	/**
 	 * @param array $params
-	 * @param string $method
 	 * @return array
 	 */
 	public function requestOAuthAccessToken(array $params): array {
@@ -469,7 +403,7 @@ class NotionAPIService {
 			$url = Application::NOTION_API_BASE_URL . '/v1/oauth/token';
 			$options = [
 				'headers' => [
-					'User-Agent'  => Application::INTEGRATION_USER_AGENT,
+					'User-Agent' => Application::INTEGRATION_USER_AGENT,
 					'Content-Type' => 'application/json',
 					'Authorization' =>
 						'Basic ' . base64_encode($params['client_id'] . ':' . $params['client_secret']),
