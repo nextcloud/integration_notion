@@ -2,7 +2,7 @@ OC.L10N.register(
     "integration_notion",
     {
     "Error getting OAuth access token. " : "OAuth erişim kodu alınırken sorun çıktı.",
-    "Error during OAuth exchanges" : "OAuth alış verişinde sorun çıktı",
+    "Error during OAuth exchanges" : "OAuth alışverişinde sorun çıktı",
     "Notion page or database" : "Notion sayfası veya veri tabanı",
     "in database" : "veri tabanında",
     "Untitled page" : "Adlandırılmamış sayfa",
