@@ -142,10 +142,7 @@ export default {
 					showSuccess(t('integration_notion', 'Notion options saved'))
 				}
 			}).catch((error) => {
-				showError(
-					t('integration_notion', 'Failed to save Notion options')
-					+ ': ' + (error.response?.request?.responseText ?? '')
-				)
+				showError(t('integration_notion', 'Failed to save Notion options'))
 				console.error(error)
 			}).then(() => {
 				this.loading = false

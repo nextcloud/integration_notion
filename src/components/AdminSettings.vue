@@ -116,10 +116,7 @@ export default {
 			axios.put(url, req).then((response) => {
 				showSuccess(t('integration_notion', 'Notion admin options saved'))
 			}).catch((error) => {
-				showError(
-					t('integration_notion', 'Failed to save Notion admin options')
-					+ ': ' + (error.response?.request?.responseText ?? '')
-				)
+				showError(t('integration_notion', 'Failed to save Notion admin options'))
 				console.error(error)
 			})
 		},
