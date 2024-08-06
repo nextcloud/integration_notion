@@ -10,7 +10,7 @@ OC.L10N.register(
     "Notion pages" : "Сторінки Notion",
     "Bad HTTP method" : "Поганий метод HTTP",
     "Bad credentials" : "Погані дані авторизації",
-    "OAuth access token refused" : "Маркер доступу OAuth відхилено",
+    "OAuth access token refused" : "Токен доступу OAuth відхилено",
     "Connected accounts" : "Підключені облікові записи",
     "Notion integration" : "Інтеграція Notion",
     "Integration of Notion" : "Інтеграція Notion",
