@@ -6,6 +6,8 @@ use OCA\Notion\Service\NotionAPIService;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http;
 
+use OCP\AppFramework\Http\Attribute\NoAdminRequired;
+use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
 use OCP\AppFramework\Http\DataDisplayResponse;
 use OCP\IRequest;
 
@@ -18,62 +20,48 @@ class NotionAPIController extends Controller {
 		parent::__construct($appName, $request);
 	}
 
-	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 */
+	#[NoAdminRequired]
+	#[NoCSRFRequired]
 	public function getUserDatabases() {
 		$result = $this->notionAPIService->getUserDatabases($this->userId);
 		return new Http\JSONResponse($result, Http::STATUS_OK);
 	}
 
-	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 */
+	#[NoAdminRequired]
+	#[NoCSRFRequired]
 	public function getUserDatabase(string $id) {
 		$result = $this->notionAPIService->getUserDatabase($this->userId, $id);
 		return new Http\JSONResponse($result, Http::STATUS_OK);
 	}
 
-	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 */
+	#[NoAdminRequired]
+	#[NoCSRFRequired]
 	public function getUserComments() {
 		// TODO
 	}
 
-	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 */
+	#[NoAdminRequired]
+	#[NoCSRFRequired]
 	public function getUserBlocks() {
 		// TODO
 	}
 
-	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 */
+	#[NoAdminRequired]
+	#[NoCSRFRequired]
 	public function getUserPages() {
 		$result = $this->notionAPIService->getUserPages($this->userId);
 		return new Http\JSONResponse($result, Http::STATUS_OK);
 	}
 
-	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 */
+	#[NoAdminRequired]
+	#[NoCSRFRequired]
 	public function getUserPage(string $id) {
 		$result = $this->notionAPIService->getUserPage($this->userId, $id);
 		return new Http\JSONResponse($result, Http::STATUS_OK);
 	}
 
-	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 */
+	#[NoAdminRequired]
+	#[NoCSRFRequired]
 	public function getThumbnail(string $notionObjectId, string $objectType = '') {
 		$thumbnail = $this->notionAPIService->getThumbnail($this->userId, $notionObjectId, $objectType);
 		if ($thumbnail !== null && isset($thumbnail['body'], $thumbnail['headers'])) {

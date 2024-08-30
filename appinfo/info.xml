@@ -22,7 +22,7 @@
 	<screenshot>https://raw.githubusercontent.com/nextcloud/integration_notion/main/screenshots/screenshot3.jpg</screenshot>
 	<screenshot>https://raw.githubusercontent.com/nextcloud/integration_notion/main/screenshots/screenshot4.jpg</screenshot>
 	<dependencies>
-		<nextcloud min-version="26" max-version="30"/>
+		<nextcloud min-version="28" max-version="31"/>
 	</dependencies>
 	<settings>
 		<admin>OCA\Notion\Settings\Admin</admin>

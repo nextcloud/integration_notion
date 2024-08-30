@@ -5,6 +5,9 @@ namespace OCA\Notion\Controller;
 use OCA\Notion\AppInfo\Application;
 use OCA\Notion\Service\NotionAPIService;
 use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http\Attribute\NoAdminRequired;
+use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
+use OCP\AppFramework\Http\Attribute\PasswordConfirmationRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\TemplateResponse;
@@ -29,11 +32,7 @@ class ConfigController extends Controller {
 		parent::__construct($appName, $request);
 	}
 
-	/**
-	 * @NoAdminRequired
-	 *
-	 * @return DataResponse
-	 */
+	#[NoAdminRequired]
 	public function isUserConnected(): DataResponse {
 		$token = $this->config->getUserValue($this->userId, Application::APP_ID, 'token');
 
@@ -50,13 +49,7 @@ class ConfigController extends Controller {
 		]);
 	}
 
-	/**
-	 * set config values
-	 * @NoAdminRequired
-	 *
-	 * @param array $values
-	 * @return DataResponse
-	 */
+	#[NoAdminRequired]
 	public function setConfig(array $values): DataResponse {
 		// revoke the token
 		if (isset($values['token']) && $values['token'] === '') {
@@ -92,12 +85,7 @@ class ConfigController extends Controller {
 		return new DataResponse($result);
 	}
 
-	/**
-	 * set admin config values
-	 *
-	 * @param array $values
-	 * @return DataResponse
-	 */
+	#[PasswordConfirmationRequired]
 	public function setAdminConfig(array $values): DataResponse {
 		foreach ($values as $key => $value) {
 			$this->config->setAppValue(Application::APP_ID, $key, $value);
@@ -105,28 +93,15 @@ class ConfigController extends Controller {
 		return new DataResponse(1);
 	}
 
-	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 *
-	 * @param string $user_name
-	 * @param string $user_id
-	 * @return TemplateResponse
-	 */
+	#[NoAdminRequired]
+	#[NoCSRFRequired]
 	public function popupSuccessPage(string $user_name, string $user_id): TemplateResponse {
 		$this->initialStateService->provideInitialState('popup-data', ['user_name' => $user_name, 'user_id' => $user_id]);
 		return new TemplateResponse(Application::APP_ID, 'popupSuccess', [], TemplateResponse::RENDER_AS_GUEST);
 	}
 
-	/**
-	 * receive oauth code and get oauth access token
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 *
-	 * @param string $code
-	 * @param string $state
-	 * @return RedirectResponse
-	 */
+	#[NoAdminRequired]
+	#[NoCSRFRequired]
 	public function oauthRedirect(string $code = '', string $state = ''): RedirectResponse {
 		$configState = $this->config->getUserValue($this->userId, Application::APP_ID, 'oauth_state');
 		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id');
