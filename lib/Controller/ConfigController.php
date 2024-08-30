@@ -7,7 +7,6 @@ use OCA\Notion\Service\NotionAPIService;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
-use OCP\AppFramework\Http\Attribute\PasswordConfirmationRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\TemplateResponse;
@@ -85,7 +84,6 @@ class ConfigController extends Controller {
 		return new DataResponse($result);
 	}
 
-	#[PasswordConfirmationRequired]
 	public function setAdminConfig(array $values): DataResponse {
 		foreach ($values as $key => $value) {
 			$this->config->setAppValue(Application::APP_ID, $key, $value);
