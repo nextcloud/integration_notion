@@ -12,6 +12,8 @@ OC.L10N.register(
     "Application secret" : "Секрет приложения",
     "Use a popup to authenticate" : "Используйте всплывающее окно для аутентификации",
     "Connected as {user}" : "Подключено под именем {user}",
+    "Enable searching for Notion pages" : "Включить поиск страниц Notion",
+    "Enable searching for Notion databases" : "Включить поиск баз данных Notion",
     "Warning, everything you type in the search bar will be sent in request to Notion." : "Внимание, все, что вы введете в строке поиска, будет отправлено в виде запроса в Notion."
 },
 "nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);");
