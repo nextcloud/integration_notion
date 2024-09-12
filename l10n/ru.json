@@ -6,6 +6,7 @@
     "OAuth access token refused" : "Токен доступа OAuth был отклонен",
     "Connected accounts" : "Подключённые учётные записи",
     "Make sure you set the \"Redirect URI\" to" : "Убедитесь, что вы установили \"URI перенаправления\" на",
+    "Put the \"Application ID\" and \"Application secret\" below. Your Nextcloud users will then see a \"Connect to Notion\" button in their personal settings." : "Введите ниже \"Application ID\" и \"Application secret\". Ваши пользователи Nextcloud затем увидят кнопку \"Connect to Notion\" в своих личных настройках.",
     "Application ID" : "Идентификатор приложения",
     "Application secret" : "Секрет приложения",
     "Use a popup to authenticate" : "Используйте всплывающее окно для аутентификации",
