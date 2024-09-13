@@ -19,7 +19,6 @@ use OCP\IL10N;
 use OCP\IRequest;
 use OCP\IURLGenerator;
 
-
 class ConfigController extends Controller {
 
 	public function __construct(string $appName,
