@@ -5,8 +5,10 @@ namespace OCA\Notion\Controller;
 use OCA\Notion\AppInfo\Application;
 use OCA\Notion\Service\NotionAPIService;
 use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
+use OCP\AppFramework\Http\Attribute\PasswordConfirmationRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\TemplateResponse;
@@ -17,7 +19,7 @@ use OCP\IL10N;
 use OCP\IRequest;
 use OCP\IURLGenerator;
 
-// TODO: Rewrite configuration
+
 class ConfigController extends Controller {
 
 	public function __construct(string $appName,
@@ -77,18 +79,26 @@ class ConfigController extends Controller {
 				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'workspace_name');
 				$this->config->deleteUserValue($this->userId, Application::APP_ID, 'workspace_id');
 			}
-			//			// if the token is set, cleanup refresh token and expiration date
-			//			$this->config->deleteUserValue($this->userId, Application::APP_ID, 'refresh_token');
-			//			$this->config->deleteUserValue($this->userId, Application::APP_ID, 'token_expires_at');
 		}
 		return new DataResponse($result);
 	}
 
 	public function setAdminConfig(array $values): DataResponse {
 		foreach ($values as $key => $value) {
+			if (in_array($key, ['client_id', 'client_secret'], true)) {
+				return new DataResponse([], Http::STATUS_BAD_REQUEST);
+			}
 			$this->config->setAppValue(Application::APP_ID, $key, $value);
 		}
 		return new DataResponse(1);
+	}
+
+	#[PasswordConfirmationRequired]
+	public function setSensitiveAdminConfig(array $values): DataResponse {
+		foreach ($values as $key => $value) {
+			$this->config->setAppValue(Application::APP_ID, $key, $value);
+		}
+		return new DataResponse('');
 	}
 
 	#[NoAdminRequired]
