@@ -1,5 +1,0 @@
-[package]
-before_cmds = [
-	"npm ci",
-	"npm run build",
-]
