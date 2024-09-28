@@ -5,6 +5,7 @@
     "Bad credentials" : "Ogiltiga inloggningsuppgifter",
     "OAuth access token refused" : "OAuth-token avvisades",
     "Connected accounts" : "Anslutna konton",
+    "Application ID" : "Applikations-ID",
     "Application secret" : "Applikationshemlighet",
     "Use a popup to authenticate" : "Använd en popup för att autentisera",
     "Connected as {user}" : "Ansluten som {user}"
