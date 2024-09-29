@@ -1,3 +1,7 @@
+<!--
+  - SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: CC0-1.0
+-->
 # Nextcloud Notion integration
 
 📝 Integrate [Notion](https://www.notion.so) into your cloud!

@@ -1,3 +1,8 @@
+/**
+ * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
 import {} from '@nextcloud/vue-richtext'
 import { registerWidget } from '@nextcloud/vue/dist/Components/NcRichText.js'
 
