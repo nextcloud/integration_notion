@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: Bernhard Posselt <dev@bernhard-posselt.com>
+# SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Generic Makefile for building and packaging a Nextcloud app which uses npm and
