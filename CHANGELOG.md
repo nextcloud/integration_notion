@@ -10,6 +10,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.2.0 - 2024-10-23]
+
+Maintenance update
+
+### Fixed
+
+- Corrected sensitive config storage handling
+
+
 ## [1.1.0 - 2024-09-25]
 
 Maintenance update
