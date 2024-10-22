@@ -22,6 +22,7 @@ use OCP\IL10N;
 
 use OCP\IRequest;
 use OCP\IURLGenerator;
+use OCP\Security\ICrypto;
 
 class ConfigController extends Controller {
 
@@ -31,8 +32,10 @@ class ConfigController extends Controller {
 		private IURLGenerator $urlGenerator,
 		private IL10N $l,
 		private IInitialState $initialStateService,
+		private ICrypto $crypto,
 		private NotionAPIService $notionAPIService,
-		private ?string $userId) {
+		private ?string $userId
+	) {
 		parent::__construct($appName, $request);
 	}
 
@@ -40,16 +43,16 @@ class ConfigController extends Controller {
 	public function isUserConnected(): DataResponse {
 		$token = $this->config->getUserValue($this->userId, Application::APP_ID, 'token');
 
-		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id');
-		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret');
-		$oauthPossible = $clientID !== '' && $clientSecret !== '';
+		$clientId = $this->crypto->decrypt($this->config->getAppValue(Application::APP_ID, 'client_id'));
+		$clientSecret = $this->crypto->decrypt($this->config->getAppValue(Application::APP_ID, 'client_secret'));
+		$oauthPossible = $clientId !== '' && $clientSecret !== '';
 		$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0');
 
 		return new DataResponse([
 			'connected' => $token !== '',
 			'oauth_possible' => $oauthPossible,
 			'use_popup' => ($usePopup === '1'),
-			'client_id' => $clientID,
+			'client_id' => $clientId,
 		]);
 	}
 
@@ -61,6 +64,9 @@ class ConfigController extends Controller {
 		}
 
 		foreach ($values as $key => $value) {
+			if (in_array($key, ['token'])) {
+				$value = $this->crypto->encrypt($value);
+			}
 			$this->config->setUserValue($this->userId, Application::APP_ID, $key, $value);
 		}
 		$result = [];
@@ -91,6 +97,9 @@ class ConfigController extends Controller {
 			if (in_array($key, ['client_id', 'client_secret'], true)) {
 				return new DataResponse([], Http::STATUS_BAD_REQUEST);
 			}
+			if (in_array($key, ['client_id', 'client_secret'])) {
+				$value = $this->crypto->encrypt($value);
+			}
 			$this->config->setAppValue(Application::APP_ID, $key, $value);
 		}
 		return new DataResponse(1);
@@ -99,6 +108,9 @@ class ConfigController extends Controller {
 	#[PasswordConfirmationRequired]
 	public function setSensitiveAdminConfig(array $values): DataResponse {
 		foreach ($values as $key => $value) {
+			if (in_array($key, ['client_id', 'client_secret'])) {
+				$value = $this->crypto->encrypt($value);
+			}
 			$this->config->setAppValue(Application::APP_ID, $key, $value);
 		}
 		return new DataResponse('');
@@ -115,8 +127,8 @@ class ConfigController extends Controller {
 	#[NoCSRFRequired]
 	public function oauthRedirect(string $code = '', string $state = ''): RedirectResponse {
 		$configState = $this->config->getUserValue($this->userId, Application::APP_ID, 'oauth_state');
-		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id');
-		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret');
+		$clientID = $this->crypto->decrypt($this->config->getAppValue(Application::APP_ID, 'client_id'));
+		$clientSecret = $this->crypto->decrypt($this->config->getAppValue(Application::APP_ID, 'client_secret'));
 
 		// anyway, reset state
 		$this->config->deleteUserValue($this->userId, Application::APP_ID, 'oauth_state');
@@ -131,7 +143,7 @@ class ConfigController extends Controller {
 				'grant_type' => 'authorization_code'
 			]);
 			if (isset($result['access_token'])) {
-				$accessToken = $result['access_token'];
+				$accessToken = $this->crypto->encrypt($result['access_token']);
 				$user_id = $result['owner']['user']['id'] ?? '';
 				$user_name = $result['owner']['user']['name'] ?? '';
 				$this->config->setUserValue($this->userId, Application::APP_ID, 'token', $accessToken);

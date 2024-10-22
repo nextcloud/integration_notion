@@ -11,20 +11,24 @@ use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\IConfig;
 
+use OCP\Security\ICrypto;
 use OCP\Settings\ISettings;
 
 class Personal implements ISettings {
 
-	public function __construct(private IConfig $config,
+	public function __construct(
+		private IConfig $config,
 		private IInitialState $initialStateService,
-		private ?string $userId) {
+		private ICrypto $crypto,
+		private ?string $userId,
+	) {
 	}
 
 	/**
 	 * @return TemplateResponse
 	 */
 	public function getForm(): TemplateResponse {
-		$token = $this->config->getUserValue($this->userId, Application::APP_ID, 'token');
+		$token = $this->crypto->decrypt($this->config->getUserValue($this->userId, Application::APP_ID, 'token'));
 		$notionUserId = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_id');
 		$notionUserName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_name');
 		$searchPagesEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_pages_enabled', '0');
@@ -32,7 +36,7 @@ class Personal implements ISettings {
 		$linkPreviewEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'link_preview_enabled', '0');
 
 		// for OAuth
-		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id');
+		$clientID = $this->crypto->decrypt($this->config->getAppValue(Application::APP_ID, 'client_id'));
 		// don't expose the client secret to users
 		$clientSecret = ($this->config->getAppValue(Application::APP_ID, 'client_secret') !== '');
 		$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0') === '1';

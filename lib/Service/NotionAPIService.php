@@ -17,6 +17,7 @@ use OCP\Http\Client\IClientService;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\PreConditionNotMetException;
+use OCP\Security\ICrypto;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -26,10 +27,13 @@ class NotionAPIService {
 
 	private IClient $client;
 
-	public function __construct(private LoggerInterface $logger,
+	public function __construct(
+		private LoggerInterface $logger,
 		private IL10N $l10n,
 		private IConfig $config,
-		IClientService $clientService) {
+		private ICrypto $crypto,
+		IClientService $clientService
+	) {
 		$this->client = $clientService->newClient();
 	}
 
@@ -295,7 +299,7 @@ class NotionAPIService {
 	 */
 	public function request(string $userId, string $endPoint, array $params = [], string $method = 'GET',
 		bool $jsonResponse = true) {
-		$accessToken = $this->config->getUserValue($userId, Application::APP_ID, 'token');
+		$accessToken = $this->crypto->decrypt($this->config->getUserValue($userId, Application::APP_ID, 'token'));
 		try {
 			$url = Application::NOTION_API_BASE_URL . '/' . $endPoint;
 			$options = [
