@@ -299,7 +299,10 @@ class NotionAPIService {
 	 */
 	public function request(string $userId, string $endPoint, array $params = [], string $method = 'GET',
 		bool $jsonResponse = true) {
-		$accessToken = $this->crypto->decrypt($this->config->getUserValue($userId, Application::APP_ID, 'token'));
+		$accessToken = $this->config->getUserValue($userId, Application::APP_ID, 'token');
+		if ($accessToken !== '') {
+			$accessToken = $this->crypto->decrypt($accessToken);
+		}
 		try {
 			$url = Application::NOTION_API_BASE_URL . '/' . $endPoint;
 			$options = [

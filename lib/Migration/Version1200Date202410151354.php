@@ -68,9 +68,9 @@ class Version1200Date202410151354 extends SimpleMigrationStep {
 				$qbSelect->expr()->eq('appid', $qbSelect->createNamedParameter(Application::APP_ID, IQueryBuilder::PARAM_STR))
 			);
 
-		$or = $qbSelect->expr()->orx();
-		$or->add($qbSelect->expr()->eq('configkey', $qbSelect->createNamedParameter('token', IQueryBuilder::PARAM_STR)));
-		$qbSelect->andWhere($or);
+		$qbSelect->andWhere(
+			$qbSelect->expr()->eq('configkey', $qbSelect->createNamedParameter('token', IQueryBuilder::PARAM_STR))
+		);
 
 		$qbSelect->andWhere(
 			$qbSelect->expr()->nonEmptyString('configvalue')

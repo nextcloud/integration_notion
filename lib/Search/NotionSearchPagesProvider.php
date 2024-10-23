@@ -70,7 +70,10 @@ class NotionSearchPagesProvider implements IProvider {
 		$offset = $query->getCursor();
 		$offset = isset($offset) && $offset !== 0 ? $offset : 0;
 
-		$accessToken = $this->crypto->decrypt($this->config->getUserValue($user->getUID(), Application::APP_ID, 'token'));
+		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token');
+		if ($accessToken !== '') {
+			$accessToken = $this->crypto->decrypt($accessToken);
+		}
 		$searchPagesEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_pages_enabled', '0') === '1';
 
 		if ($accessToken === '' || !$searchPagesEnabled) {
