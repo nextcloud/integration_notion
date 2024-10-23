@@ -57,9 +57,9 @@ class Version1200Date202410151354 extends SimpleMigrationStep {
 			->andWhere(
 				$qbUpdate->expr()->eq('configkey', $qbUpdate->createParameter('updateConfigKey'))
 			);
-			$qbUpdate->andWhere(
-				$qbUpdate->expr()->eq('userid', $qbUpdate->createParameter('updateUserId'))
-			);
+		$qbUpdate->andWhere(
+			$qbUpdate->expr()->eq('userid', $qbUpdate->createParameter('updateUserId'))
+		);
 
 		$qbSelect = $this->connection->getQueryBuilder();
 		$qbSelect->select(['userid', 'configvalue', 'configkey'])
