@@ -27,12 +27,15 @@ class Admin implements ISettings {
 	 * @return TemplateResponse
 	 */
 	public function getForm(): TemplateResponse {
-		$clientID = $this->crypto->decrypt($this->config->getAppValue(Application::APP_ID, 'client_id'));
+		$clientId = $this->config->getAppValue(Application::APP_ID, 'client_id');
+		if ($clientId !== '') {
+			$clientId = $this->crypto->decrypt($clientId);
+		}
 		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret') !== '' ? 'dummyToken' : '';
 		$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0') === '1';
 
 		$adminConfig = [
-			'client_id' => $clientID,
+			'client_id' => $clientId,
 			'client_secret' => $clientSecret,
 			'use_popup' => $usePopup,
 		];

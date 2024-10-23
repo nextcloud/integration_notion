@@ -28,7 +28,10 @@ class Personal implements ISettings {
 	 * @return TemplateResponse
 	 */
 	public function getForm(): TemplateResponse {
-		$token = $this->crypto->decrypt($this->config->getUserValue($this->userId, Application::APP_ID, 'token'));
+		$token = $this->config->getUserValue($this->userId, Application::APP_ID, 'token');
+		if ($token !== '') {
+			$token = $this->crypto->decrypt($token);
+		}
 		$notionUserId = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_id');
 		$notionUserName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_name');
 		$searchPagesEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_pages_enabled', '0');
@@ -36,14 +39,17 @@ class Personal implements ISettings {
 		$linkPreviewEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'link_preview_enabled', '0');
 
 		// for OAuth
-		$clientID = $this->crypto->decrypt($this->config->getAppValue(Application::APP_ID, 'client_id'));
+		$clientId = $this->config->getAppValue(Application::APP_ID, 'client_id');
+		if ($clientId !== '') {
+			$clientId = $this->crypto->decrypt($clientId);
+		}
 		// don't expose the client secret to users
 		$clientSecret = ($this->config->getAppValue(Application::APP_ID, 'client_secret') !== '');
 		$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0') === '1';
 
 		$userConfig = [
 			'token' => $token ? 'dummyTokenContent' : '',
-			'client_id' => $clientID,
+			'client_id' => $clientId,
 			'client_secret' => $clientSecret,
 			'use_popup' => $usePopup,
 			'user_id' => $notionUserId,
