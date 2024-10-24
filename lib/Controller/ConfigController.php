@@ -152,7 +152,7 @@ class ConfigController extends Controller {
 				'grant_type' => 'authorization_code'
 			]);
 			if (isset($result['access_token'])) {
-				$accessToken = $this->crypto->encrypt($result['access_token']);
+				$accessToken = $result['access_token'] === '' ? '' : $this->crypto->encrypt($result['access_token']);
 				$user_id = $result['owner']['user']['id'] ?? '';
 				$user_name = $result['owner']['user']['name'] ?? '';
 				$this->config->setUserValue($this->userId, Application::APP_ID, 'token', $accessToken);
