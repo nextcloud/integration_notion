@@ -11,24 +11,31 @@ use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\IConfig;
 
+use OCP\Security\ICrypto;
 use OCP\Settings\ISettings;
 
 class Admin implements ISettings {
 
-	public function __construct(private IConfig $config,
-		private IInitialState $initialStateService) {
+	public function __construct(
+		private IConfig $config,
+		private IInitialState $initialStateService,
+		private ICrypto $crypto,
+	) {
 	}
 
 	/**
 	 * @return TemplateResponse
 	 */
 	public function getForm(): TemplateResponse {
-		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id');
+		$clientId = $this->config->getAppValue(Application::APP_ID, 'client_id');
+		if ($clientId !== '') {
+			$clientId = $this->crypto->decrypt($clientId);
+		}
 		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret') !== '' ? 'dummyToken' : '';
 		$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0') === '1';
 
 		$adminConfig = [
-			'client_id' => $clientID,
+			'client_id' => $clientId,
 			'client_secret' => $clientSecret,
 			'use_popup' => $usePopup,
 		];

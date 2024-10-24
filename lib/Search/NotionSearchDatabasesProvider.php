@@ -17,14 +17,18 @@ use OCP\Search\IProvider;
 
 use OCP\Search\ISearchQuery;
 use OCP\Search\SearchResult;
+use OCP\Security\ICrypto;
 
 class NotionSearchDatabasesProvider implements IProvider {
 
-	public function __construct(private IAppManager $appManager,
+	public function __construct(
+		private IAppManager $appManager,
 		private IL10N $l10n,
 		private IConfig $config,
 		private IURLGenerator $urlGenerator,
-		private NotionAPIService $service) {
+		private ICrypto $crypto,
+		private NotionAPIService $service
+	) {
 	}
 
 	/**
@@ -67,6 +71,9 @@ class NotionSearchDatabasesProvider implements IProvider {
 		$offset = isset($offset) && $offset !== 0 ? $offset : 0;
 
 		$accessToken = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'token');
+		if ($accessToken !== '') {
+			$accessToken = $this->crypto->decrypt($accessToken);
+		}
 		$searchDatabasesEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_databases_enabled', '0') === '1';
 
 		if ($accessToken === '' || !$searchDatabasesEnabled) {
