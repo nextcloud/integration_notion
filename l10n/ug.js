@@ -29,7 +29,7 @@ OC.L10N.register(
     "Failed to save Notion admin options" : "ئۇقۇم باشقۇرۇش تاللانمىلىرىنى ساقلىيالمىدى",
     "Ask your administrator to configure the Notion integration in Nextcloud." : "باشقۇرغۇچىڭىزدىن Nextcloud دىكى ئۇقۇم بىرلەشتۈرۈشنى تەڭشەشنى تەلەپ قىلىڭ.",
     "Connect to Notion" : "ئۇقۇمغا ئۇلاڭ",
-    "Connected as {user}" : "{ئىشلەتكۈچى as قىلىپ ئۇلاندى",
+    "Connected as {user}" : "{user} as قىلىپ ئۇلاندى",
     "Disconnect from Notion" : "ئۇقۇمدىن ئۈزۈڭ",
     "Enable searching for Notion pages" : "ئۇقۇم بېتىنى ئىزدەشنى قوزغىتىڭ",
     "Enable searching for Notion databases" : "ئۇقۇم ساندانلىرىنى ئىزدەشنى قوزغىتىڭ",
