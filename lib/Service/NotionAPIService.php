@@ -434,12 +434,4 @@ class NotionAPIService {
 			return ['error' => $e->getMessage()];
 		}
 	}
-
-	public function revokeToken(string $userId): bool {
-		// $token = $this->config->getUserValue($userId, Application::APP_ID, 'token');
-		// $revokeResponse = $this->request($userId, 'v1/oauth/revoke?access_token=' . $token, [], 'POST', false);
-		// return $revokeResponse === '';
-		// TODO: Keep until appropriate API route is available
-		return true;
-	}
 }

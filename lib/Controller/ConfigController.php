@@ -64,11 +64,6 @@ class ConfigController extends Controller {
 
 	#[NoAdminRequired]
 	public function setConfig(array $values): DataResponse {
-		// revoke the token
-		if (isset($values['token']) && $values['token'] === '') {
-			$this->notionAPIService->revokeToken($this->userId);
-		}
-
 		foreach ($values as $key => $value) {
 			if (in_array($key, ['token']) && $value !== '') {
 				$value = $this->crypto->encrypt($value);
