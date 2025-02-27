@@ -9,8 +9,8 @@ OC.L10N.register(
     "Bad credentials" : "פרטי גישה שגויים",
     "OAuth access token refused" : "אסימון הגישה ב־OAuth סורב",
     "Connected accounts" : "חשבונות מקושרים",
+    "Database: " : "בסיס נתונים:",
     "Created by: " : "נוצר על ידי:",
-    "Last edited by: " : "עריכה אחרונה על ידי:",
-    "Database: " : "בסיס נתונים:"
+    "Last edited by: " : "עריכה אחרונה על ידי:"
 },
 "nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;");
