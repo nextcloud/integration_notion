@@ -15,7 +15,7 @@
     "Integration of Notion" : "Einbindung von Notion",
     "Notion integration adds ability to search in Notion and render its links." : "Die Notion-Einbindung bietet die Möglichkeit, in Notion zu suchen und dessen Links darzustellen.",
     "Notion admin options saved" : "Notion-Verwaltungseinstellungen gespeichert",
-    "Failed to save Notion admin options" : "Fehler beim Speichern der Notion-Verwaltungseinstellungen",
+    "Failed to save Notion admin options" : "Notion-Administrationseinstellungen konnten nicht gespeichert werden",
     "If you want to allow your Nextcloud users to connect to Notion via OAuth, create an application in Notion and set the ID and secret here." : "Wenn du deinen Nextcloud-Benutzern erlauben willst, sich über OAuth mit Notion zu verbinden, erstelle eine Anwendung in Notion und lege hier die ID und das Geheimnis fest.",
     "How to create a Notion OAuth app" : "Wie man eine Notion-OAuth-Anwendung erstellt",
     "Make sure you set the \"Redirect URI\" to" : "Stelle sicher, dass die \"Weiterleitungs-URI\" gesetzt ist auf",
@@ -29,7 +29,7 @@
     "Error connecting to Notion:" : "Fehler bei der Verbindung mit Notion:",
     "Successfully disconnected" : "Erfolgreich getrennt",
     "Notion options saved" : "Notion-Einstellungen gespeichert",
-    "Failed to save Notion options" : "Fehler beim Speichern der Notion-Einstellungen",
+    "Failed to save Notion options" : "Notion-Einstellungen konnten nicht gespeichert werden",
     "Ask your administrator to configure the Notion integration in Nextcloud." : "Bitte deine Administration, die Notion-Einbindung in Nextcloud einzurichten.",
     "Connect to Notion" : "Mit Notion verbinden",
     "Connected as {user}" : "Verbunden als {user}",
@@ -43,6 +43,6 @@
     "Created by: " : "Erstellt von: ",
     "Last edited by: " : "Zuletzt bearbeitet von: ",
     "Sign in with Notion" : "Mit Notion anmelden",
-    "Failed to save Notion OAuth state" : "Fehler beim Speichern des Notion-OAuth-Status"
+    "Failed to save Notion OAuth state" : "Notion OAuth-Status konnte nicht gespeichert werden"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
