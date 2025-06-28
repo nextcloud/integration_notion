@@ -10,6 +10,8 @@ OC.L10N.register(
     "Make sure you set the \"Redirect URI\" to" : "Assegureu-vos de definir l'\"URI de redirecció\" a",
     "Application ID" : "ID de l'aplicació",
     "Application secret" : "Secret de l'aplicació",
-    "Connected as {user}" : "S'ha connectat com a {user}"
+    "Connected as {user}" : "S'ha connectat com a {user}",
+    "Connect" : "Connecta",
+    "Cancel" : "Cancel"
 },
 "nplurals=2; plural=(n != 1);");

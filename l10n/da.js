@@ -7,6 +7,8 @@ OC.L10N.register(
     "Bad credentials" : "Forkerte legitimationsoplysninger",
     "OAuth access token refused" : "OAuth adgangsnøgle afvist",
     "Connected accounts" : "Forbundne konti",
-    "Connected as {user}" : "Forbundet som {user}"
+    "Connected as {user}" : "Forbundet som {user}",
+    "Connect" : "Tilslut",
+    "Cancel" : "Cancel"
 },
 "nplurals=2; plural=(n != 1);");
