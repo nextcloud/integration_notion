@@ -11,6 +11,8 @@ OC.L10N.register(
     "Connected accounts" : "חשבונות מקושרים",
     "Database: " : "בסיס נתונים:",
     "Created by: " : "נוצר על ידי:",
-    "Last edited by: " : "עריכה אחרונה על ידי:"
+    "Last edited by: " : "עריכה אחרונה על ידי:",
+    "Connect" : "התחברות",
+    "Cancel" : "Cancel"
 },
 "nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;");

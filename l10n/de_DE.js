@@ -45,6 +45,7 @@ OC.L10N.register(
     "Created by: " : "Erstellt von: ",
     "Last edited by: " : "Zuletzt bearbeitet von: ",
     "Sign in with Notion" : "Mit Notion anmelden",
-    "Failed to save Notion OAuth state" : "Notion OAuth-Status konnte nicht gespeichert werden"
+    "Failed to save Notion OAuth state" : "Notion OAuth-Status konnte nicht gespeichert werden",
+    "Connect" : "Verbinden"
 },
 "nplurals=2; plural=(n != 1);");

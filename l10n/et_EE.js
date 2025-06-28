@@ -10,6 +10,8 @@ OC.L10N.register(
     "Application ID" : "Rakenduse tunnus",
     "Application secret" : "Rakenduse saladus",
     "Use a popup to authenticate" : "Kasuta autentimiseks hüpikakent",
-    "Connected as {user}" : "Ühendatud kui {user}"
+    "Connected as {user}" : "Ühendatud kui {user}",
+    "Connect" : "Ühenda",
+    "Cancel" : "Katkesta"
 },
 "nplurals=2; plural=(n != 1);");

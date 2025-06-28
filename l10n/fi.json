@@ -8,6 +8,8 @@
     "Application ID" : "Sovelluksen ID",
     "Application secret" : "Sovelluksen salaisuus",
     "Use a popup to authenticate" : "Käytä ponnahdusikkunaa tunnistautumista varten",
-    "Connected as {user}" : "Yhdistetty käyttäjänä {user}"
+    "Connected as {user}" : "Yhdistetty käyttäjänä {user}",
+    "Connect" : "Yhdistä",
+    "Cancel" : "Peruuta"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

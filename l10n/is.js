@@ -5,6 +5,8 @@ OC.L10N.register(
     "Bad credentials" : "Gölluð auðkenni",
     "OAuth access token refused" : "OAuth-aðgangsteikni hafnað",
     "Connected accounts" : "Tengdir aðgangar",
-    "Connected as {user}" : "Tengt sem {user}"
+    "Connected as {user}" : "Tengt sem {user}",
+    "Connect" : "Tengjast",
+    "Cancel" : "Cancel"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

@@ -45,6 +45,8 @@ OC.L10N.register(
     "Created by: " : "Cruthaithe ag:",
     "Last edited by: " : "Arna chur in eagar ag:",
     "Sign in with Notion" : "Sínigh isteach le Notion",
-    "Failed to save Notion OAuth state" : "Níorbh fhéidir staid Notion OAuth a shábháil"
+    "Failed to save Notion OAuth state" : "Níorbh fhéidir staid Notion OAuth a shábháil",
+    "Connect" : "Ceangal",
+    "Cancel" : "Cancel"
 },
 "nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);");

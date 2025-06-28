@@ -5,6 +5,8 @@ OC.L10N.register(
     "Bad credentials" : "Nederīgi pieteikšanās dati",
     "Connected accounts" : "Sasaistītie konti",
     "Application ID" : "Lietotnes Id",
-    "Application secret" : "Lietotnes noslēpums"
+    "Application secret" : "Lietotnes noslēpums",
+    "Connect" : "Savienoties",
+    "Cancel" : "Atcelt"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);");

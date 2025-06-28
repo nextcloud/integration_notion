@@ -45,6 +45,8 @@ OC.L10N.register(
     "Created by: " : "Креирао:",
     "Last edited by: " : "Последњи пут је уредио:",
     "Sign in with Notion" : "Пријави се са Notion",
-    "Failed to save Notion OAuth state" : "Није успело чување Notion OAuth стања"
+    "Failed to save Notion OAuth state" : "Није успело чување Notion OAuth стања",
+    "Connect" : "Повежи се",
+    "Cancel" : "Cancel"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);");

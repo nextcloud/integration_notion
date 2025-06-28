@@ -45,6 +45,8 @@ OC.L10N.register(
     "Created by: " : "Vytvoril:",
     "Last edited by: " : "Naposledy upravil:",
     "Sign in with Notion" : "Prihlásiť pomocou Notion",
-    "Failed to save Notion OAuth state" : "Nepodarilo sa uložiť stav Notion OAuth"
+    "Failed to save Notion OAuth state" : "Nepodarilo sa uložiť stav Notion OAuth",
+    "Connect" : "Pripojiť",
+    "Cancel" : "Cancel"
 },
 "nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);");

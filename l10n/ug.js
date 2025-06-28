@@ -45,6 +45,8 @@ OC.L10N.register(
     "Created by: " : "ئىجاد قىلغان: ",
     "Last edited by: " : "ئاخىرقى قېتىم تەھرىرلىگەن: ",
     "Sign in with Notion" : "چۈشەنچە بىلەن كىرىڭ",
-    "Failed to save Notion OAuth state" : "ئۇقۇم OAuth ھالىتىنى ساقلاپ قالالمىدى"
+    "Failed to save Notion OAuth state" : "ئۇقۇم OAuth ھالىتىنى ساقلاپ قالالمىدى",
+    "Connect" : "ئۇلاڭ",
+    "Cancel" : "Cancel"
 },
 "nplurals=2; plural=(n != 1);");

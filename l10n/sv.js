@@ -10,6 +10,8 @@ OC.L10N.register(
     "Application ID" : "Applikations-ID",
     "Application secret" : "Applikationshemlighet",
     "Use a popup to authenticate" : "Använd en popup för att autentisera",
-    "Connected as {user}" : "Ansluten som {user}"
+    "Connected as {user}" : "Ansluten som {user}",
+    "Connect" : "Anslut",
+    "Cancel" : "Avbryt"
 },
 "nplurals=2; plural=(n != 1);");

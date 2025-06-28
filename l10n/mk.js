@@ -7,6 +7,8 @@ OC.L10N.register(
     "Connected accounts" : "Поврзани сметки",
     "Make sure you set the \"Redirect URI\" to" : "И бидете сигурни дека сте ја поставиле \"Redirect URI\" во",
     "Use a popup to authenticate" : "користи скокачки прозор за автентификација",
-    "Connected as {user}" : "Поврзан како {user}"
+    "Connected as {user}" : "Поврзан како {user}",
+    "Connect" : "Поврзи се",
+    "Cancel" : "Cancel"
 },
 "nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;");

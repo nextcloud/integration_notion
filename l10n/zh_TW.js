@@ -45,6 +45,8 @@ OC.L10N.register(
     "Created by: " : "建立者：",
     "Last edited by: " : "最後編輯者：",
     "Sign in with Notion" : "使用 Notion 登入",
-    "Failed to save Notion OAuth state" : "儲存 Notion OAuth 狀態失敗"
+    "Failed to save Notion OAuth state" : "儲存 Notion OAuth 狀態失敗",
+    "Connect" : "連線",
+    "Cancel" : "取消"
 },
 "nplurals=1; plural=0;");

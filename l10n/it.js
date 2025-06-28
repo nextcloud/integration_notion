@@ -11,6 +11,8 @@ OC.L10N.register(
     "Application ID" : "ID applicazione",
     "Application secret" : "Segreto applicazione",
     "Successfully disconnected" : "Disconnesso correttamente",
-    "Connected as {user}" : "Connesso come {user}"
+    "Connected as {user}" : "Connesso come {user}",
+    "Connect" : "Connetti",
+    "Cancel" : "Cancel"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

@@ -10,6 +10,8 @@ OC.L10N.register(
     "Application ID" : "Sovelluksen ID",
     "Application secret" : "Sovelluksen salaisuus",
     "Use a popup to authenticate" : "Käytä ponnahdusikkunaa tunnistautumista varten",
-    "Connected as {user}" : "Yhdistetty käyttäjänä {user}"
+    "Connected as {user}" : "Yhdistetty käyttäjänä {user}",
+    "Connect" : "Yhdistä",
+    "Cancel" : "Peruuta"
 },
 "nplurals=2; plural=(n != 1);");

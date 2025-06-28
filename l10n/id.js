@@ -10,6 +10,8 @@ OC.L10N.register(
     "Application ID" : "ID aplikasi",
     "Application secret" : "Rahasia aplikasi",
     "Use a popup to authenticate" : "Gunakan sembulan untuk mengautentikasi",
-    "Connected as {user}" : "Terhubung sebagai {user}"
+    "Connected as {user}" : "Terhubung sebagai {user}",
+    "Connect" : "Sambung",
+    "Cancel" : "Cancel"
 },
 "nplurals=1; plural=0;");

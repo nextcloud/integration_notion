@@ -10,6 +10,8 @@ OC.L10N.register(
     "Make sure you set the \"Redirect URI\" to" : "Assegura·ti de cunfigurare s'\"URI de ri-aderetada\" comente",
     "Application ID" : "ID aplicatzione",
     "Application secret" : "Segretu de s'aplicatzione",
-    "Connected as {user}" : "Connètidu comente {user}"
+    "Connected as {user}" : "Connètidu comente {user}",
+    "Connect" : "Connete",
+    "Cancel" : "Cancel"
 },
 "nplurals=2; plural=(n != 1);");

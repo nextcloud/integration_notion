@@ -11,6 +11,8 @@ OC.L10N.register(
     "Application ID" : "应用 ID",
     "Application secret" : "应用密码",
     "Use a popup to authenticate" : "使用弹出窗口进行验证",
-    "Connected as {user}" : "以 {user} 身份连接"
+    "Connected as {user}" : "以 {user} 身份连接",
+    "Connect" : "连接",
+    "Cancel" : "Cancel"
 },
 "nplurals=1; plural=0;");

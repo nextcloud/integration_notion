@@ -45,6 +45,8 @@ OC.L10N.register(
     "Created by: " : "Laget av: ",
     "Last edited by: " : "Sist redigert av: ",
     "Sign in with Notion" : "Logg på med Notion",
-    "Failed to save Notion OAuth state" : "Kunne ikke lagre Notion OAuth-tilstand"
+    "Failed to save Notion OAuth state" : "Kunne ikke lagre Notion OAuth-tilstand",
+    "Connect" : "Koble til",
+    "Cancel" : "Cancel"
 },
 "nplurals=2; plural=(n != 1);");

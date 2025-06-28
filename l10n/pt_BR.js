@@ -45,6 +45,8 @@ OC.L10N.register(
     "Created by: " : "Criado por:",
     "Last edited by: " : "Última edição por:",
     "Sign in with Notion" : "Entrar no Notion",
-    "Failed to save Notion OAuth state" : "Falha ao salvar o estado OAuth do Notion"
+    "Failed to save Notion OAuth state" : "Falha ao salvar o estado OAuth do Notion",
+    "Connect" : "Conectar",
+    "Cancel" : "Cancelar"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

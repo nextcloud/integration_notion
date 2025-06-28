@@ -8,6 +8,7 @@ OC.L10N.register(
     "Connected accounts" : "Akaunti zilizounganishwa",
     "Make sure you set the \"Redirect URI\" to" : "Make sure you set the \"Redirect URI\" to",
     "Use a popup to authenticate" : "Tumia dirisha ibukizi ili kuthibitisha",
-    "Connected as {user}" : "Imeunganishwa kama {user}"
+    "Connected as {user}" : "Imeunganishwa kama {user}",
+    "Cancel" : "Sitisha"
 },
 "nplurals=2; plural=(n != 1);");
