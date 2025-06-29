@@ -46,7 +46,10 @@ OC.L10N.register(
     "Last edited by: " : "Naposledy upraveno:",
     "Sign in with Notion" : "Přihlásit se prostřednictvím Notion",
     "Failed to save Notion OAuth state" : "Nepodařilo se uložit stav Notion OAuth",
+    "You need to connect before using the Notion integration." : "Aby bylo možné používat napojení na Notion, je třeba se nejprve připojit.",
+    "Do you want to connect to Notion?" : "Opravdu chcete připojit k Notion?",
+    "You can change Notion integration settings in the {settingsHtmlLink} section of your personal settings." : "Nastavení napojení na Notion je možné změnit v sekci {settingsHtmlLink} vašich osobních nastavení.",
     "Connect" : "Připojit",
-    "Cancel" : "Cancel"
+    "Cancel" : "Storno"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");
