@@ -3,7 +3,7 @@ OC.L10N.register(
     {
     "Error getting OAuth access token. " : "OAuth erişim kodu alınırken sorun çıktı.",
     "Error during OAuth exchanges" : "OAuth alışverişinde sorun çıktı",
-    "Notion page or database" : "Notion sayfası veya veritabanı",
+    "Notion page or database" : "Notion sayfası veya veri tabanı",
     "in database" : "veri tabanında",
     "Untitled page" : "Adlandırılmamış sayfa",
     "Notion databases" : "Notion veri tabanları",
@@ -41,7 +41,7 @@ OC.L10N.register(
     "Warning, everything you type in the search bar will be sent in request to Notion." : "Uyarı, arama çubuğuna yazdığınız her şey Notion üzerine gönderilecek.",
     "Enable link preview for Notion pages and databases" : "Notion sayfaları ve veri tabanlarında bağlantı ön izlemesi yapılabilsin",
     "Page: " : "Sayfa:",
-    "Database: " : "Veritabanı:",
+    "Database: " : "Veri tabanı:",
     "Created by: " : "Oluşturan:",
     "Last edited by: " : "Son düzenleyen:",
     "Sign in with Notion" : "Notion ile oturum açın",

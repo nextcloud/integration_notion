@@ -45,6 +45,11 @@ OC.L10N.register(
     "Created by: " : "Created by: ",
     "Last edited by: " : "Last edited by: ",
     "Sign in with Notion" : "Sign in with Notion",
-    "Failed to save Notion OAuth state" : "Failed to save Notion OAuth state"
+    "Failed to save Notion OAuth state" : "Failed to save Notion OAuth state",
+    "You need to connect before using the Notion integration." : "You need to connect before using the Notion integration.",
+    "Do you want to connect to Notion?" : "Do you want to connect to Notion?",
+    "You can change Notion integration settings in the {settingsHtmlLink} section of your personal settings." : "You can change Notion integration settings in the {settingsHtmlLink} section of your personal settings.",
+    "Connect" : "Connect",
+    "Cancel" : "Cancel"
 },
 "nplurals=2; plural=(n != 1);");
