@@ -49,7 +49,7 @@ OC.L10N.register(
     "You need to connect before using the Notion integration." : "Zum Verwenden der Notion-Integration muss eine Verbindung hergestellt werden.",
     "Do you want to connect to Notion?" : "Soll eine Verbindung zu Notion hergestellt werden?",
     "You can change Notion integration settings in the {settingsHtmlLink} section of your personal settings." : "Im {settingsHtmlLink}-Abschnitt der persönlichen Einstellungen kann ein anderer Notion-Server ausgewählt werden.",
-    "Connect" : "Benötigt keine Übersetzung. Hier wird nur die formelle Übersetzung verwendet (de_DE).",
+    "Connect" : "Verbinden",
     "Cancel" : "Abbrechen"
 },
 "nplurals=2; plural=(n != 1);");
