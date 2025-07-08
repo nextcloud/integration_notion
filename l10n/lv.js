@@ -6,6 +6,7 @@ OC.L10N.register(
     "Connected accounts" : "Sasaistītie konti",
     "Application ID" : "Lietotnes Id",
     "Application secret" : "Lietotnes noslēpums",
+    "Connected as {user}" : "Savienojies kā {user}",
     "Connect" : "Savienoties",
     "Cancel" : "Atcelt"
 },
