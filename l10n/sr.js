@@ -46,6 +46,9 @@ OC.L10N.register(
     "Last edited by: " : "Последњи пут је уредио:",
     "Sign in with Notion" : "Пријави се са Notion",
     "Failed to save Notion OAuth state" : "Није успело чување Notion OAuth стања",
+    "You need to connect before using the Notion integration." : "Пре него што кренете да користите Notion интеграцију, морате да се повежете.",
+    "Do you want to connect to Notion?" : "Желите ли да се повежете са Notion?",
+    "You can change Notion integration settings in the {settingsHtmlLink} section of your personal settings." : "Подешавања Notion интеграције можете да измените у {settingsHtmlLink}одељку ваших личних подешавања.",
     "Connect" : "Повежи се",
     "Cancel" : "Cancel"
 },
