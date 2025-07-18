@@ -46,6 +46,7 @@ OC.L10N.register(
     "Last edited by: " : "Τελευταία επεξεργασία από: ",
     "Sign in with Notion" : "Συνδεθείτε με το Notion",
     "Failed to save Notion OAuth state" : "Αποτυχία αποθήκευσης της κατάστασης Notion OAuth",
-    "Connect" : "Σύνδεση"
+    "Connect" : "Σύνδεση",
+    "Cancel" : "Cancel"
 },
 "nplurals=2; plural=(n != 1);");
