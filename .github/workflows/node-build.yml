@@ -6,7 +6,7 @@ on:
       - src/**
       - .eslintrc.js
       - stylelint.config.js
-      - webpack.js
+      - vite.config.ts
   push:
     branches:
       - main
@@ -14,7 +14,7 @@ on:
       - src/**
       - .eslintrc.js
       - stylelint.config.js
-      - webpack.js
+      - vite.config.ts
 
 env:
   APP_NAME: integration_notion
