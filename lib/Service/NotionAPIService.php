@@ -1,12 +1,14 @@
 <?php
+
 /**
  * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+declare(strict_types=1);
+
 namespace OCA\Notion\Service;
 
-use Datetime;
 use Exception;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
@@ -16,7 +18,6 @@ use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
 use OCP\IConfig;
 use OCP\IL10N;
-use OCP\PreConditionNotMetException;
 use OCP\Security\ICrypto;
 use Psr\Log\LoggerInterface;
 
@@ -32,7 +33,7 @@ class NotionAPIService {
 		private IL10N $l10n,
 		private IConfig $config,
 		private ICrypto $crypto,
-		IClientService $clientService
+		IClientService $clientService,
 	) {
 		$this->client = $clientService->newClient();
 	}
@@ -67,7 +68,7 @@ class NotionAPIService {
 	 */
 	public function getUserComment(string $userId): array {
 		// TODO
-		return array();
+		return [];
 	}
 
 	/**
@@ -76,7 +77,7 @@ class NotionAPIService {
 	 */
 	public function getUserBlock(string $userId): array {
 		// TODO
-		return array();
+		return [];
 	}
 
 	/**
@@ -180,7 +181,7 @@ class NotionAPIService {
 	public function getThumbnail(string $userId, string $notionObjectId, string $objectType = ''): ?array {
 		[$objectInfo] = $this->getObjectInfo($userId, $notionObjectId, $objectType);
 		$url = $this->getThumbnailUrl($objectInfo);
-		if ($url !== null && $url !== '') {
+		if ($url !== '') {
 			$thumbnailResponse = $this->client->get($url);
 			if ($thumbnailResponse->getStatusCode() === Http::STATUS_OK) {
 				return [
@@ -315,16 +316,7 @@ class NotionAPIService {
 
 			if (count($params) > 0) {
 				if ($method === 'GET') {
-					$paramsContent = '';
-					foreach ($params as $key => $value) {
-						if (is_array($value)) {
-							foreach ($value as $oneArrayValue) {
-								$paramsContent .= $key . '[]=' . urlencode($oneArrayValue) . '&';
-							}
-							unset($params[$key]);
-						}
-					}
-					$paramsContent .= http_build_query($params);
+					$paramsContent = http_build_query($params);
 					$url .= '?' . $paramsContent;
 				} else {
 					$options['json'] = $params;
@@ -354,54 +346,9 @@ class NotionAPIService {
 					return $body;
 				}
 			}
-		} catch (ServerException | ClientException $e) {
-			$this->logger->debug('Notion API error : '.$e->getMessage(), ['app' => Application::APP_ID]);
+		} catch (ServerException|ClientException $e) {
+			$this->logger->debug('Notion API error : ' . $e->getMessage(), ['app' => Application::APP_ID]);
 			return ['error' => $e->getMessage()];
-		}
-	}
-
-	/**
-	 * @param string $userId
-	 * @return bool
-	 * @throws PreConditionNotMetException
-	 */
-	private function refreshToken(string $userId): bool {
-		$clientID = $this->config->getAppValue(Application::APP_ID, 'client_id');
-		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret');
-		$redirect_uri = $this->config->getUserValue($userId, Application::APP_ID, 'redirect_uri');
-		$refreshToken = $this->config->getUserValue($userId, Application::APP_ID, 'refresh_token');
-		if (!$refreshToken) {
-			$this->logger->error('No Notion refresh token found', ['app' => Application::APP_ID]);
-			return false;
-		}
-		$result = $this->requestOAuthAccessToken([
-			'client_id' => $clientID,
-			'client_secret' => $clientSecret,
-			'grant_type' => 'refresh_token',
-			'redirect_uri' => $redirect_uri,
-			'refresh_token' => $refreshToken,
-		]);
-		if (isset($result['access_token'])) {
-			$this->logger->info('Notion access token successfully refreshed', ['app' => Application::APP_ID]);
-			$accessToken = $result['access_token'];
-			$refreshToken = $result['refresh_token'];
-			$this->config->setUserValue($userId, Application::APP_ID, 'token', $accessToken);
-			$this->config->setUserValue($userId, Application::APP_ID, 'refresh_token', $refreshToken);
-			if (isset($result['expires_in'])) {
-				$nowTs = (new Datetime())->getTimestamp();
-				$expiresAt = $nowTs + (int) $result['expires_in'];
-				$this->config->setUserValue($userId, Application::APP_ID, 'token_expires_at', $expiresAt);
-			}
-			return true;
-		} else {
-			// impossible to refresh the token
-			$this->logger->error(
-				'Token is not valid anymore. Impossible to refresh it. '
-					. $result['error'] . ' '
-					. $result['error_description'] ?? '[no error description]',
-				['app' => Application::APP_ID]
-			);
-			return false;
 		}
 	}
 
@@ -416,8 +363,8 @@ class NotionAPIService {
 				'headers' => [
 					'User-Agent' => Application::INTEGRATION_USER_AGENT,
 					'Content-Type' => 'application/json',
-					'Authorization' =>
-						'Basic ' . base64_encode($params['client_id'] . ':' . $params['client_secret']),
+					'Authorization'
+						=> 'Basic ' . base64_encode($params['client_id'] . ':' . $params['client_secret']),
 				],
 			];
 			$options['body'] = json_encode($params);
@@ -430,7 +377,7 @@ class NotionAPIService {
 				return json_decode($body, true);
 			}
 		} catch (Exception $e) {
-			$this->logger->warning('Notion OAuth error : '.$e->getMessage(), ['app' => Application::APP_ID]);
+			$this->logger->warning('Notion OAuth error : ' . $e->getMessage(), ['app' => Application::APP_ID]);
 			return ['error' => $e->getMessage()];
 		}
 	}
