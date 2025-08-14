@@ -7,7 +7,7 @@
 	<div class="notion-page-database-reference">
 		<div class="notion-page-database-wrapper">
 			<template v-if="richObject.thumbnail_url">
-				<img :src="richObject.thumbnail_url" :height="48">
+				<img :src="richObject.thumbnail_url" :height="48" :alt="t('integration_notion', 'Thumbnail for {title}', { title: richObject.title })">
 			</template>
 			<NotionIcon v-else :size="48" />
 			<div class="notion-link-content">
