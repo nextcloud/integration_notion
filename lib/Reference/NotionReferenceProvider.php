@@ -1,8 +1,11 @@
 <?php
+
 /**
  * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+
+declare(strict_types=1);
 
 namespace OCA\Notion\Reference;
 
@@ -24,13 +27,15 @@ class NotionReferenceProvider extends ADiscoverableReferenceProvider implements 
 
 	private const RICH_OBJECT_TYPE = Application::APP_ID . '_page_database';
 
-	public function __construct(private NotionAPIService $notionAPIService,
+	public function __construct(
+		private NotionAPIService $notionAPIService,
 		private IConfig $config,
 		private IL10N $l10n,
 		private IURLGenerator $urlGenerator,
 		private ReferenceManager $referenceManager,
 		private LinkReferenceProvider $linkReferenceProvider,
-		private ?string $userId) {
+		private ?string $userId,
+	) {
 	}
 
 	/**
