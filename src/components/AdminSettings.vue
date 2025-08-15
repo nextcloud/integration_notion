@@ -52,9 +52,9 @@
 				@input="onInput">
 		</div>
 		<NcCheckboxRadioSwitch
+			v-model="state.use_popup"
 			class="field"
-			:checked.sync="state.use_popup"
-			@update:checked="onUsePopupChanged">
+			@update:model-value="onUsePopupChanged">
 			{{ t('integration_notion', 'Use a popup to authenticate') }}
 		</NcCheckboxRadioSwitch>
 	</div>
@@ -66,7 +66,7 @@ import KeyOutline from 'vue-material-design-icons/KeyOutline.vue'
 
 import NotionIcon from './icons/NotionIcon.vue'
 
-import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
+import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
 
 import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'

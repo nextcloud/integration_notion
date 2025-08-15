@@ -41,15 +41,10 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import { generateUrl } from '@nextcloud/router'
 import moment from '@nextcloud/moment'
-import { isDarkMode } from '../utils.js'
-import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
 
 import NotionIcon from '../components/icons/NotionIcon.vue'
-
-Vue.directive('tooltip', Tooltip)
 
 export default {
 	name: 'NotionReferenceWidget',
@@ -84,9 +79,6 @@ export default {
 		},
 		notionUrl() {
 			return this.richObject.url
-		},
-		isDarkMode() {
-			return isDarkMode()
 		},
 		titlePrefix() {
 			if (this.isPage) {
