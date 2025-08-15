@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import './bootstrap.js'
-import Vue from 'vue'
+import { createApp } from 'vue'
 import PersonalSettings from './components/PersonalSettings.vue'
-const View = Vue.extend(PersonalSettings)
 
-new View().$mount('#notion_prefs')
+const app = createApp(PersonalSettings)
+app.mixin({ methods: { t, n } })
+app.mount('#notion_prefs')

@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import './bootstrap.js'
-import Vue from 'vue'
+import { createApp } from 'vue'
 import AdminSettings from './components/AdminSettings.vue'
-const View = Vue.extend(AdminSettings)
 
-new View().$mount('#notion_prefs')
+const app = createApp(AdminSettings)
+app.mixin({ methods: { t, n } })
+app.mount('#notion_prefs')

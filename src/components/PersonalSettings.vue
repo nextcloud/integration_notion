@@ -38,13 +38,13 @@
 			</div>
 			<div v-if="connected" id="notion-search-block">
 				<NcCheckboxRadioSwitch
-					:checked="state.search_pages_enabled"
-					@update:checked="onCheckboxChanged($event, 'search_pages_enabled')">
+					v-model="state.search_pages_enabled"
+					@update:model-value="onCheckboxChanged($event, 'search_pages_enabled')">
 					{{ t('integration_notion', 'Enable searching for Notion pages') }}
 				</NcCheckboxRadioSwitch>
 				<NcCheckboxRadioSwitch
-					:checked="state.search_databases_enabled"
-					@update:checked="onCheckboxChanged($event, 'search_databases_enabled')">
+					v-model="state.search_databases_enabled"
+					@update:model-value="onCheckboxChanged($event, 'search_databases_enabled')">
 					{{ t('integration_notion', 'Enable searching for Notion databases') }}
 				</NcCheckboxRadioSwitch>
 				<br>
@@ -55,8 +55,8 @@
 			</div>
 			<div v-if="connected" id="notion-link-block">
 				<NcCheckboxRadioSwitch
-					:checked="state.link_preview_enabled"
-					@update:checked="onCheckboxChanged($event, 'link_preview_enabled')">
+					v-model="state.link_preview_enabled"
+					@update:model-value="onCheckboxChanged($event, 'link_preview_enabled')">
 					{{ t('integration_notion', 'Enable link preview for Notion pages and databases') }}
 				</NcCheckboxRadioSwitch>
 			</div>
@@ -70,8 +70,8 @@ import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
 import CloseIcon from 'vue-material-design-icons/Close.vue'
 import InformationOutlineIcon from 'vue-material-design-icons/InformationOutline.vue'
 
-import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
-import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
+import NcButton from '@nextcloud/vue/components/NcButton'
+import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
 
 import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'
