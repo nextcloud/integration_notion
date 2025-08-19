@@ -17,7 +17,7 @@
 		</p>
 		<br>
 		<p class="settings-hint">
-			<InformationVariantIcon :size="24" class="icon" />
+			<InformationOutlineIcon :size="22" class="icon" />
 			{{ t('integration_notion', 'Make sure you set the "Redirect URI" to') }}
 			&nbsp;<b> {{ redirect_uri }} </b>
 		</p>
@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import InformationVariantIcon from 'vue-material-design-icons/InformationVariant.vue'
+import InformationOutlineIcon from 'vue-material-design-icons/InformationOutline.vue'
 import KeyOutline from 'vue-material-design-icons/KeyOutline.vue'
 
 import NotionIcon from './icons/NotionIcon.vue'
@@ -81,7 +81,7 @@ export default {
 	components: {
 		NotionIcon,
 		NcCheckboxRadioSwitch,
-		InformationVariantIcon,
+		InformationOutlineIcon,
 		KeyOutline,
 	},
 
@@ -162,6 +162,10 @@ export default {
 	.settings-hint {
 		display: flex;
 		align-items: center;
+
+		.icon {
+			margin-right: 4px;
+		}
 	}
 
 	h2 {
