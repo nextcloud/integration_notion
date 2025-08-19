@@ -10,6 +10,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.3.0 - 2025-08-19]
+
+Maintenance update, migrate to Vue 3
+
+### Changed
+
+- Drop support of Nextcloud 28 & 29
+- Update npm packages
+- Update l10n (localization)
+
 ## [1.2.0 - 2024-10-23]
 
 Maintenance update
