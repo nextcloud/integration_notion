@@ -33,4 +33,5 @@
 /renovate.json
 /stylelint.config.js
 /webpack.*
+/vite.config.ts
 tests

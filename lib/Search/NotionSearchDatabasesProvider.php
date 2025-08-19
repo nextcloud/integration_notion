@@ -1,8 +1,11 @@
 <?php
+
 /**
  * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+
+declare(strict_types=1);
 
 namespace OCA\Notion\Search;
 
@@ -27,7 +30,7 @@ class NotionSearchDatabasesProvider implements IProvider {
 		private IConfig $config,
 		private IURLGenerator $urlGenerator,
 		private ICrypto $crypto,
-		private NotionAPIService $service
+		private NotionAPIService $service,
 	) {
 	}
 
@@ -102,8 +105,7 @@ class NotionSearchDatabasesProvider implements IProvider {
 			return SearchResult::paginated(
 				$this->getName(),
 				$formattedResults,
-				isset($searchResult['has_more']) && $searchResult['has_more']
-					? $searchResult['next_cursor'] : 0
+				$searchResult['next_cursor'] ?? 0
 			);
 		}
 		return SearchResult::complete(
@@ -117,9 +119,11 @@ class NotionSearchDatabasesProvider implements IProvider {
 	 * @return string
 	 */
 	protected function getMainText(array $entry): string {
-		return count($entry['title']) > 0 && isset($entry['title'][0]['plain_text'])
-			? $entry['title'][0]['plain_text']
-			: json_encode($entry['title']);
+		if (count($entry['title']) > 0 && isset($entry['title'][0]['plain_text'])) {
+			return $entry['title'][0]['plain_text'];
+		}
+		$text = json_encode($entry['title'], JSON_THROW_ON_ERROR);
+		return $text !== false ? $text : '';
 	}
 
 	/**
@@ -146,8 +150,8 @@ class NotionSearchDatabasesProvider implements IProvider {
 	 * @return string
 	 */
 	protected function getThumbnailUrl(array $entry): string {
-		if (isset($entry['icon']['type']) && $entry['icon']['type'] === 'file'
-			|| isset($entry['icon']['type']) && $entry['icon']['type'] === 'external') {
+		if ((isset($entry['icon']['type']) && $entry['icon']['type'] === 'file')
+			|| (isset($entry['icon']['type']) && $entry['icon']['type'] === 'external')) {
 			return $this->urlGenerator->linkToRoute('integration_notion.notionAPI.getThumbnail', ['notionObjectId' => $entry['id'], 'objectType' => 'database']);
 		}
 		return '';

@@ -1,8 +1,11 @@
 <?php
+
 /**
  * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+
+declare(strict_types=1);
 
 namespace OCA\Notion\Search;
 
@@ -102,8 +105,7 @@ class NotionSearchPagesProvider implements IProvider {
 			return SearchResult::paginated(
 				$this->getName(),
 				$formattedResults,
-				isset($searchResult['has_more']) && $searchResult['has_more']
-					? $searchResult['next_cursor'] : 0
+				$searchResult['next_cursor'] ?? 0
 			);
 		}
 		return SearchResult::complete(

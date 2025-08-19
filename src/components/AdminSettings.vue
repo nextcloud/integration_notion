@@ -17,7 +17,7 @@
 		</p>
 		<br>
 		<p class="settings-hint">
-			<InformationVariantIcon :size="24" class="icon" />
+			<InformationOutlineIcon :size="22" class="icon" />
 			{{ t('integration_notion', 'Make sure you set the "Redirect URI" to') }}
 			&nbsp;<b> {{ redirect_uri }} </b>
 		</p>
@@ -27,7 +27,7 @@
 		</p>
 		<div class="field">
 			<label for="notion-client-id">
-				<KeyIcon :size="20" class="icon" />
+				<KeyOutline :size="20" class="icon" />
 				{{ t('integration_notion', 'Application ID') }}
 			</label>
 			<input id="notion-client-id"
@@ -40,7 +40,7 @@
 		</div>
 		<div class="field">
 			<label for="notion-client-secret">
-				<KeyIcon :size="20" class="icon" />
+				<KeyOutline :size="20" class="icon" />
 				{{ t('integration_notion', 'Application secret') }}
 			</label>
 			<input id="notion-client-secret"
@@ -52,21 +52,21 @@
 				@input="onInput">
 		</div>
 		<NcCheckboxRadioSwitch
+			v-model="state.use_popup"
 			class="field"
-			:checked.sync="state.use_popup"
-			@update:checked="onUsePopupChanged">
+			@update:model-value="onUsePopupChanged">
 			{{ t('integration_notion', 'Use a popup to authenticate') }}
 		</NcCheckboxRadioSwitch>
 	</div>
 </template>
 
 <script>
-import InformationVariantIcon from 'vue-material-design-icons/InformationVariant.vue'
-import KeyIcon from 'vue-material-design-icons/Key.vue'
+import InformationOutlineIcon from 'vue-material-design-icons/InformationOutline.vue'
+import KeyOutline from 'vue-material-design-icons/KeyOutline.vue'
 
 import NotionIcon from './icons/NotionIcon.vue'
 
-import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
+import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
 
 import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'
@@ -81,8 +81,8 @@ export default {
 	components: {
 		NotionIcon,
 		NcCheckboxRadioSwitch,
-		InformationVariantIcon,
-		KeyIcon,
+		InformationOutlineIcon,
+		KeyOutline,
 	},
 
 	props: [],
@@ -162,6 +162,10 @@ export default {
 	.settings-hint {
 		display: flex;
 		align-items: center;
+
+		.icon {
+			margin-right: 4px;
+		}
 	}
 
 	h2 {

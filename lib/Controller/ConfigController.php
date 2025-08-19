@@ -1,8 +1,11 @@
 <?php
+
 /**
  * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+
+declare(strict_types=1);
 
 namespace OCA\Notion\Controller;
 
@@ -26,7 +29,8 @@ use OCP\Security\ICrypto;
 
 class ConfigController extends Controller {
 
-	public function __construct(string $appName,
+	public function __construct(
+		string $appName,
 		IRequest $request,
 		private IConfig $config,
 		private IURLGenerator $urlGenerator,
@@ -34,7 +38,7 @@ class ConfigController extends Controller {
 		private IInitialState $initialStateService,
 		private ICrypto $crypto,
 		private NotionAPIService $notionAPIService,
-		private ?string $userId
+		private ?string $userId,
 	) {
 		parent::__construct($appName, $request);
 	}
@@ -65,7 +69,7 @@ class ConfigController extends Controller {
 	#[NoAdminRequired]
 	public function setConfig(array $values): DataResponse {
 		foreach ($values as $key => $value) {
-			if (in_array($key, ['token']) && $value !== '') {
+			if ($key === 'token' && $value !== '') {
 				$value = $this->crypto->encrypt($value);
 			}
 			$this->config->setUserValue($this->userId, Application::APP_ID, $key, $value);
@@ -76,7 +80,7 @@ class ConfigController extends Controller {
 			$result['user_id'] = '';
 			$result['user_name'] = '';
 			if ($values['token'] && $values['token'] !== '') {
-				if (isset($values['user_id']) && isset($values['user_name'])) {
+				if (isset($values['user_id'], $values['user_name'])) {
 					$result['user_id'] = $values['user_id'];
 					$result['user_name'] = $values['user_name'];
 				}
@@ -171,10 +175,12 @@ class ConfigController extends Controller {
 					$this->config->deleteUserValue($this->userId, Application::APP_ID, 'oauth_origin');
 					if ($oauthOrigin === 'settings') {
 						return new RedirectResponse(
-							$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']) .
-							'?notionToken=success'
+							$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts'])
+							. '?notionToken=success'
 						);
-					} elseif ($oauthOrigin === 'app') {
+					}
+
+					if ($oauthOrigin === 'app') {
 						return new RedirectResponse(
 							$this->urlGenerator->linkToRoute(Application::APP_ID . '.page.index')
 						);
@@ -186,8 +192,8 @@ class ConfigController extends Controller {
 			$result = $this->l->t('Error during OAuth exchanges');
 		}
 		return new RedirectResponse(
-			$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts']) .
-			'?notionToken=error&message=' . urlencode($result)
+			$this->urlGenerator->linkToRoute('settings.PersonalSettings.index', ['section' => 'connected-accounts'])
+			. '?notionToken=error&message=' . urlencode($result)
 		);
 	}
 }
