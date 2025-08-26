@@ -13,13 +13,13 @@ use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
 use OCP\IUser;
+use OCP\Search\IExternalProvider;
 use OCP\Search\IProvider;
-
 use OCP\Search\ISearchQuery;
 use OCP\Search\SearchResult;
 use OCP\Security\ICrypto;
 
-class NotionSearchDatabasesProvider implements IProvider {
+class NotionSearchDatabasesProvider implements IProvider, IExternalProvider {
 
 	public function __construct(
 		private IAppManager $appManager,
@@ -151,5 +151,9 @@ class NotionSearchDatabasesProvider implements IProvider {
 			return $this->urlGenerator->linkToRoute('integration_notion.notionAPI.getThumbnail', ['notionObjectId' => $entry['id'], 'objectType' => 'database']);
 		}
 		return '';
+	}
+
+	public function isExternalProvider(): bool {
+		return True;
 	}
 }
