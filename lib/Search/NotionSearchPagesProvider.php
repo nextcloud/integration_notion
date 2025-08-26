@@ -16,13 +16,14 @@ use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
 use OCP\IUser;
+use OCP\Search\IExternalProvider;
 use OCP\Search\IProvider;
 
 use OCP\Search\ISearchQuery;
 use OCP\Search\SearchResult;
 use OCP\Security\ICrypto;
 
-class NotionSearchPagesProvider implements IProvider {
+class NotionSearchPagesProvider implements IProvider, IExternalProvider {
 
 	public function __construct(
 		private IAppManager $appManager,
@@ -161,10 +162,14 @@ class NotionSearchPagesProvider implements IProvider {
 	 * @return string
 	 */
 	protected function getThumbnailUrl(array $entry): string {
-		if (isset($entry['icon']['type']) && $entry['icon']['type'] === 'file'
-			|| isset($entry['icon']['type']) && $entry['icon']['type'] === 'external') {
+		if ((isset($entry['icon']['type']) && $entry['icon']['type'] === 'file')
+			|| (isset($entry['icon']['type']) && $entry['icon']['type'] === 'external')) {
 			return $this->urlGenerator->linkToRoute('integration_notion.notionAPI.getThumbnail', ['notionObjectId' => $entry['id'], 'objectType' => 'page']);
 		}
 		return '';
+	}
+
+	public function isExternalProvider(): bool {
+		return true;
 	}
 }
