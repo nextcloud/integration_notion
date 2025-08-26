@@ -27,7 +27,7 @@
 		</p>
 		<div class="field">
 			<label for="notion-client-id">
-				<KeyIcon :size="20" class="icon" />
+				<KeyOutlineIcon :size="20" class="icon" />
 				{{ t('integration_notion', 'Application ID') }}
 			</label>
 			<input id="notion-client-id"
@@ -40,7 +40,7 @@
 		</div>
 		<div class="field">
 			<label for="notion-client-secret">
-				<KeyIcon :size="20" class="icon" />
+				<KeyOutlineIcon :size="20" class="icon" />
 				{{ t('integration_notion', 'Application secret') }}
 			</label>
 			<input id="notion-client-secret"
@@ -62,7 +62,7 @@
 
 <script>
 import InformationVariantIcon from 'vue-material-design-icons/InformationVariant.vue'
-import KeyIcon from 'vue-material-design-icons/Key.vue'
+import KeyOutlineIcon from 'vue-material-design-icons/KeyOutline.vue'
 
 import NotionIcon from './icons/NotionIcon.vue'
 
@@ -82,7 +82,7 @@ export default {
 		NotionIcon,
 		NcCheckboxRadioSwitch,
 		InformationVariantIcon,
-		KeyIcon,
+		KeyOutlineIcon,
 	},
 
 	props: [],
