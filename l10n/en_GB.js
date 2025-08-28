@@ -42,6 +42,7 @@ OC.L10N.register(
     "Enable link preview for Notion pages and databases" : "Enable link preview for Notion pages and databases",
     "Page: " : "Page: ",
     "Database: " : "Database: ",
+    "Thumbnail for {title}" : "Thumbnail for {title}",
     "Created by: " : "Created by: ",
     "Last edited by: " : "Last edited by: ",
     "Sign in with Notion" : "Sign in with Notion",

@@ -42,6 +42,7 @@ OC.L10N.register(
     "Enable link preview for Notion pages and databases" : "Notion sayfaları ve veri tabanlarında bağlantı ön izlemesi yapılabilsin",
     "Page: " : "Sayfa:",
     "Database: " : "Veri tabanı:",
+    "Thumbnail for {title}" : "{title} küçük görseli",
     "Created by: " : "Oluşturan:",
     "Last edited by: " : "Son düzenleyen:",
     "Sign in with Notion" : "Notion ile oturum açın",

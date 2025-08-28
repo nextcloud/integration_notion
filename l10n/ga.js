@@ -42,6 +42,7 @@ OC.L10N.register(
     "Enable link preview for Notion pages and databases" : "Cumasaigh réamhamharc naisc le haghaidh leathanaigh Notion agus bunachair shonraí",
     "Page: " : "Leathanach:",
     "Database: " : "Bunachar Sonraí:",
+    "Thumbnail for {title}" : "Mionsamhail do {title}",
     "Created by: " : "Cruthaithe ag:",
     "Last edited by: " : "Arna chur in eagar ag:",
     "Sign in with Notion" : "Sínigh isteach le Notion",

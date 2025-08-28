@@ -40,6 +40,7 @@
     "Enable link preview for Notion pages and databases" : "為 Notion 頁面與資料庫啟用連結預覽",
     "Page: " : "頁面：",
     "Database: " : "資料庫",
+    "Thumbnail for {title}" : "{title} 的縮圖",
     "Created by: " : "建立者：",
     "Last edited by: " : "最後編輯者：",
     "Sign in with Notion" : "使用 Notion 登入",

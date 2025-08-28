@@ -31,6 +31,7 @@ OC.L10N.register(
     "Disconnect from Notion" : "Katkesta Notioni ühendus",
     "Page: " : "Leht:",
     "Database: " : "Andmebaas:",
+    "Thumbnail for {title}" : "„{title}“ pealkirja pisipilt",
     "Created by: " : "Looja:",
     "Last edited by: " : "Viimane muutja:",
     "Sign in with Notion" : "Logi sisse Notioni kontoga",

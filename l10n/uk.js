@@ -42,6 +42,7 @@ OC.L10N.register(
     "Enable link preview for Notion pages and databases" : "Увімкнути попередній перегляд посилань для сторінок Поняття та баз даних",
     "Page: " : "Сторінка:",
     "Database: " : "База даних:",
+    "Thumbnail for {title}" : "Попередній перегляд для {title}",
     "Created by: " : "Створено",
     "Last edited by: " : "Останній раз відредаговано",
     "Sign in with Notion" : "Увійдіть за допомогою Notion",
