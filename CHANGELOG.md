@@ -10,6 +10,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.3.1 - 2025-09-01]
+
+### Changed
+
+- Keep NC 31 as max supported NC version for integration_notion v1.x.x
+
+### Fixed
+
+- Do not use `OCP\Search\IExternalProvider` before 32
+
 
 ## [1.3.0 - 2025-08-26]
 
