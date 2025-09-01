@@ -1,5 +1,6 @@
 {
 	"name": "nextcloud/integration_notion",
+	"description": "Notion integration in Nextcloud",
 	"type": "project",
 	"license": "APL-3.0-or-later",
 	"autoload": {
