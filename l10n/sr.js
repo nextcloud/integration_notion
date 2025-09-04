@@ -42,6 +42,7 @@ OC.L10N.register(
     "Enable link preview for Notion pages and databases" : "Укључи преглед линка за Notion странице и базе података",
     "Page: " : "Страница:",
     "Database: " : "База података:",
+    "Thumbnail for {title}" : "Сличица за {title}",
     "Created by: " : "Креирао:",
     "Last edited by: " : "Последњи пут је уредио:",
     "Sign in with Notion" : "Пријави се са Notion",

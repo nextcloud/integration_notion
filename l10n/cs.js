@@ -42,6 +42,7 @@ OC.L10N.register(
     "Enable link preview for Notion pages and databases" : "Zapnout vytváření náhledů odkazů na stránky a databáze v Notion",
     "Page: " : "Stránka:",
     "Database: " : "Databáze:",
+    "Thumbnail for {title}" : "Náhled pro {title}",
     "Created by: " : "Vytvořil(a):",
     "Last edited by: " : "Naposledy upraveno:",
     "Sign in with Notion" : "Přihlásit se prostřednictvím Notion",
