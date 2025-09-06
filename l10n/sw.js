@@ -42,6 +42,7 @@ OC.L10N.register(
     "Enable link preview for Notion pages and databases" : "Wezesha hakikisho la kiungo kwa kurasa na hifadhidata za Notion",
     "Page: " : "Ukurasa: ",
     "Database: " : "Hifadhidata: ",
+    "Thumbnail for {title}" : "Picha ndogo ya {title}",
     "Created by: " : "Imetengenezwa na: ",
     "Last edited by: " : "Mwisho ilihaririwa na: ",
     "Sign in with Notion" : "Ingia kwa Notion",

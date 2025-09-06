@@ -40,10 +40,14 @@
     "Enable link preview for Notion pages and databases" : "Activar a vista previa de ligazóns para páxinas e bases de datos de Notion",
     "Page: " : "Páxina:",
     "Database: " : "Bases de datos:",
+    "Thumbnail for {title}" : "Miniatura de  {title}",
     "Created by: " : "Creada por:",
     "Last edited by: " : "Editada a última vez por %s",
     "Sign in with Notion" : "Acceder con Notion",
     "Failed to save Notion OAuth state" : "Produciuse un fallo ao gardar o estado do OAuth de Notion",
+    "You need to connect before using the Notion integration." : "É necesario conectarse antes de usar a integración de Notion.",
+    "Do you want to connect to Notion?" : "Quere conectarse con Notion?",
+    "You can change Notion integration settings in the {settingsHtmlLink} section of your personal settings." : "Pode cambiar os axustes de integración de Notion na sección {settingsHtmlLink} dos seus axustes persoais.",
     "Connect" : "Conectar",
     "Cancel" : "Cancel"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
