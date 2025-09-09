@@ -9,6 +9,6 @@ OC.L10N.register(
     "Connected accounts" : "Forbundne konti",
     "Connected as {user}" : "Forbundet som {user}",
     "Connect" : "Tilslut",
-    "Cancel" : "Cancel"
+    "Cancel" : "Annullér"
 },
 "nplurals=2; plural=(n != 1);");
