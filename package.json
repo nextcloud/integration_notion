@@ -1,7 +1,7 @@
 {
 	"name": "integration_notion",
 	"description": "Notion integration in Nextcloud",
-	"version": "0.1.0",
+	"version": "2.0.0",
 	"type": "module",
 	"keywords": [
 		"notion",
