@@ -1,0 +1,6 @@
+{ "translations": {
+    "Connected as {user}" : "D uqqin am {user}",
+    "Connect" : "Qqen",
+    "Cancel" : "Cancel"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
