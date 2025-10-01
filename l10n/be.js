@@ -2,7 +2,9 @@ OC.L10N.register(
     "integration_notion",
     {
     "Error getting OAuth access token. " : "Памылка атрымання токена доступу OAuth.",
+    "Notion databases" : "Базы даных Notion",
     "OAuth access token refused" : "Токен доступу OAuth адхілены",
+    "Database: " : "База даных:",
     "Thumbnail for {title}" : "Мініяцюра для {title}",
     "Cancel" : "Скасаваць"
 },
