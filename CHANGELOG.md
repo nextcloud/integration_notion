@@ -10,12 +10,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.1 - 2025-11-10]
+
+### Changed
+
+- Added Nextcloud 33 support
+- Updated dependencies & translations.
+
 ## [2.0.0 - 2025-09-01]
 
 ### Changed
 
 - Set min and max supported NC version to 32
-
 
 ## [1.3.0 - 2025-08-26]
 
