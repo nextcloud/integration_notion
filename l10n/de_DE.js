@@ -47,7 +47,7 @@ OC.L10N.register(
     "Last edited by: " : "Zuletzt bearbeitet von: ",
     "Sign in with Notion" : "Mit Notion anmelden",
     "Failed to save Notion OAuth state" : "Notion OAuth-Status konnte nicht gespeichert werden",
-    "You need to connect before using the Notion integration." : "Zum Verwenden der Notion-Integration muss eine Verbindung hergestellt werden.",
+    "You need to connect before using the Notion integration." : "Zum Verwenden der Notion-Einbindung muss eine Verbindung hergestellt werden.",
     "Do you want to connect to Notion?" : "Soll eine Verbindung zu Notion hergestellt werden?",
     "You can change Notion integration settings in the {settingsHtmlLink} section of your personal settings." : "Im {settingsHtmlLink}-Abschnitt der persönlichen Einstellungen kann ein anderer Notion-Server ausgewählt werden.",
     "Connect" : "Verbinden",
