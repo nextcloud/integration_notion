@@ -12,6 +12,8 @@ OC.L10N.register(
     "Application secret" : "应用密码",
     "Use a popup to authenticate" : "使用弹出窗口进行验证",
     "Connected as {user}" : "以 {user} 身份连接",
+    "Page: " : "页：",
+    "Database: " : "数据库：",
     "Connect" : "连接",
     "Cancel" : "Cancel"
 },
