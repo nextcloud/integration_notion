@@ -5,7 +5,7 @@
     "in database" : "سانداندا",
     "Untitled page" : "نامسىز بەت",
     "Notion databases" : "ئۇقۇم ساندانلىرى",
-    "Last edited on %s" : "ئاخىرقى قېتىم% s دا تەھرىرلەندى",
+    "Last edited on %s" : "ئاخىرقى قېتىم %s دا تەھرىرلەندى",
     "Notion pages" : "ئۇقۇم بەتلىرى",
     "Bad HTTP method" : "ناچار HTTP ئۇسۇلى",
     "Bad credentials" : "ناچار كىنىشكا",
@@ -40,11 +40,15 @@
     "Enable link preview for Notion pages and databases" : "ئۇقۇم بېتى ۋە ساندان ئۈچۈن ئۇلىنىش ئالدىن كۆرۈشنى قوزغىتىڭ",
     "Page: " : "بەت: ",
     "Database: " : "ساندان: ",
+    "Thumbnail for {title}" : "{title} نىڭ كىچىك كۆرۈنۈشى",
     "Created by: " : "ئىجاد قىلغان: ",
     "Last edited by: " : "ئاخىرقى قېتىم تەھرىرلىگەن: ",
     "Sign in with Notion" : "چۈشەنچە بىلەن كىرىڭ",
     "Failed to save Notion OAuth state" : "ئۇقۇم OAuth ھالىتىنى ساقلاپ قالالمىدى",
+    "You need to connect before using the Notion integration." : "Notion بىرلەشتۈرۈشىنى ئىشلىتىشتىن بۇرۇن ئۇلىشىڭىز كېرەك.",
+    "Do you want to connect to Notion?" : "Notion غا ئۇلامسىز؟",
+    "You can change Notion integration settings in the {settingsHtmlLink} section of your personal settings." : "سىزنىڭ شەخسىي تەڭشىكىڭىزنىڭ {settingsHtmlLink} قىسمىدا باشقا Notion مۇلازىمېتىرىنى تاللىيالايسىز.",
     "Connect" : "ئۇلاڭ",
-    "Cancel" : "Cancel"
+    "Cancel" : "ۋاز كەچ"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
