@@ -25,7 +25,7 @@ OC.L10N.register(
     "Application ID" : "ID da aplicación",
     "ID of your Notion application" : "ID da súa aplicación de Notion",
     "Application secret" : "Segredo da aplicación",
-    "Client secret of your Notion application" : " Segredo do cliente da súa aplicación de Notion",
+    "Client secret of your Notion application" : "Segredo do cliente da súa aplicación de Notion",
     "Use a popup to authenticate" : "Use unha xanela emerxente para autenticarse",
     "Successfully connected to Notion!" : "Conectou satisfactoriamente con Notion!",
     "Error connecting to Notion:" : "Produciuse un erro ao conectar con Notion:",
