@@ -51,6 +51,6 @@ OC.L10N.register(
     "Do you want to connect to Notion?" : "Ar mhaith leat ceangal le Notion?",
     "You can change Notion integration settings in the {settingsHtmlLink} section of your personal settings." : "Is féidir leat socruithe comhtháthaithe Notion a athrú sa rannán {settingsHtmlLink} de do shocruithe pearsanta.",
     "Connect" : "Ceangal",
-    "Cancel" : "Cancel"
+    "Cancel" : "Cealaigh"
 },
 "nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);");
