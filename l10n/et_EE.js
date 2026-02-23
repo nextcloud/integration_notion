@@ -17,6 +17,7 @@ OC.L10N.register(
     "Integration of Notion" : "Lõiming Notioni teenusega",
     "Notion admin options saved" : "Notioni haldusseadistused on salvestatud",
     "Failed to save Notion admin options" : "Notioni haldusseadistuste salvestamine ei õnnestunud",
+    "Make sure you set the \"Redirect URI\" to" : "Palun kontrolli, et oled tagasisuunamisaadressiks märkinud",
     "Application ID" : "Rakenduse tunnus",
     "ID of your Notion application" : "Sinu Notioni rakenduse tunnus",
     "Application secret" : "Rakenduse saladus",
