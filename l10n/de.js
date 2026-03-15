@@ -39,7 +39,7 @@ OC.L10N.register(
     "Enable searching for Notion pages" : "Suche nach Notion-Seiten aktivieren",
     "Enable searching for Notion databases" : "Suche nach Notion-Datenbanken aktivieren",
     "Warning, everything you type in the search bar will be sent in request to Notion." : "Achtung, alles, was du in die Suchleiste eingibst, wird als Anfrage an Notion gesendet.",
-    "Enable link preview for Notion pages and databases" : "Linkvorschau für Notion-Seiten und -Datenbanken aktivieren",
+    "Enable link preview for Notion pages and databases" : "Link-Vorschau für Notion-Seiten und -Datenbanken aktivieren",
     "Page: " : "Seite: ",
     "Database: " : "Datenbank: ",
     "Thumbnail for {title}" : "Miniaturbild für {title}",
