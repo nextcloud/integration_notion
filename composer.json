@@ -15,7 +15,7 @@
 	"require-dev": {
 		"nextcloud/ocp": "dev-master",
 		"nextcloud/coding-standard": "^1.1",
-		"phpunit/phpunit": "^10",
+		"phpunit/phpunit": "^10 || ^12.5.22",
 		"psalm/phar": "^6.8"
 	},
 	"scripts": {
