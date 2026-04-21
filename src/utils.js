@@ -5,7 +5,7 @@
 
 import { generateUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
-import { showError } from '@nextcloud/dialogs'
+import { DialogBuilder, showError } from '@nextcloud/dialogs'
 
 export function Timer(callback, mydelay) {
 	let timerId
@@ -84,35 +84,33 @@ export function oauthConnect(clientId, oauthOrigin, usePopup = false) {
 
 export function oauthConnectConfirmDialog() {
 	return new Promise((resolve, reject) => {
-		const settingsLink = generateUrl('/settings/user/connected-accounts')
-		const linkText = t('integration_notion', 'Connected accounts')
-		const settingsHtmlLink = `<a href="${settingsLink}" class="external">${linkText}</a>`
-		OC.dialogs.message(
-			t('integration_notion', 'You need to connect before using the Notion integration.')
-			+ '<br><br>'
-			+ t('integration_notion', 'Do you want to connect to Notion?')
-			+ '<br><br>'
-			+ t(
-				'integration_notion',
-				'You can change Notion integration settings in the {settingsHtmlLink} section of your personal settings.',
-				{ settingsHtmlLink },
-				null,
-				{ escape: false },
-			),
-			t('integration_notion', 'Connect to Notion'),
-			'none',
-			{
-				type: OC.dialogs.YES_NO_BUTTONS,
-				confirm: t('integration_notion', 'Connect'),
-				confirmClasses: 'success',
-				cancel: t('integration_notion', 'Cancel'),
-			},
-			(result) => {
-				resolve(result)
-			},
-			true,
-			true,
-		)
+		new DialogBuilder()
+			.setName(t('integration_notion', 'Connect to Notion'))
+			.setText(
+				t('integration_notion', 'You need to connect before using the Notion integration.')
+				+ ' --- '
+				+ t('integration_notion', 'You can change Notion integration settings in the "Connected accounts" section of your personal settings.')
+				+ ' --- '
+				+ t('integration_notion', 'Do you want to connect to Notion?'),
+			)
+			.setButtons([
+				{
+					label: t('integration_notion', 'Cancel'),
+					variant: 'secondary',
+					callback: () => {
+						reject(new Error('OAuth connection canceled'))
+					},
+				},
+				{
+					label: t('integration_notion', 'Connect'),
+					variant: 'primary',
+					callback: () => {
+						resolve()
+					},
+				},
+			])
+			.build()
+			.show()
 	})
 }
 
