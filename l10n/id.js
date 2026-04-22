@@ -49,8 +49,7 @@ OC.L10N.register(
     "Failed to save Notion OAuth state" : "Gagal menyimpan status OAuth Notion",
     "You need to connect before using the Notion integration." : "Anda perlu menghubungkan terlebih dahulu sebelum menggunakan integrasi Notion.",
     "Do you want to connect to Notion?" : "Apakah Anda ingin menghubungkan ke Notion?",
-    "You can change Notion integration settings in the {settingsHtmlLink} section of your personal settings." : "Anda dapat mengubah pengaturan integrasi Notion di bagian {settingsHtmlLink} pada pengaturan pribadi Anda.",
-    "Connect" : "Hubungkan",
-    "Cancel" : "Batal"
+    "Cancel" : "Batal",
+    "Connect" : "Hubungkan"
 },
 "nplurals=1; plural=0;");

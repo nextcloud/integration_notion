@@ -49,8 +49,7 @@ OC.L10N.register(
     "Failed to save Notion OAuth state" : "Nepodarilo sa uložiť stav Notion OAuth",
     "You need to connect before using the Notion integration." : "Pred použitím integrácie Notion sa musíte pripojiť.",
     "Do you want to connect to Notion?" : "Chcete sa pripojiť k Notion?",
-    "You can change Notion integration settings in the {settingsHtmlLink} section of your personal settings." : "Môžete zmeniť nastavenia integrácie Notion v sekcii {settingsHtmlLink} vo vašich osobných nastaveniach.",
-    "Connect" : "Pripojiť",
-    "Cancel" : "Cancel"
+    "Cancel" : "Cancel",
+    "Connect" : "Pripojiť"
 },
 "nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);");

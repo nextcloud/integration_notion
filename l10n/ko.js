@@ -8,7 +8,7 @@ OC.L10N.register(
     "Connected accounts" : "계정 연결됨",
     "Application ID" : "애플리케이션 ID",
     "Connected as {user}" : "{user}로 연결됨",
-    "Connect" : "연결",
-    "Cancel" : "Cancel"
+    "Cancel" : "Cancel",
+    "Connect" : "연결"
 },
 "nplurals=1; plural=0;");

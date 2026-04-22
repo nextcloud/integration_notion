@@ -7,7 +7,7 @@ OC.L10N.register(
     "Application ID" : "Lietotnes Id",
     "Application secret" : "Lietotnes noslēpums",
     "Connected as {user}" : "Savienojies kā {user}",
-    "Connect" : "Savienoties",
-    "Cancel" : "Atcelt"
+    "Cancel" : "Atcelt",
+    "Connect" : "Savienoties"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);");

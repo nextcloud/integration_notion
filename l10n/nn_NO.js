@@ -3,7 +3,7 @@ OC.L10N.register(
     {
     "Connected accounts" : "Tilkopla kontoar",
     "Application ID" : "Program-ID",
-    "Connect" : "Kople til",
-    "Cancel" : "Cancel"
+    "Cancel" : "Cancel",
+    "Connect" : "Kople til"
 },
 "nplurals=2; plural=(n != 1);");

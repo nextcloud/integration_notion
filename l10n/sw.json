@@ -47,8 +47,7 @@
     "Failed to save Notion OAuth state" : "Imeshindwa kuhifadhi hali ya OAuth ya Notion",
     "You need to connect before using the Notion integration." : "Unahitaji kuunganishwa kabla ya kutumia ujumuishaji wa Notion",
     "Do you want to connect to Notion?" : "Unataka kuungana na Notion?",
-    "You can change Notion integration settings in the {settingsHtmlLink} section of your personal settings." : "Unaweza kubadilisha mipangilio ya ujumuishaji wa Notion katika sehemu ya {settingsHtmlLink} ya mipangilio yako ya kibinafsi",
-    "Connect" : "Unganisha",
-    "Cancel" : "Sitisha"
+    "Cancel" : "Sitisha",
+    "Connect" : "Unganisha"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

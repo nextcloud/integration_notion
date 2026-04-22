@@ -14,7 +14,7 @@ OC.L10N.register(
     "Connected as {user}" : "以 {user} 身份连接",
     "Page: " : "页：",
     "Database: " : "数据库：",
-    "Connect" : "连接",
-    "Cancel" : "Cancel"
+    "Cancel" : "Cancel",
+    "Connect" : "连接"
 },
 "nplurals=1; plural=0;");

@@ -9,7 +9,7 @@ OC.L10N.register(
     "Application ID" : "アプリケーション ID",
     "Application secret" : "アプリケーションシークレット",
     "Connected as {user}" : "{user} に接続済み",
-    "Connect" : "接続",
-    "Cancel" : "Cancel"
+    "Cancel" : "Cancel",
+    "Connect" : "接続"
 },
 "nplurals=1; plural=0;");

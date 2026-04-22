@@ -39,8 +39,7 @@ OC.L10N.register(
     "Failed to save Notion OAuth state" : "Notioni OAuthi oleku salvestamine ei õnnestunud",
     "You need to connect before using the Notion integration." : "Enne Notioni lõimingu kasutamist peab olema loodud ühendus Notioni serveriga.",
     "Do you want to connect to Notion?" : "Kas sa soovid luua ühendust Notioni serveriga?",
-    "You can change Notion integration settings in the {settingsHtmlLink} section of your personal settings." : "Oma isiklike seadistuste „{settingsHtmlLink}“ alajaotuses saad muuta Notioni lõimingu seadistusi.",
-    "Connect" : "Ühenda",
-    "Cancel" : "Katkesta"
+    "Cancel" : "Katkesta",
+    "Connect" : "Ühenda"
 },
 "nplurals=2; plural=(n != 1);");

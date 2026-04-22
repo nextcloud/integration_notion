@@ -46,7 +46,7 @@ OC.L10N.register(
     "Last edited by: " : "Azken editorea:",
     "Sign in with Notion" : "Hasi saioa Notion-ekin",
     "Failed to save Notion OAuth state" : "Ezin izan da gorde Notion OAuth egoera",
-    "Connect" : "Konektatu",
-    "Cancel" : "Cancel"
+    "Cancel" : "Cancel",
+    "Connect" : "Konektatu"
 },
 "nplurals=2; plural=(n != 1);");

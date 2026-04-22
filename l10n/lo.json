@@ -47,8 +47,7 @@
     "Failed to save Notion OAuth state" : "ບໍ່ສາມາດບັນທຶກສະຖານະ Notion OAuth",
     "You need to connect before using the Notion integration." : "ທ່ານຈຳເປັນຕ້ອງເຊື່ອມຕໍ່ກ່ອນຈຶ່ງຈະສາມາດນຳໃຊ້ການເຊື່ອມໂຍງ Notion ໄດ້.",
     "Do you want to connect to Notion?" : "ທ່ານຕ້ອງການເຊື່ອມຕໍ່ກັບ Notion ບໍ່?",
-    "You can change Notion integration settings in the {settingsHtmlLink} section of your personal settings." : "ທ່ານສາມາດປ່ຽນການຕັ້ງຄ່າການເຊື່ອມໂຍງ Notion ໄດ້ໃນສ່ວນ {settingsHtmlLink} ຂອງການຕັ້ງຄ່າສ່ວນຕົວຂອງທ່ານ.",
-    "Connect" : "ເຊື່ອມຕໍ່",
-    "Cancel" : "ຍົກເລີກ"
+    "Cancel" : "ຍົກເລີກ",
+    "Connect" : "ເຊື່ອມຕໍ່"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

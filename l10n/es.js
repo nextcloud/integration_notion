@@ -49,8 +49,7 @@ OC.L10N.register(
     "Failed to save Notion OAuth state" : "Fallo al guardar el estado OAuth de Notion",
     "You need to connect before using the Notion integration." : "Necesita conectarse antes de utilizar la integración con Notion.",
     "Do you want to connect to Notion?" : "¿Desea conectarse a Notion?",
-    "You can change Notion integration settings in the {settingsHtmlLink} section of your personal settings." : "Puede cambiar los ajustes de la integración con Notion en la sección {settingsHtmlLink} de sus ajustes personales.",
-    "Connect" : "Conectar",
-    "Cancel" : "Cancelar"
+    "Cancel" : "Cancelar",
+    "Connect" : "Conectar"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

@@ -8,7 +8,7 @@ OC.L10N.register(
     "OAuth access token refused" : "OAuth adgangsnøgle afvist",
     "Connected accounts" : "Forbundne konti",
     "Connected as {user}" : "Forbundet som {user}",
-    "Connect" : "Tilslut",
-    "Cancel" : "Annullér"
+    "Cancel" : "Annullér",
+    "Connect" : "Tilslut"
 },
 "nplurals=2; plural=(n != 1);");

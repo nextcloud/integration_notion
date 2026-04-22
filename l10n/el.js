@@ -49,8 +49,7 @@ OC.L10N.register(
     "Failed to save Notion OAuth state" : "Αποτυχία αποθήκευσης της κατάστασης Notion OAuth",
     "You need to connect before using the Notion integration." : "Πρέπει να συνδεθείτε πριν χρησιμοποιήσετε την ενσωμάτωση Notion.",
     "Do you want to connect to Notion?" : "Θέλετε να συνδεθείτε στο Notion;",
-    "You can change Notion integration settings in the {settingsHtmlLink} section of your personal settings." : "Μπορείτε να αλλάξετε τις ρυθμίσεις ενσωμάτωσης Notion στην ενότητα {settingsHtmlLink} των προσωπικών σας ρυθμίσεων.",
-    "Connect" : "Σύνδεση",
-    "Cancel" : "Cancel"
+    "Cancel" : "Cancel",
+    "Connect" : "Σύνδεση"
 },
 "nplurals=2; plural=(n != 1);");

@@ -4,7 +4,7 @@ OC.L10N.register(
     "Bad HTTP method" : "Буруу HTTP арга",
     "Bad credentials" : "Буруу нэвтрэх мэдээлэл",
     "Connected accounts" : "Холбогдсон бүртгэлүүд",
-    "Connect" : "Холбох",
-    "Cancel" : "Cancel"
+    "Cancel" : "Cancel",
+    "Connect" : "Холбох"
 },
 "nplurals=2; plural=(n != 1);");

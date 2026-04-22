@@ -49,8 +49,7 @@ OC.L10N.register(
     "Failed to save Notion OAuth state" : "ئۇقۇم OAuth ھالىتىنى ساقلاپ قالالمىدى",
     "You need to connect before using the Notion integration." : "Notion بىرلەشتۈرۈشىنى ئىشلىتىشتىن بۇرۇن ئۇلىشىڭىز كېرەك.",
     "Do you want to connect to Notion?" : "Notion غا ئۇلامسىز؟",
-    "You can change Notion integration settings in the {settingsHtmlLink} section of your personal settings." : "سىزنىڭ شەخسىي تەڭشىكىڭىزنىڭ {settingsHtmlLink} قىسمىدا باشقا Notion مۇلازىمېتىرىنى تاللىيالايسىز.",
-    "Connect" : "ئۇلاڭ",
-    "Cancel" : "ۋاز كەچ"
+    "Cancel" : "ۋاز كەچ",
+    "Connect" : "ئۇلاڭ"
 },
 "nplurals=2; plural=(n != 1);");

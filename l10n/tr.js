@@ -49,8 +49,7 @@ OC.L10N.register(
     "Failed to save Notion OAuth state" : "Notion OAuth durumu kaydedilemedi",
     "You need to connect before using the Notion integration." : "Notion bütünleştirmesini kullanmadan önce bağlantı kurmalısınız.",
     "Do you want to connect to Notion?" : "Notion ile bağlantı kurulsun mu?",
-    "You can change Notion integration settings in the {settingsHtmlLink} section of your personal settings." : "Kişisel ayarlarınızın {settingsHtmlLink} bölümünden Notion bütünleştirme ayarlarını değiştirebilirsiniz.",
-    "Connect" : "Bağlan",
-    "Cancel" : "İptal"
+    "Cancel" : "İptal",
+    "Connect" : "Bağlan"
 },
 "nplurals=2; plural=(n > 1);");

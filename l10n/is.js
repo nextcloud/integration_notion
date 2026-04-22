@@ -6,7 +6,7 @@ OC.L10N.register(
     "OAuth access token refused" : "OAuth-aðgangsteikni hafnað",
     "Connected accounts" : "Tengdir aðgangar",
     "Connected as {user}" : "Tengt sem {user}",
-    "Connect" : "Tengjast",
-    "Cancel" : "Cancel"
+    "Cancel" : "Cancel",
+    "Connect" : "Tengjast"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

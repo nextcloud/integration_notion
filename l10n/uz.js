@@ -4,7 +4,7 @@ OC.L10N.register(
     "Bad HTTP method" : "Yomon HTTP usuli",
     "Bad credentials" : "Akkaunt ma'lumotlari xato",
     "Connected accounts" : "Ulangan akkauntlar",
-    "Connect" : "Connect",
-    "Cancel" : "Bekor qilish"
+    "Cancel" : "Bekor qilish",
+    "Connect" : "Connect"
 },
 "nplurals=1; plural=0;");

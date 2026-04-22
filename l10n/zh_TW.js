@@ -49,8 +49,7 @@ OC.L10N.register(
     "Failed to save Notion OAuth state" : "儲存 Notion OAuth 狀態失敗",
     "You need to connect before using the Notion integration." : "在使用 Notion 整合前，您必須先連線至 Notion 應用程式。",
     "Do you want to connect to Notion?" : "您想要連線至 Notion 嗎？",
-    "You can change Notion integration settings in the {settingsHtmlLink} section of your personal settings." : "您可以在個人設定中的 {settingsHtmlLink} 區塊變更 Notion 整合設定。",
-    "Connect" : "連線",
-    "Cancel" : "取消"
+    "Cancel" : "取消",
+    "Connect" : "連線"
 },
 "nplurals=1; plural=0;");

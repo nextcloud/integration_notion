@@ -43,7 +43,7 @@ OC.L10N.register(
     "Last edited by: " : "Legutóbb szerkesztette:",
     "Sign in with Notion" : "Bejelentkezés Notion-nel",
     "Failed to save Notion OAuth state" : "Notion OAuth állapotot mentése sikertelen",
-    "Connect" : "Kapcsolódás",
-    "Cancel" : "Cancel"
+    "Cancel" : "Cancel",
+    "Connect" : "Kapcsolódás"
 },
 "nplurals=2; plural=(n != 1);");

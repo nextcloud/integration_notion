@@ -11,7 +11,7 @@ OC.L10N.register(
     "Application ID" : "Application ID",
     "Application secret" : "Application secret",
     "Connected as {user}" : "Verbonden als {user}",
-    "Connect" : "Verbinden",
-    "Cancel" : "Cancel"
+    "Cancel" : "Cancel",
+    "Connect" : "Verbinden"
 },
 "nplurals=2; plural=(n != 1);");
