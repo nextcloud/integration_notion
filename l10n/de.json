@@ -46,6 +46,7 @@
     "Sign in with Notion" : "Mit Notion anmelden",
     "Failed to save Notion OAuth state" : "Notion OAuth-Status konnte nicht gespeichert werden",
     "You need to connect before using the Notion integration." : "Zum Verwenden der Notion-Integration muss eine Verbindung hergestellt werden.",
+    "You can change Notion integration settings in the \"Connected accounts\" section of your personal settings." : "Du kannst die Einstellungen für die Notion-Integration im Abschnitt \"Verbundene Konten\" deiner persönlichen Einstellungen ändern.",
     "Do you want to connect to Notion?" : "Soll eine Verbindung zu Notion hergestellt werden?",
     "Cancel" : "Abbrechen",
     "Connect" : "Verbinden"

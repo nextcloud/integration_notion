@@ -48,6 +48,7 @@ OC.L10N.register(
     "Sign in with Notion" : "Sign in with Notion",
     "Failed to save Notion OAuth state" : "Failed to save Notion OAuth state",
     "You need to connect before using the Notion integration." : "You need to connect before using the Notion integration.",
+    "You can change Notion integration settings in the \"Connected accounts\" section of your personal settings." : "You can change Notion integration settings in the \"Connected accounts\" section of your personal settings.",
     "Do you want to connect to Notion?" : "Do you want to connect to Notion?",
     "Cancel" : "Cancel",
     "Connect" : "Connect"

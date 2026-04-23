@@ -46,6 +46,7 @@
     "Sign in with Notion" : "使用 Notion 登入",
     "Failed to save Notion OAuth state" : "儲存 Notion OAuth 狀態失敗",
     "You need to connect before using the Notion integration." : "在使用 Notion 整合前，您必須先連線至 Notion 應用程式。",
+    "You can change Notion integration settings in the \"Connected accounts\" section of your personal settings." : "您可以在個人設定中的「已連線的帳號」區塊變更 Notion 整合設定。",
     "Do you want to connect to Notion?" : "您想要連線至 Notion 嗎？",
     "Cancel" : "取消",
     "Connect" : "連線"
