@@ -48,6 +48,7 @@ OC.L10N.register(
     "Sign in with Notion" : "Sínigh isteach le Notion",
     "Failed to save Notion OAuth state" : "Níorbh fhéidir staid Notion OAuth a shábháil",
     "You need to connect before using the Notion integration." : "Ní mór duit ceangal a dhéanamh sula n-úsáideann tú an comhtháthú Notion.",
+    "You can change Notion integration settings in the \"Connected accounts\" section of your personal settings." : "Is féidir leat socruithe comhtháthaithe Notion a athrú sa rannán \"Cuntais nasctha\" de do shocruithe pearsanta.",
     "Do you want to connect to Notion?" : "Ar mhaith leat ceangal le Notion?",
     "Cancel" : "Cealaigh",
     "Connect" : "Ceangal"
