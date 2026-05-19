@@ -48,6 +48,7 @@ OC.L10N.register(
     "Sign in with Notion" : "Notion ile oturum açın",
     "Failed to save Notion OAuth state" : "Notion OAuth durumu kaydedilemedi",
     "You need to connect before using the Notion integration." : "Notion bütünleştirmesini kullanmadan önce bağlantı kurmalısınız.",
+    "You can change Notion integration settings in the \"Connected accounts\" section of your personal settings." : "Kişisel ayarlarınızda \"Bağlı hesaplar\" bölümünden Notion bütünleştirme ayarlarını değiştirebilirsiniz.",
     "Do you want to connect to Notion?" : "Notion ile bağlantı kurulsun mu?",
     "Cancel" : "İptal",
     "Connect" : "Bağlan"
