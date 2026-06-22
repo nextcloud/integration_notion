@@ -1,11 +1,11 @@
 OC.L10N.register(
     "integration_notion",
     {
-    "Error getting OAuth access token. " : "Klaida gaunant „OAuth“ prieigos raktą. ",
+    "Error getting OAuth access token. " : "Klaida gaunant „OAuth“ prieigos žymenį. ",
     "Error during OAuth exchanges" : "Klaida „OAuth“ apsikeitimo metu",
     "Bad HTTP method" : "Blogas HTTP metodas",
     "Bad credentials" : "Blogi prisijungimo duomenys",
-    "OAuth access token refused" : "„OAuth“ prieigos raktas atmestas",
+    "OAuth access token refused" : "„OAuth“ prieigos žymuo atmestas",
     "Connected accounts" : "Prijungtos paskyros",
     "Application ID" : "Programėlės ID",
     "Application secret" : "Programėlės paslaptis",
