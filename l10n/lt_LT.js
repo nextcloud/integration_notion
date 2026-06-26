@@ -7,8 +7,10 @@ OC.L10N.register(
     "Bad credentials" : "Blogi prisijungimo duomenys",
     "OAuth access token refused" : "„OAuth“ prieigos žymuo atmestas",
     "Connected accounts" : "Prijungtos paskyros",
+    "Make sure you set the \"Redirect URI\" to" : "Būtinai nustatykite „Peradresavimo URI“ kaip",
     "Application ID" : "Programėlės ID",
     "Application secret" : "Programėlės paslaptis",
+    "Use a popup to authenticate" : "Autentifikavimui naudokite iššokantį langą",
     "Connected as {user}" : "Prisijungta kaip {user}",
     "Cancel" : "Cancel",
     "Connect" : "Prisijungti"
