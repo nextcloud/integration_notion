@@ -3,10 +3,13 @@ OC.L10N.register(
     {
     "Error getting OAuth access token. " : "Erro ao obter o token de acesso OAuth.",
     "Error during OAuth exchanges" : "Erro durante trocas com o OAuth",
+    "in database" : "no banco de dados",
     "Bad HTTP method" : "Método HTTP incorreto",
     "Bad credentials" : "Credenciais inválidas",
     "OAuth access token refused" : "Token de acesso OAuth recusado",
     "Connected accounts" : "Contas conectadas",
+    "Error connecting to Notion:" : "Erro ao conectar ao Notion:",
+    "You can change Notion integration settings in the \"Connected accounts\" section of your personal settings." : "Você pode alterar as configurações de integração do Notion na seção \"Contas conectadas\" das suas configurações pessoais.",
     "Cancel" : "Cancel",
     "Connect" : "Ligar"
 },
