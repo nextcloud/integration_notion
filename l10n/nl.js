@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Error getting OAuth access token. " : "Fout bij ophalen OAuth access token",
     "Error during OAuth exchanges" : "Fout tijdens OAuth uitwisselingen",
+    "Untitled page" : "Naamloze pagina",
     "Bad HTTP method" : "Foute HTTP methode",
     "Bad credentials" : "Foute inloggegevens",
     "OAuth access token refused" : "OAuth toegangstoken geweigerd",
