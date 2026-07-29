@@ -10,6 +10,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.3 - 2026-07-29]
+
+### Changed
+
+- Added Nextcloud 35 support
+- Updated the Nextcloud frontend libraries from release candidates to stable releases
+- Updated dependencies & translations.
+
 ## [2.0.2 - 2026-04-20]
 
 ### Changed
