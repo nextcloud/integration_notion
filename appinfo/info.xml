@@ -27,7 +27,7 @@
 	<screenshot>https://raw.githubusercontent.com/nextcloud/integration_notion/main/screenshots/screenshot4.jpg</screenshot>
 	<dependencies>
 		<php min-version="8.1" />
-		<nextcloud min-version="32" max-version="35"/>
+		<nextcloud min-version="32" max-version="36"/>
 	</dependencies>
 	<settings>
 		<admin>OCA\Notion\Settings\Admin</admin>
