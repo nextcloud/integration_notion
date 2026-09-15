@@ -54,26 +54,23 @@
 		<NcCheckboxRadioSwitch
 			v-model="state.use_popup"
 			class="field"
-			@update:model-value="onUsePopupChanged">
+			@update:modelValue="onUsePopupChanged">
 			{{ t('integration_notion', 'Use a popup to authenticate') }}
 		</NcCheckboxRadioSwitch>
 	</div>
 </template>
 
 <script>
+import axios from '@nextcloud/axios'
+import { showError, showSuccess } from '@nextcloud/dialogs'
+import { loadState } from '@nextcloud/initial-state'
+import { confirmPassword } from '@nextcloud/password-confirmation'
+import { generateUrl } from '@nextcloud/router'
+import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
 import InformationOutlineIcon from 'vue-material-design-icons/InformationOutline.vue'
 import KeyOutline from 'vue-material-design-icons/KeyOutline.vue'
-
 import NotionIcon from './icons/NotionIcon.vue'
-
-import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
-
-import { loadState } from '@nextcloud/initial-state'
-import { generateUrl } from '@nextcloud/router'
-import axios from '@nextcloud/axios'
 import { delay } from '../utils.js'
-import { showSuccess, showError } from '@nextcloud/dialogs'
-import { confirmPassword } from '@nextcloud/password-confirmation'
 
 export default {
 	name: 'AdminSettings',
@@ -106,6 +103,7 @@ export default {
 		onUsePopupChanged(newValue) {
 			this.saveOptions({ use_popup: newValue ? '1' : '0' }, false)
 		},
+
 		onInput() {
 			delay(() => {
 				const values = {
@@ -117,6 +115,7 @@ export default {
 				this.saveOptions(values)
 			}, 2000)()
 		},
+
 		async saveOptions(values, sensitive = true) {
 			if (sensitive) {
 				await confirmPassword()
@@ -127,7 +126,7 @@ export default {
 			const url = sensitive
 				? generateUrl('/apps/integration_notion/sensitive-admin-config')
 				: generateUrl('/apps/integration_notion/admin-config')
-			axios.put(url, req).then((response) => {
+			axios.put(url, req).then(() => {
 				showSuccess(t('integration_notion', 'Notion admin options saved'))
 			}).catch((error) => {
 				showError(t('integration_notion', 'Failed to save Notion admin options'))
