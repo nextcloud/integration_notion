@@ -14,10 +14,8 @@ use OCA\Notion\Listener\UnifiedSearchCSSLoader;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
-
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\AppFramework\Http\Events\BeforeTemplateRenderedEvent;
-
 use OCP\Collaboration\Reference\RenderReferenceEvent;
 
 /**

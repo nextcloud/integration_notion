@@ -14,12 +14,10 @@ use OC\Collaboration\Reference\ReferenceManager;
 use OCA\Notion\AppInfo\Application;
 use OCA\Notion\Service\NotionAPIService;
 use OCP\Collaboration\Reference\ADiscoverableReferenceProvider;
-
 use OCP\Collaboration\Reference\IReference;
 use OCP\Collaboration\Reference\ISearchableReferenceProvider;
 use OCP\Collaboration\Reference\Reference;
 use OCP\IConfig;
-
 use OCP\IL10N;
 use OCP\IURLGenerator;
 

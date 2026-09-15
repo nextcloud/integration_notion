@@ -12,7 +12,6 @@ namespace OCA\Notion\Controller;
 use OCA\Notion\Service\NotionAPIService;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http;
-
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
 use OCP\AppFramework\Http\DataDisplayResponse;
