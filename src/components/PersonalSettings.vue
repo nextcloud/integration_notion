@@ -39,12 +39,12 @@
 			<div v-if="connected" id="notion-search-block">
 				<NcCheckboxRadioSwitch
 					v-model="state.search_pages_enabled"
-					@update:model-value="onCheckboxChanged($event, 'search_pages_enabled')">
+					@update:modelValue="onCheckboxChanged($event, 'search_pages_enabled')">
 					{{ t('integration_notion', 'Enable searching for Notion pages') }}
 				</NcCheckboxRadioSwitch>
 				<NcCheckboxRadioSwitch
 					v-model="state.search_databases_enabled"
-					@update:model-value="onCheckboxChanged($event, 'search_databases_enabled')">
+					@update:modelValue="onCheckboxChanged($event, 'search_databases_enabled')">
 					{{ t('integration_notion', 'Enable searching for Notion databases') }}
 				</NcCheckboxRadioSwitch>
 				<br>
@@ -56,7 +56,7 @@
 			<div v-if="connected" id="notion-link-block">
 				<NcCheckboxRadioSwitch
 					v-model="state.link_preview_enabled"
-					@update:model-value="onCheckboxChanged($event, 'link_preview_enabled')">
+					@update:modelValue="onCheckboxChanged($event, 'link_preview_enabled')">
 					{{ t('integration_notion', 'Enable link preview for Notion pages and databases') }}
 				</NcCheckboxRadioSwitch>
 			</div>
@@ -65,20 +65,18 @@
 </template>
 
 <script>
-import CheckIcon from 'vue-material-design-icons/Check.vue'
-import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
-import CloseIcon from 'vue-material-design-icons/Close.vue'
-import InformationOutlineIcon from 'vue-material-design-icons/InformationOutline.vue'
-
-import NcButton from '@nextcloud/vue/components/NcButton'
-import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
-
+import axios from '@nextcloud/axios'
+import { showError, showSuccess } from '@nextcloud/dialogs'
 import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'
-import axios from '@nextcloud/axios'
-import { oauthConnect } from '../utils.js'
-import { showSuccess, showError } from '@nextcloud/dialogs'
+import NcButton from '@nextcloud/vue/components/NcButton'
+import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
+import CheckIcon from 'vue-material-design-icons/Check.vue'
+import CloseIcon from 'vue-material-design-icons/Close.vue'
+import InformationOutlineIcon from 'vue-material-design-icons/InformationOutline.vue'
+import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
 import NotionIcon from './icons/NotionIcon.vue'
+import { oauthConnect } from '../utils.js'
 
 export default {
 	name: 'PersonalSettings',
@@ -107,9 +105,11 @@ export default {
 		showOAuth() {
 			return !!this.state.client_id && !!this.state.client_secret
 		},
+
 		connected() {
 			return !!this.state.token && !!this.state.user_name
 		},
+
 		connectedDisplayName() {
 			return this.state.user_name
 		},
@@ -120,7 +120,6 @@ export default {
 
 	mounted() {
 		const paramString = window.location.search.substr(1)
-		// eslint-disable-next-line
 		const urlParams = new URLSearchParams(paramString)
 		const glToken = urlParams.get('notionToken')
 		if (glToken === 'success') {
@@ -135,6 +134,7 @@ export default {
 			this.state.token = ''
 			this.saveOptions({ token: '' })
 		},
+
 		saveOptions(values) {
 			const req = {
 				values,
@@ -153,11 +153,13 @@ export default {
 				this.loading = false
 			})
 		},
+
 		onConnectClick() {
 			if (this.showOAuth) {
 				this.connectWithOauth()
 			}
 		},
+
 		connectWithOauth() {
 			if (this.state.use_popup) {
 				oauthConnect(this.state.client_id, null, true)
@@ -170,6 +172,7 @@ export default {
 				oauthConnect(this.state.client_id, 'settings')
 			}
 		},
+
 		onCheckboxChanged(newValue, key) {
 			this.state[key] = newValue
 			this.saveOptions({ [key]: this.state[key] ? '1' : '0' })

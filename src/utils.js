@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { generateUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
 import { DialogBuilder, showError } from '@nextcloud/dialogs'
+import { generateUrl } from '@nextcloud/router'
 
 export function Timer(callback, mydelay) {
 	let timerId
@@ -58,13 +58,14 @@ export function oauthConnect(clientId, oauthOrigin, usePopup = false) {
 		},
 	}
 	const url = generateUrl('/apps/integration_notion/config')
-	return new Promise((resolve, reject) => {
-		axios.put(url, req).then((response) => {
+	return new Promise((resolve) => {
+		axios.put(url, req).then(() => {
 			if (usePopup) {
 				const ssoWindow = window.open(
 					requestUrl,
 					t('integration_notion', 'Sign in with Notion'),
-					'toolbar=no, menubar=no, width=600, height=700')
+					'toolbar=no, menubar=no, width=600, height=700',
+				)
 				ssoWindow.focus()
 				window.addEventListener('message', (event) => {
 					console.debug('Child window message received', event)
@@ -86,13 +87,11 @@ export function oauthConnectConfirmDialog() {
 	return new Promise((resolve, reject) => {
 		new DialogBuilder()
 			.setName(t('integration_notion', 'Connect to Notion'))
-			.setText(
-				t('integration_notion', 'You need to connect before using the Notion integration.')
+			.setText(t('integration_notion', 'You need to connect before using the Notion integration.')
 				+ ' --- '
 				+ t('integration_notion', 'You can change Notion integration settings in the "Connected accounts" section of your personal settings.')
 				+ ' --- '
-				+ t('integration_notion', 'Do you want to connect to Notion?'),
-			)
+				+ t('integration_notion', 'Do you want to connect to Notion?'))
 			.setButtons([
 				{
 					label: t('integration_notion', 'Cancel'),

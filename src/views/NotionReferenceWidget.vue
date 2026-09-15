@@ -41,9 +41,8 @@
 </template>
 
 <script>
-import { generateUrl } from '@nextcloud/router'
 import moment from '@nextcloud/moment'
-
+import { generateUrl } from '@nextcloud/router'
 import NotionIcon from '../components/icons/NotionIcon.vue'
 
 export default {
@@ -51,35 +50,43 @@ export default {
 	components: {
 		NotionIcon,
 	},
+
 	props: {
 		richObjectType: {
 			type: String,
 			default: '',
 		},
+
 		richObject: {
 			type: Object,
 			default: null,
 		},
+
 		accessible: {
 			type: Boolean,
 			default: true,
 		},
 	},
+
 	data() {
 		return {
 			settingsUrl: generateUrl('/settings/user/connected-accounts#notion_prefs'),
 		}
 	},
+
 	computed: {
 		isPage() {
 			return this.richObject.type === 'page'
 		},
+
 		isDatabase() {
 			return this.richObject.type === 'database'
 		},
+
 		notionUrl() {
 			return this.richObject.url
 		},
+
 		titlePrefix() {
 			if (this.isPage) {
 				return t('integration_notion', 'Page: ')
@@ -88,15 +95,19 @@ export default {
 			}
 			return ''
 		},
+
 		formattedCreatedTime() {
 			return moment(this.richObject.created_time).utc().format('LLL')
 		},
+
 		formattedLastEditedTime() {
 			return moment(this.richObject.last_edited_time).utc().format('LLL')
 		},
+
 		createdByName() {
 			return this.richObject?.created_by?.name
 		},
+
 		editedByName() {
 			return this.richObject?.edited_by?.name
 		},
