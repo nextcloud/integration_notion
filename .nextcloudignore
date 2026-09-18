@@ -35,3 +35,7 @@
 /webpack.*
 /vite.config.ts
 tests
+/playwright
+/playwright.config.ts
+/test-results
+/playwright-report
