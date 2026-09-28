@@ -24,7 +24,7 @@
     "ID of your Notion application" : "ID vašej aplikácie Notion",
     "Application secret" : "Aplikačný tajný kľúč",
     "Client secret of your Notion application" : "Tajomstvo klienta vašej aplikácie Notion",
-    "Use a popup to authenticate" : "Pre overenie použite kontextové okno",
+    "Use a popup to authenticate" : "Na overenie použite kontextové okno",
     "Successfully connected to Notion!" : "Úspešne pripojené k Notion!",
     "Error connecting to Notion:" : "Chyba pri pripájaní k Notion:",
     "Successfully disconnected" : "Úspešne odpojené",
