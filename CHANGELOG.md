@@ -10,9 +10,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.1.0 - 2026-09-29]
+
 ### Changed
 
 - Added Nextcloud 36 support
+- Updated nextcloud/coding-standard and @nextcloud/eslint-config, and synced the lint workflows
+- Updated dependencies & translations.
 
 ## [2.0.3 - 2026-07-29]
 
