@@ -45,7 +45,7 @@ OC.L10N.register(
     "Thumbnail for {title}" : "Miniatúra pre {title}",
     "Created by: " : "Vytvoril:",
     "Last edited by: " : "Naposledy upravil:",
-    "Sign in with Notion" : "Prihlásiť pomocou Notion",
+    "Sign in with Notion" : "Prihlásiť sa pomocou Notion",
     "Failed to save Notion OAuth state" : "Nepodarilo sa uložiť stav Notion OAuth",
     "You need to connect before using the Notion integration." : "Pred použitím integrácie Notion sa musíte pripojiť.",
     "You can change Notion integration settings in the \"Connected accounts\" section of your personal settings." : "Nastavenia integrácie Notion môžete zmeniť v časti „Prepojené účty“ vo svojich osobných nastaveniach.",
