@@ -15,7 +15,7 @@ OC.L10N.register(
     "Connected accounts" : "Подключённые учётные записи",
     "Notion integration" : "Интеграция Notion",
     "Integration of Notion" : "Интеграция с Notion",
-    "Notion integration adds ability to search in Notion and render its links." : "Интеграция Notion добавляет возможность поиска в Notion и отображения его ссылок.",
+    "Notion integration adds ability to search in Notion and render its links." : "Интеграция Notion добавляет возможность поиска в Notion и показа его ссылок.",
     "Notion admin options saved" : "Параметры администратора Notion сохранены",
     "Failed to save Notion admin options" : "Не удалось сохранить параметры администратора Notion",
     "If you want to allow your Nextcloud users to connect to Notion via OAuth, create an application in Notion and set the ID and secret here." : "Если вы хотите разрешить пользователям Nextcloud подключаться к Notion через OAuth, создайте приложение в Notion и установите здесь идентификатор и секрет.",
