@@ -11,6 +11,7 @@ namespace OCA\Notion\Settings;
 
 use OCA\Notion\AppInfo\Application;
 use OCP\AppFramework\Http\TemplateResponse;
+use OCP\AppFramework\Services\IAppConfig;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\IConfig;
 use OCP\Security\ICrypto;
@@ -19,6 +20,7 @@ use OCP\Settings\ISettings;
 class Personal implements ISettings {
 
 	public function __construct(
+		private IAppConfig $appConfig,
 		private IConfig $config,
 		private IInitialState $initialStateService,
 		private ICrypto $crypto,
@@ -41,13 +43,13 @@ class Personal implements ISettings {
 		$linkPreviewEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'link_preview_enabled', '0');
 
 		// for OAuth
-		$clientId = $this->config->getAppValue(Application::APP_ID, 'client_id');
+		$clientId = $this->appConfig->getAppValueString('client_id', lazy: true);
 		if ($clientId !== '') {
 			$clientId = $this->crypto->decrypt($clientId);
 		}
 		// don't expose the client secret to users
-		$clientSecret = ($this->config->getAppValue(Application::APP_ID, 'client_secret') !== '');
-		$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0') === '1';
+		$clientSecret = ($this->appConfig->getAppValueString('client_secret', lazy: true) !== '');
+		$usePopup = $this->appConfig->getAppValueString('use_popup', '0', lazy: true) === '1';
 
 		$userConfig = [
 			'token' => $token ? 'dummyTokenContent' : '',

@@ -19,6 +19,7 @@ use OCP\AppFramework\Http\Attribute\PasswordConfirmationRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\TemplateResponse;
+use OCP\AppFramework\Services\IAppConfig;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\IConfig;
 use OCP\IL10N;
@@ -31,6 +32,7 @@ class ConfigController extends Controller {
 	public function __construct(
 		string $appName,
 		IRequest $request,
+		private IAppConfig $appConfig,
 		private IConfig $config,
 		private IURLGenerator $urlGenerator,
 		private IL10N $l,
@@ -46,16 +48,16 @@ class ConfigController extends Controller {
 	public function isUserConnected(): DataResponse {
 		$token = $this->config->getUserValue($this->userId, Application::APP_ID, 'token');
 
-		$clientId = $this->config->getAppValue(Application::APP_ID, 'client_id');
+		$clientId = $this->appConfig->getAppValueString('client_id', lazy: true);
 		if ($clientId !== '') {
 			$clientId = $this->crypto->decrypt($clientId);
 		}
-		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret');
+		$clientSecret = $this->appConfig->getAppValueString('client_secret', lazy: true);
 		if ($clientSecret !== '') {
 			$clientSecret = $this->crypto->decrypt($clientSecret);
 		}
 		$oauthPossible = $clientId !== '' && $clientSecret !== '';
-		$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0');
+		$usePopup = $this->appConfig->getAppValueString('use_popup', '0', lazy: true);
 
 		return new DataResponse([
 			'connected' => $token !== '',
@@ -97,24 +99,43 @@ class ConfigController extends Controller {
 	}
 
 	public function setAdminConfig(array $values): DataResponse {
+		if (!$this->hasOnlyStringValuesFor($values, ['use_popup', 'link_preview_enabled'])) {
+			return new DataResponse([], Http::STATUS_BAD_REQUEST);
+		}
 		foreach ($values as $key => $value) {
-			if (in_array($key, ['client_id', 'client_secret'], true)) {
-				return new DataResponse([], Http::STATUS_BAD_REQUEST);
-			}
-			$this->config->setAppValue(Application::APP_ID, $key, $value);
+			$this->appConfig->setAppValueString($key, $value, lazy: true);
 		}
 		return new DataResponse(1);
 	}
 
 	#[PasswordConfirmationRequired]
 	public function setSensitiveAdminConfig(array $values): DataResponse {
+		if (!$this->hasOnlyStringValuesFor($values, ['client_id', 'client_secret'])) {
+			return new DataResponse([], Http::STATUS_BAD_REQUEST);
+		}
 		foreach ($values as $key => $value) {
 			if (in_array($key, ['client_id', 'client_secret']) && $value !== '') {
 				$value = $this->crypto->encrypt($value);
 			}
-			$this->config->setAppValue(Application::APP_ID, $key, $value);
+			$this->appConfig->setAppValueString($key, $value, lazy: true);
 		}
 		return new DataResponse('');
+	}
+
+	/**
+	 * The admin endpoints only write the app's own keys: a lazy write of a key the server
+	 * owns, like "enabled", would hide it from the server, which reads it non-lazily.
+	 *
+	 * @param array<array-key, mixed> $values
+	 * @param list<string> $allowedKeys
+	 */
+	private function hasOnlyStringValuesFor(array $values, array $allowedKeys): bool {
+		foreach ($values as $key => $value) {
+			if (!in_array($key, $allowedKeys, true) || !is_string($value)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	#[NoAdminRequired]
@@ -128,11 +149,11 @@ class ConfigController extends Controller {
 	#[NoCSRFRequired]
 	public function oauthRedirect(string $code = '', string $state = ''): RedirectResponse {
 		$configState = $this->config->getUserValue($this->userId, Application::APP_ID, 'oauth_state');
-		$clientId = $this->config->getAppValue(Application::APP_ID, 'client_id');
+		$clientId = $this->appConfig->getAppValueString('client_id', lazy: true);
 		if ($clientId !== '') {
 			$clientId = $this->crypto->decrypt($clientId);
 		}
-		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'client_secret');
+		$clientSecret = $this->appConfig->getAppValueString('client_secret', lazy: true);
 		if ($clientSecret !== '') {
 			$clientSecret = $this->crypto->decrypt($clientSecret);
 		}
@@ -161,7 +182,7 @@ class ConfigController extends Controller {
 				$this->config->setUserValue($this->userId, Application::APP_ID, 'workspace_name', $result['workspace_name']);
 				$this->config->setUserValue($this->userId, Application::APP_ID, 'workspace_id', $result['workspace_id']);
 
-				$usePopup = $this->config->getAppValue(Application::APP_ID, 'use_popup', '0') === '1';
+				$usePopup = $this->appConfig->getAppValueString('use_popup', '0', lazy: true) === '1';
 				if ($usePopup) {
 					return new RedirectResponse(
 						$this->urlGenerator->linkToRoute('integration_notion.config.popupSuccessPage', [
