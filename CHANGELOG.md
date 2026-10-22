@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Load the app config values lazily, so they are no longer loaded on every request
+- Only accept the app's own settings on the admin settings endpoints
+
 ## [2.1.0 - 2026-09-29]
 
 ### Changed
