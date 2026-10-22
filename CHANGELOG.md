@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Load the app config values lazily, so they are no longer loaded on every request
 - Only accept the app's own settings on the admin settings endpoints
 
+### Removed
+
+- Nextcloud 32 and PHP 8.1 support
+
 ## [2.1.0 - 2026-09-29]
 
 ### Changed
