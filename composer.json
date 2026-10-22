@@ -13,7 +13,7 @@
 		"php": "^8.2"
 	},
 	"require-dev": {
-		"nextcloud/ocp": "dev-master",
+		"nextcloud/ocp": "dev-stable33",
 		"nextcloud/coding-standard": "^1.1",
 		"phpunit/phpunit": "^10 || ^12.5.22",
 		"psalm/phar": "^6.8"
