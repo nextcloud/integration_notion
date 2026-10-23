@@ -64,7 +64,9 @@
     "vite-plugin-stylelint": "^6.0.2"
   },
   "overrides": {
-    "vite": "$vite"
+    "vue-router": {
+      "vite": "$vite"
+    }
   },
   "engines": {
     "node": "^24.0.0",
