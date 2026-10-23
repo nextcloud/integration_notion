@@ -19,126 +19,150 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Nextcloud 32 and PHP 8.1 support
 
-## [2.1.0 - 2026-09-29]
-
-### Changed
-
-- Added Nextcloud 36 support
-- Updated nextcloud/coding-standard and @nextcloud/eslint-config, and synced the lint workflows
-- Updated dependencies & translations.
-
-## [2.0.3 - 2026-07-29]
-
-### Changed
-
-- Added Nextcloud 35 support
-- Updated the Nextcloud frontend libraries from release candidates to stable releases
-- Updated dependencies & translations.
-
-## [2.0.2 - 2026-04-20]
-
-### Changed
-
-- Added Nextcloud 34 support
-- Updated dependencies & translations.
-
-## [2.0.1 - 2025-11-10]
-
-### Changed
-
-- Added Nextcloud 33 support
-- Updated dependencies & translations.
-
-## [2.0.0 - 2025-09-01]
-
-### Changed
-
-- Set min and max supported NC version to 32
-
-## [1.3.0 - 2025-08-26]
-
-Maintenance update, migrate to Vue 3
-
-### Changed
-
-- Drop support of Nextcloud 28 & 29
-- Add support of Nextcloud 32
-- Update npm packages
-- Update l10n (localization)
-- change icons to outlined versions
-
-### Added
-- search providers marked as external sources
-
-## [1.2.0 - 2024-10-23]
-
-Maintenance update
-
-### Fixed
-
-- Corrected sensitive config storage handling
-
-
-## [1.1.0 - 2024-09-25]
-
-Maintenance update
-
-### Changed
-
-- Update npm pkgs (security)
-- Drop support of Nextcloud 26 and 27
-
-### Fixed
-
-- Corrected admin sensitive config handling
-
-
-## [1.0.1 - 2024-05-03]
-
-Maintenance update
-
-### Changed
-
-- Update npm pkgs (security)
-
-## [1.0.0 - 2024-04-04]
+## 2.1.0 - 2026-09-29
 
 ### Added
 
-- Added support of Nextcloud 29
+- Added support for Nextcloud 36
 
 ### Changed
 
-- Update npm pkgs
+- Update nextcloud/coding-standard and @nextcloud/eslint-config, and sync the lint workflows
+- Update dependencies & translations
 
-## [0.1.4 - 2023-10-25]
-
-Maintenance update to add support of Nextcloud 28
+## 2.0.3 - 2026-07-29
 
 ### Added
 
-- Added support of Nextcloud 28
+- Added support for Nextcloud 35
 
 ### Changed
 
-- Updated packages
-- Updated l10n (localization)
+- Update the Nextcloud frontend libraries from release candidates to stable releases
+- Update dependencies & translations
 
-## [0.1.3 - 2023-06-03]
-### Fixed
-- Fixed notion thumbnail retrieving
+## 2.0.2 - 2026-04-20
 
-## [0.1.2 - 2023-05-05]
-### Fixed
-- Fixed popup auth
-
-### Updated
-- localization updates
-
-## [0.1.1 - 2023-04-22]
-### Changed
-- dependency update and maintenance
-
-## [0.1.0 - 2023-04-06]
 ### Added
-- first release available at Nextcloud App Store
+
+- Added support for Nextcloud 34
+
+### Changed
+
+- Update dependencies & translations
+
+## 2.0.1 - 2025-11-10
+
+### Added
+
+- Added support for Nextcloud 33
+
+### Changed
+
+- Update dependencies & translations
+
+## 2.0.0 - 2025-09-01
+
+### Removed
+
+- Nextcloud 30 and 31 support
+
+## 1.3.0 - 2025-08-26
+
+### Added
+
+- Added support for Nextcloud 32
+- Mark the search providers as external sources
+
+### Changed
+
+- Migrate to Vue 3
+- Change the icons to outlined versions
+- Update dependencies & translations
+
+### Removed
+
+- Nextcloud 28 and 29 support
+
+## 1.2.0 - 2024-10-23
+
+### Changed
+
+- Update dependencies
+
+### Fixed
+
+- Correct the sensitive config storage handling
+
+## 1.1.0 - 2024-09-25
+
+### Added
+
+- Added support for Nextcloud 31
+
+### Changed
+
+- Update dependencies
+
+### Removed
+
+- Nextcloud 26 and 27 support
+
+### Fixed
+
+- Correct the admin sensitive config handling
+
+## 1.0.1 - 2024-05-03
+
+### Changed
+
+- Update dependencies
+
+## 1.0.0 - 2024-04-04
+
+### Added
+
+- Added support for Nextcloud 29 and 30
+
+### Changed
+
+- Update dependencies
+
+## 0.1.4 - 2023-10-25
+
+### Added
+
+- Added support for Nextcloud 28
+
+### Changed
+
+- Update dependencies & translations
+
+## 0.1.3 - 2023-06-03
+
+### Fixed
+
+- Fix the Notion thumbnail retrieval
+
+## 0.1.2 - 2023-05-05
+
+### Changed
+
+- Update translations
+
+### Fixed
+
+- Fix the popup authentication
+
+## 0.1.1 - 2023-04-22
+
+### Changed
+
+- Update the build and packaging setup
+- Update dependencies
+
+## 0.1.0 - 2023-04-06
+
+### Added
+
+- Initial release for Nextcloud 26 and 27
