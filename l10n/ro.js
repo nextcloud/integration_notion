@@ -6,6 +6,9 @@ OC.L10N.register(
     "Bad credentials" : "Credențiale greșite",
     "OAuth access token refused" : "Token-ul OAuth a fost refuzat",
     "Connected accounts" : "Conturile conectate",
+    "Make sure you set the \"Redirect URI\" to" : "Asigură-te că setezi „Redirect URI” la",
+    "Use a popup to authenticate" : "Folosește o fereastră pop-up pentru autentificare",
+    "Connected as {user}" : "Conectat ca {user}",
     "Cancel" : "Cancel",
     "Connect" : "Conectare"
 },
