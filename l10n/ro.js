@@ -1,12 +1,15 @@
 OC.L10N.register(
     "integration_notion",
     {
+    "Error getting OAuth access token. " : "Eroare la obținerea tokenului de acces OAuth. ",
     "Error during OAuth exchanges" : "Eroare în schimbarea OAuth",
     "Bad HTTP method" : "Metodă HTTP nepotrivită",
     "Bad credentials" : "Credențiale greșite",
     "OAuth access token refused" : "Token-ul OAuth a fost refuzat",
     "Connected accounts" : "Conturile conectate",
     "Make sure you set the \"Redirect URI\" to" : "Asigură-te că setezi „Redirect URI” la",
+    "Application ID" : "ID-ul aplicației",
+    "Application secret" : "Secretul aplicației",
     "Use a popup to authenticate" : "Folosește o fereastră pop-up pentru autentificare",
     "Connected as {user}" : "Conectat ca {user}",
     "Cancel" : "Cancel",
