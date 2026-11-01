@@ -1,7 +1,7 @@
 OC.L10N.register(
     "integration_notion",
     {
-    "Error getting OAuth access token. " : "Fejl ved anmodning om OAuth adgangsnøgle",
+    "Error getting OAuth access token. " : "Fejl ved hentning af OAuth-adgangstoken. ",
     "Error during OAuth exchanges" : "Fejl under OAuth-udvekslinger",
     "Notion page or database" : "Notion-side eller -database",
     "in database" : "i databasen",
@@ -9,9 +9,9 @@ OC.L10N.register(
     "Notion databases" : "Notion-databaser",
     "Last edited on %s" : "Sidst redigeret den %s",
     "Notion pages" : "Notion-sider",
-    "Bad HTTP method" : "Dårlig HTTP metode",
-    "Bad credentials" : "Forkerte legitimationsoplysninger",
-    "OAuth access token refused" : "OAuth adgangsnøgle afvist",
+    "Bad HTTP method" : "Ugyldig HTTP-metode",
+    "Bad credentials" : "Forkerte loginoplysninger",
+    "OAuth access token refused" : "OAuth-adgangstokenet blev afvist",
     "Connected accounts" : "Forbundne konti",
     "Notion integration" : "Notion-integration",
     "Integration of Notion" : "Integration med Notion",
@@ -49,8 +49,8 @@ OC.L10N.register(
     "Failed to save Notion OAuth state" : "OAuth-tilstanden for Notion kunne ikke gemmes",
     "You need to connect before using the Notion integration." : "Du skal forbinde, før du kan bruge Notion-integrationen.",
     "You can change Notion integration settings in the \"Connected accounts\" section of your personal settings." : "Du kan ændre indstillingerne for Notion-integrationen i afsnittet \"Forbundne konti\" i dine personlige indstillinger.",
-    "Do you want to connect to Notion?" : "Vil du forbinde til Notion?",
-    "Cancel" : "Annullér",
-    "Connect" : "Tilslut"
+    "Do you want to connect to Notion?" : "Vil du oprette forbindelse til Notion?",
+    "Cancel" : "Annuller",
+    "Connect" : "Forbind"
 },
 "nplurals=2; plural=(n != 1);");
